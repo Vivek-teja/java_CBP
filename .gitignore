@@ -1,0 +1,9 @@
+# Eclipse build output
+bin/
+*.class
+
+# macOS system files
+.DS_Store
+
+# Temporary scratch files
+scratch/
