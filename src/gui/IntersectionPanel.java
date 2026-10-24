@@ -7,14 +7,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
-import java.awt.Stroke;
 import javax.swing.JPanel;
 import models.Road;
+import models.Vehicle;
 
 /**
  * Custom Swing JPanel that renders a bird's-eye view of a 4-way intersection
  * using a simple two-way road layout (one incoming lane, one outgoing lane,
  * and a central divider between them).
+ * Dynamically displays vehicle positions from the simulation model.
  */
 public class IntersectionPanel extends JPanel {
 
@@ -94,7 +95,7 @@ public class IntersectionPanel extends JPanel {
         // 5. Stop Lines (across incoming approach lanes only)
         drawStopLines(g2, cx, cy, halfRoad);
 
-        // 6. Draw Queued Waiting Vehicles in the Incoming Lanes
+        // 6. Draw Simulated Vehicles along each road approach and intersection
         drawVehicles(g2, cx, cy, halfRoad);
 
         // 7. Draw Traffic Signals at Stop Lines
@@ -206,61 +207,55 @@ public class IntersectionPanel extends JPanel {
     }
 
     /**
-     * Draws vehicles queued up in the incoming lane approaching the stop line.
+     * Draws vehicles according to their dynamic simulation positions.
      */
     private void drawVehicles(Graphics2D g2, int cx, int cy, int halfRoad) {
         int carW = 20;
         int carL = 26;
-        int spacing = 5;
 
-        // North Road: Incoming on West side (x = cx - 30)
+        // North Road: Incoming on West side (x = cx - 30, heading South v)
         if (northRoad != null) {
-            int count = northRoad.getTotalVehicles();
-            int x = cx - 30 - carW / 2;
-            int startY = cy - halfRoad - 10;
-            for (int i = 0; i < count; i++) {
-                int y = startY - (i * (carL + spacing)) - carL;
-                Color color = CAR_COLORS[i % CAR_COLORS.length];
+            for (Vehicle v : northRoad.getAllVehicles()) {
+                double d = v.getDistance();
+                int x = cx - 30 - carW / 2;
+                int y = (int) (d - carL);
+                Color color = CAR_COLORS[Math.abs(v.vehicleId) % CAR_COLORS.length];
                 drawCarRectangle(g2, x, y, carW, carL, color, true);
             }
         }
 
-        // South Road: Incoming on East side (x = cx + 30)
+        // South Road: Incoming on East side (x = cx + 30, heading North ^)
         if (southRoad != null) {
-            int count = southRoad.getTotalVehicles();
-            int x = cx + 30 - carW / 2;
-            int startY = cy + halfRoad + 10;
-            for (int i = 0; i < count; i++) {
-                int y = startY + (i * (carL + spacing));
-                Color color = CAR_COLORS[i % CAR_COLORS.length];
+            int h = getHeight();
+            for (Vehicle v : southRoad.getAllVehicles()) {
+                double d = v.getDistance();
+                int x = cx + 30 - carW / 2;
+                int y = (int) (h - d);
+                Color color = CAR_COLORS[Math.abs(v.vehicleId) % CAR_COLORS.length];
                 drawCarRectangle(g2, x, y, carW, carL, color, true);
             }
         }
 
-        // West Road: Incoming on South side (y = cy + 30)
+        // West Road: Incoming on South side (y = cy + 30, heading East >)
         if (westRoad != null) {
-            int count = westRoad.getTotalVehicles();
-            int y = cy + 30 - carW / 2;
-            int startX = cx - halfRoad - 10;
-            for (int i = 0; i < count; i++) {
-                int x = startX - (i * (carL + spacing)) - carL;
-                Color color = CAR_COLORS[(i + 2) % CAR_COLORS.length];
+            for (Vehicle v : westRoad.getAllVehicles()) {
+                double d = v.getDistance();
+                int x = (int) (d - carL);
+                int y = cy + 30 - carW / 2;
+                Color color = CAR_COLORS[Math.abs(v.vehicleId + 2) % CAR_COLORS.length];
                 drawCarRectangle(g2, x, y, carL, carW, color, false);
             }
         }
 
-        // East Road: Incoming on North side (y = cy - 30)
-        // To accommodate 15 vehicles compactly, use 16px length and 4px spacing
+        // East Road: Incoming on North side (y = cy - 30, heading West <)
         if (eastRoad != null) {
-            int count = eastRoad.getTotalVehicles();
-            int eCarL = 16;
-            int eSpacing = 4;
-            int y = cy - 30 - carW / 2;
-            int startX = cx + halfRoad + 10;
-            for (int i = 0; i < count; i++) {
-                int x = startX + (i * (eCarL + eSpacing));
-                Color color = CAR_COLORS[i % CAR_COLORS.length];
-                drawCarRectangle(g2, x, y, eCarL, carW, color, false);
+            int w = getWidth();
+            for (Vehicle v : eastRoad.getAllVehicles()) {
+                double d = v.getDistance();
+                int x = (int) (w - d);
+                int y = cy - 30 - carW / 2;
+                Color color = CAR_COLORS[Math.abs(v.vehicleId) % CAR_COLORS.length];
+                drawCarRectangle(g2, x, y, carL, carW, color, false);
             }
         }
     }
@@ -285,28 +280,33 @@ public class IntersectionPanel extends JPanel {
 
     /**
      * Traffic signals positioned right at the incoming approach curb.
+     * Renders a 3-lamp signal housing (Red, Yellow, Green).
      */
     private void drawTrafficSignals(Graphics2D g2, int cx, int cy, int halfRoad) {
-        // North Signal (curb at incoming stop line: x = cx - halfRoad - 26, y = cy - halfRoad - 46)
-        boolean northGreen = northRoad != null && "GREEN".equalsIgnoreCase(northRoad.getSignal().getColor());
-        drawSignalBox(g2, cx - halfRoad - 26, cy - halfRoad - 46, northGreen);
+        // North Signal (curb at incoming stop line)
+        String northColor = (northRoad != null && northRoad.getSignal() != null) ? northRoad.getSignal().getColor() : "RED";
+        drawSignalBox(g2, cx - halfRoad - 26, cy - halfRoad - 54, northColor);
 
-        // South Signal (curb at incoming stop line: x = cx + halfRoad + 6, y = cy + halfRoad + 6)
-        boolean southGreen = southRoad != null && "GREEN".equalsIgnoreCase(southRoad.getSignal().getColor());
-        drawSignalBox(g2, cx + halfRoad + 6, cy + halfRoad + 6, southGreen);
+        // South Signal (curb at incoming stop line)
+        String southColor = (southRoad != null && southRoad.getSignal() != null) ? southRoad.getSignal().getColor() : "RED";
+        drawSignalBox(g2, cx + halfRoad + 6, cy + halfRoad + 4, southColor);
 
-        // East Signal (curb at incoming stop line: x = cx + halfRoad + 6, y = cy - halfRoad - 26)
-        boolean eastGreen = eastRoad != null && "GREEN".equalsIgnoreCase(eastRoad.getSignal().getColor());
-        drawSignalBox(g2, cx + halfRoad + 6, cy - halfRoad - 26, eastGreen);
+        // East Signal (curb at incoming stop line)
+        String eastColor = (eastRoad != null && eastRoad.getSignal() != null) ? eastRoad.getSignal().getColor() : "RED";
+        drawSignalBox(g2, cx + halfRoad + 6, cy - halfRoad - 30, eastColor);
 
-        // West Signal (curb at incoming stop line: x = cx - halfRoad - 46, y = cy + halfRoad + 6)
-        boolean westGreen = westRoad != null && "GREEN".equalsIgnoreCase(westRoad.getSignal().getColor());
-        drawSignalBox(g2, cx - halfRoad - 46, cy + halfRoad + 6, westGreen);
+        // West Signal (curb at incoming stop line)
+        String westColor = (westRoad != null && westRoad.getSignal() != null) ? westRoad.getSignal().getColor() : "RED";
+        drawSignalBox(g2, cx - halfRoad - 46, cy + halfRoad + 4, westColor);
     }
 
-    private void drawSignalBox(Graphics2D g2, int x, int y, boolean isGreen) {
+    private void drawSignalBox(Graphics2D g2, int x, int y, String color) {
         int boxW = 20;
-        int boxH = 40;
+        int boxH = 50;
+
+        boolean isRed = "RED".equalsIgnoreCase(color);
+        boolean isYellow = "YELLOW".equalsIgnoreCase(color);
+        boolean isGreen = "GREEN".equalsIgnoreCase(color);
 
         // Housing
         g2.setColor(HOUSING_COLOR);
@@ -315,13 +315,17 @@ public class IntersectionPanel extends JPanel {
         g2.setStroke(new BasicStroke(1));
         g2.drawRoundRect(x, y, boxW, boxH, 6, 6);
 
-        // Red Lamp
-        g2.setColor(isGreen ? new Color(60, 10, 10) : new Color(245, 30, 30));
+        // 1. Red Lamp (top)
+        g2.setColor(isRed ? new Color(245, 30, 30) : new Color(60, 15, 15));
         g2.fillOval(x + 4, y + 4, 12, 12);
 
-        // Green Lamp
+        // 2. Yellow Lamp (middle)
+        g2.setColor(isYellow ? new Color(250, 200, 25) : new Color(60, 50, 10));
+        g2.fillOval(x + 4, y + 19, 12, 12);
+
+        // 3. Green Lamp (bottom)
         g2.setColor(isGreen ? new Color(30, 240, 60) : new Color(10, 60, 20));
-        g2.fillOval(x + 4, y + 22, 12, 12);
+        g2.fillOval(x + 4, y + 34, 12, 12);
     }
 
     private void drawInfoCards(Graphics2D g2, int w, int h) {
@@ -351,13 +355,24 @@ public class IntersectionPanel extends JPanel {
         g2.setColor(new Color(180, 190, 200, 100));
         g2.drawRoundRect(x, y, cardW, cardH, 10, 10);
 
-        boolean isGreen = "GREEN".equalsIgnoreCase(road.getSignal().getColor());
+        String color = (road.getSignal() != null) ? road.getSignal().getColor() : "RED";
+        int duration = (road.getSignal() != null) ? road.getSignal().getDuration() : 0;
+        boolean isGreen = "GREEN".equalsIgnoreCase(color);
+        boolean isYellow = "YELLOW".equalsIgnoreCase(color);
 
         // Road Name & Status Dot
         g2.setColor(Color.WHITE);
         g2.drawString(road.getDirection() + " Road (Two-Way)", x + 12, y + 20);
 
-        g2.setColor(isGreen ? new Color(40, 240, 60) : new Color(245, 50, 50));
+        Color dotColor;
+        if (isGreen) {
+            dotColor = new Color(40, 240, 60);
+        } else if (isYellow) {
+            dotColor = new Color(250, 200, 30);
+        } else {
+            dotColor = new Color(245, 50, 50);
+        }
+        g2.setColor(dotColor);
         g2.fillOval(x + cardW - 22, y + 9, 11, 11);
 
         // Details
@@ -366,10 +381,22 @@ public class IntersectionPanel extends JPanel {
 
         g2.drawString("Waiting Vehicles: " + road.getTotalVehicles(), x + 12, y + 40);
 
-        String statusText = isGreen ? ("Signal: GREEN (" + road.getSignal().getDuration() + "s)") : "Signal: RED (Stopped)";
-        g2.setColor(isGreen ? new Color(130, 255, 150) : new Color(255, 140, 140));
-        g2.drawString(statusText, x + 12, y + 60);
+        String statusText;
+        Color textColor;
 
-        g2.setFont(new Font("SansSerif", Font.BOLD, 12));
+        if (isGreen) {
+            statusText = "Signal: GREEN (" + duration + "s)";
+            textColor = new Color(80, 230, 120);
+        } else if (isYellow) {
+            statusText = "Signal: YELLOW (" + duration + "s)";
+            textColor = new Color(250, 210, 60);
+        } else {
+            statusText = "Signal: RED (STOP)";
+            textColor = new Color(250, 100, 100);
+        }
+
+        g2.setFont(new Font("SansSerif", Font.BOLD, 11));
+        g2.setColor(textColor);
+        g2.drawString(statusText, x + 12, y + 60);
     }
 }

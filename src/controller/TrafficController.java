@@ -32,6 +32,17 @@ public interface TrafficController {
     void applyPhase(String activeAxis, Road north, Road south, Road east, Road west, SignalTimingStrategy strategy);
 
     /**
+     * Applies a yellow clearance phase to the active axis while holding the
+     * perpendicular axis at red to ensure clearance safety.
+     */
+    void applyYellowPhase(String activeAxis, Road north, Road south, Road east, Road west, int yellowDuration);
+
+    /**
+     * Updates the remaining countdown on the active axis signals.
+     */
+    void updateSignalCountdown(String activeAxis, Road north, Road south, Road east, Road west, int remainingSeconds);
+
+    /**
      * Displays the current operating status and info of the controller.
      */
     void displayStatus();

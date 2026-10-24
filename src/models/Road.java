@@ -54,6 +54,15 @@ public class Road {
         return total;
     }
 
+    // Method to return all vehicles across all lanes on this road
+    public ArrayList<Vehicle> getAllVehicles() {
+        ArrayList<Vehicle> all = new ArrayList<>();
+        for (Lane lane : lanes) {
+            all.addAll(lane.vehicles);
+        }
+        return all;
+    }
+
     // Method to calculate average vehicles per lane
     // Throws ArithmeticException if lanes.size() == 0 (division by zero)
     public int getAverageVehiclesPerLane() throws ArithmeticException {

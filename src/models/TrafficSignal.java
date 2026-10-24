@@ -2,12 +2,17 @@ package models;
 
 public class TrafficSignal {
 
+    // Standard traffic signal color constants
+    public static final String RED = "RED";
+    public static final String YELLOW = "YELLOW";
+    public static final String GREEN = "GREEN";
+
     private String color;
     private int duration;
 
     // Default constructor
     public TrafficSignal() {
-        this.color = "RED";
+        this.color = RED;
         this.duration = 0;
     }
 
@@ -31,6 +36,18 @@ public class TrafficSignal {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public boolean isRed() {
+        return RED.equalsIgnoreCase(color);
+    }
+
+    public boolean isYellow() {
+        return YELLOW.equalsIgnoreCase(color);
+    }
+
+    public boolean isGreen() {
+        return GREEN.equalsIgnoreCase(color);
     }
 
     public void displaySignal() {

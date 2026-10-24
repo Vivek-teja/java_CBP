@@ -6,22 +6,25 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import models.Road;
+import models.TrafficSimulationModel;
 import strategy.DensityBasedTimingStrategy;
 import strategy.FixedTimingStrategy;
 import strategy.SignalTimingStrategy;
 
 /**
  * Main Swing Window for the Traffic Management System CBP.
- * Provides user controls to switch timing strategies, toggle non-conflicting
- * signal phases, and refresh the bird's-eye view visualization.
+ * Drives the deterministic TrafficSimulationModel via a 1-second Swing Timer,
+ * rendering dynamic vehicle movements, phase transitions, and countdowns on the EDT.
  */
 public class TrafficSimulationFrame extends JFrame {
 
@@ -35,7 +38,11 @@ public class TrafficSimulationFrame extends JFrame {
     private SignalTimingStrategy densityStrategy;
     private SignalTimingStrategy activeStrategy;
 
-    private String currentPhase = "NORTH_SOUTH"; // Initial non-conflicting phase
+    // Deterministic simulation model
+    private transient TrafficSimulationModel model;
+
+    // Swing timer for 1-second ticks
+    private Timer simulationTimer;
 
     private IntersectionPanel intersectionPanel;
     private JLabel statusLabel;
@@ -49,16 +56,18 @@ public class TrafficSimulationFrame extends JFrame {
         this.eastRoad = east;
         this.westRoad = west;
 
-        // Reuse existing controller and strategy classes (No duplicated timing formulas)
-        this.controller = new IntersectionController("City Center 4-Way Junction");
-        this.fixedStrategy = new FixedTimingStrategy();
-        this.densityStrategy = new DensityBasedTimingStrategy();
-        this.activeStrategy = this.densityStrategy; // Default to density-based
+        // Instantiate the deterministic simulation model
+        this.model = new TrafficSimulationModel(northRoad, southRoad, eastRoad, westRoad);
+        this.controller = model.getController();
+        this.fixedStrategy = model.getFixedStrategy();
+        this.densityStrategy = model.getDensityStrategy();
+        this.activeStrategy = model.getActiveStrategy();
 
         initComponents();
 
-        // Initial signal state application
+        // Initial phase application & start automatic simulation timer
         applyCurrentState();
+        startTimer();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(850, 800);
@@ -81,22 +90,14 @@ public class TrafficSimulationFrame extends JFrame {
             "Fixed Timing (30s)"
         });
         strategyCombo.setFont(new Font("SansSerif", Font.PLAIN, 13));
-        strategyCombo.addActionListener(e -> {
-            int selected = strategyCombo.getSelectedIndex();
-            activeStrategy = (selected == 0) ? densityStrategy : fixedStrategy;
-            applyCurrentState();
-        });
+        strategyCombo.addActionListener(e -> onStrategyChanged());
 
         JButton togglePhaseBtn = new JButton("Toggle Signal Phase (N-S / E-W)");
         togglePhaseBtn.setFont(new Font("SansSerif", Font.BOLD, 12));
         togglePhaseBtn.setBackground(new Color(50, 110, 200));
         togglePhaseBtn.setForeground(Color.WHITE);
         togglePhaseBtn.setFocusPainted(false);
-        togglePhaseBtn.addActionListener(e -> {
-            // Toggle between non-conflicting phases
-            currentPhase = currentPhase.equals("NORTH_SOUTH") ? "EAST_WEST" : "NORTH_SOUTH";
-            applyCurrentState();
-        });
+        togglePhaseBtn.addActionListener(e -> onManualPhaseToggle());
 
         JButton refreshBtn = new JButton("Refresh Timings");
         refreshBtn.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -122,33 +123,143 @@ public class TrafficSimulationFrame extends JFrame {
         add(controlPanel, BorderLayout.NORTH);
         add(intersectionPanel, BorderLayout.CENTER);
         add(statusPanel, BorderLayout.SOUTH);
+
+        // Ensure timer is stopped cleanly when window closes
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                stopTimer();
+            }
+        });
     }
 
     /**
-     * Applies the selected strategy to the current phase and refreshes GUI.
-     * Enforces that North/South and East/West are never green at the same time.
+     * Starts the automatic 1-second simulation clock on the Event Dispatch Thread.
      */
-    private void applyCurrentState() {
-        controller.applyPhase(currentPhase, northRoad, southRoad, eastRoad, westRoad, activeStrategy);
+    private void startTimer() {
+        if (simulationTimer != null && simulationTimer.isRunning()) {
+            simulationTimer.stop();
+        }
+        simulationTimer = new Timer(1000, e -> onTimerTick());
+        simulationTimer.start();
+    }
 
-        String phaseText = currentPhase.equals("NORTH_SOUTH") 
-                ? "Active Phase: NORTH-SOUTH GREEN (East-West Stopped)"
-                : "Active Phase: EAST-WEST GREEN (North-South Stopped)";
+    /**
+     * Stops the simulation timer cleanly without leaving orphaned callbacks.
+     */
+    public void stopTimer() {
+        if (simulationTimer != null && simulationTimer.isRunning()) {
+            simulationTimer.stop();
+        }
+    }
 
-        statusLabel.setText(phaseText + "  |  Active Strategy: " + activeStrategy.getStrategyName());
+    @Override
+    public void dispose() {
+        stopTimer();
+        super.dispose();
+    }
+
+    /**
+     * Called once per second by the Swing Timer.
+     * Advances the deterministic model and repaints the view.
+     */
+    private void onTimerTick() {
+        model.tick();
+        updateStatusBar();
+        intersectionPanel.repaint();
+    }
+
+    /**
+     * Applies current state to the model and updates the display.
+     */
+    public void applyCurrentState() {
+        model.applyCurrentState();
+        updateStatusBar();
         intersectionPanel.updateRoads(northRoad, southRoad, eastRoad, westRoad);
     }
 
     /**
-     * Standalone main method to test and run the GUI directly from Eclipse.
+     * Handles strategy dropdown changes safely via the model.
      */
-    public static void main(String[] args) {
-        // Reuses the model data defined in MainApp
-        Road[] roads = Main.MainApp.createIntersectionRoads();
+    private void onStrategyChanged() {
+        int selected = strategyCombo.getSelectedIndex();
+        activeStrategy = (selected == 0) ? densityStrategy : fixedStrategy;
+        model.setActiveStrategy(activeStrategy);
 
-        SwingUtilities.invokeLater(() -> {
-            TrafficSimulationFrame frame = new TrafficSimulationFrame(roads[0], roads[1], roads[2], roads[3]);
-            frame.setVisible(true);
-        });
+        updateStatusBar();
+        intersectionPanel.updateRoads(northRoad, southRoad, eastRoad, westRoad);
+    }
+
+    /**
+     * Handles manual phase toggle safely via the model.
+     */
+    private void onManualPhaseToggle() {
+        model.manualPhaseToggle();
+        updateStatusBar();
+        intersectionPanel.updateRoads(northRoad, southRoad, eastRoad, westRoad);
+    }
+
+    /**
+     * Updates the status bar text reflecting active axis, state, countdown, and strategy.
+     */
+    private void updateStatusBar() {
+        String phaseText;
+        String currentSignalState = model.getCurrentSignalState();
+        String currentAxis = model.getCurrentAxis();
+        int remainingSeconds = model.getRemainingSeconds();
+
+        if (models.TrafficSignal.GREEN.equals(currentSignalState)) {
+            phaseText = currentAxis.equals("NORTH_SOUTH")
+                    ? "Active Phase: NORTH-SOUTH GREEN (East-West Stopped)"
+                    : "Active Phase: EAST-WEST GREEN (North-South Stopped)";
+        } else {
+            phaseText = currentAxis.equals("NORTH_SOUTH")
+                    ? "Active Phase: NORTH-SOUTH YELLOW (Clearance Phase)"
+                    : "Active Phase: EAST-WEST YELLOW (Clearance Phase)";
+        }
+
+        statusLabel.setText(phaseText + "  |  Time Remaining: " + remainingSeconds + "s  |  Strategy: " + activeStrategy.getStrategyName());
+    }
+
+    // Deterministic simulation & inspection helpers (Preserves backward compatibility)
+    public void advanceSimulationTick() {
+        onTimerTick();
+    }
+
+    public void requestManualPhaseToggle() {
+        onManualPhaseToggle();
+    }
+
+    public void selectStrategy(int index) {
+        if (strategyCombo != null) {
+            strategyCombo.setSelectedIndex(index);
+        } else {
+            activeStrategy = (index == 0) ? densityStrategy : fixedStrategy;
+            onStrategyChanged();
+        }
+    }
+
+    public int getRemainingSeconds() {
+        return model.getRemainingSeconds();
+    }
+
+    public String getCurrentSignalState() {
+        return model.getCurrentSignalState();
+    }
+
+    public String getCurrentAxis() {
+        return model.getCurrentAxis();
+    }
+
+    public int getElapsedGreenSeconds() {
+        return model.getElapsedGreenSeconds();
+    }
+
+    public Timer getSimulationTimer() {
+        return simulationTimer;
+    }
+
+    public TrafficSimulationModel getModel() {
+        return model;
     }
 }

@@ -28,7 +28,7 @@ public class IntersectionController implements TrafficController {
     public void controlTraffic(Road road, SignalTimingStrategy strategy) {
         int greenTime = strategy.calculateGreenTime(road);
         if (road.getSignal() != null) {
-            road.getSignal().setColor("GREEN");
+            road.getSignal().setColor(TrafficSignal.GREEN);
             road.getSignal().setDuration(greenTime);
         }
     }
@@ -71,35 +71,82 @@ public class IntersectionController implements TrafficController {
         }
     }
 
-    // Sets signal phases ensuring conflicting directions are not green simultaneously
+    // Sets signal phases ensuring conflicting directions are not green simultaneously.
+    // Coordinates a shared phase duration taking the maximum of the two active roads.
     @Override
     public void applyPhase(String activeAxis, Road north, Road south, Road east, Road west, SignalTimingStrategy strategy) {
         if ("NORTH_SOUTH".equalsIgnoreCase(activeAxis)) {
-            // North-South green phase, East-West red phase
-            north.getSignal().setColor("GREEN");
-            north.getSignal().setDuration(strategy.calculateGreenTime(north));
+            // Coordinate shared green duration for the North-South axis
+            int greenDuration = Math.max(strategy.calculateGreenTime(north), strategy.calculateGreenTime(south));
 
-            south.getSignal().setColor("GREEN");
-            south.getSignal().setDuration(strategy.calculateGreenTime(south));
+            north.getSignal().setColor(TrafficSignal.GREEN);
+            north.getSignal().setDuration(greenDuration);
 
-            east.getSignal().setColor("RED");
+            south.getSignal().setColor(TrafficSignal.GREEN);
+            south.getSignal().setDuration(greenDuration);
+
+            east.getSignal().setColor(TrafficSignal.RED);
             east.getSignal().setDuration(0);
 
-            west.getSignal().setColor("RED");
+            west.getSignal().setColor(TrafficSignal.RED);
             west.getSignal().setDuration(0);
         } else {
-            // East-West green phase, North-South red phase
-            north.getSignal().setColor("RED");
+            // Coordinate shared green duration for the East-West axis
+            int greenDuration = Math.max(strategy.calculateGreenTime(east), strategy.calculateGreenTime(west));
+
+            north.getSignal().setColor(TrafficSignal.RED);
             north.getSignal().setDuration(0);
 
-            south.getSignal().setColor("RED");
+            south.getSignal().setColor(TrafficSignal.RED);
             south.getSignal().setDuration(0);
 
-            east.getSignal().setColor("GREEN");
-            east.getSignal().setDuration(strategy.calculateGreenTime(east));
+            east.getSignal().setColor(TrafficSignal.GREEN);
+            east.getSignal().setDuration(greenDuration);
 
-            west.getSignal().setColor("GREEN");
-            west.getSignal().setDuration(strategy.calculateGreenTime(west));
+            west.getSignal().setColor(TrafficSignal.GREEN);
+            west.getSignal().setDuration(greenDuration);
+        }
+    }
+
+    // Applies yellow clearance interval to the active axis while perpendicular axis stays RED.
+    @Override
+    public void applyYellowPhase(String activeAxis, Road north, Road south, Road east, Road west, int yellowDuration) {
+        if ("NORTH_SOUTH".equalsIgnoreCase(activeAxis)) {
+            north.getSignal().setColor(TrafficSignal.YELLOW);
+            north.getSignal().setDuration(yellowDuration);
+
+            south.getSignal().setColor(TrafficSignal.YELLOW);
+            south.getSignal().setDuration(yellowDuration);
+
+            east.getSignal().setColor(TrafficSignal.RED);
+            east.getSignal().setDuration(0);
+
+            west.getSignal().setColor(TrafficSignal.RED);
+            west.getSignal().setDuration(0);
+        } else {
+            north.getSignal().setColor(TrafficSignal.RED);
+            north.getSignal().setDuration(0);
+
+            south.getSignal().setColor(TrafficSignal.RED);
+            south.getSignal().setDuration(0);
+
+            east.getSignal().setColor(TrafficSignal.YELLOW);
+            east.getSignal().setDuration(yellowDuration);
+
+            west.getSignal().setColor(TrafficSignal.YELLOW);
+            west.getSignal().setDuration(yellowDuration);
+        }
+    }
+
+    // Updates live countdown value on the active axis signals.
+    @Override
+    public void updateSignalCountdown(String activeAxis, Road north, Road south, Road east, Road west, int remainingSeconds) {
+        if ("NORTH_SOUTH".equalsIgnoreCase(activeAxis)) {
+            north.getSignal().setDuration(remainingSeconds);
+            south.getSignal().setDuration(remainingSeconds);
+        } else {
+            east.getSignal().setDuration(remainingSeconds);
+            west.getSignal().setDuration(remainingSeconds);
         }
     }
 
