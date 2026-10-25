@@ -20,6 +20,7 @@ import models.TrafficSimulationModel;
 import strategy.DensityBasedTimingStrategy;
 import strategy.FixedTimingStrategy;
 import strategy.SignalTimingStrategy;
+import threading.TrafficThreading;
 
 /**
  * Main Swing Window for the Traffic Management System CBP.
@@ -41,8 +42,23 @@ public class TrafficSimulationFrame extends JFrame {
     // Deterministic simulation model
     private transient TrafficSimulationModel model;
 
+    // Background dynamic vehicle arrival producer
+    private transient TrafficThreading.TrafficEventProducer eventProducer;
+
     // Swing timer for 1-second ticks
     private Timer simulationTimer;
+
+    // Swing timer for ~60 FPS smooth rendering animation
+    private Timer animationTimer;
+
+    // Timestamp of the most recent simulation tick (nanoseconds)
+    private long lastTickNanos = 0;
+
+    // Cached status bar text to avoid redundant setText() calls
+    private String lastStatusText = "";
+
+    // Window disposal flag to guard background and EDT callbacks
+    private volatile boolean disposed = false;
 
     private IntersectionPanel intersectionPanel;
     private JLabel statusLabel;
@@ -134,38 +150,87 @@ public class TrafficSimulationFrame extends JFrame {
     }
 
     /**
-     * Starts the automatic 1-second simulation clock on the Event Dispatch Thread.
+     * Starts the automatic 1-second simulation clock on the Event Dispatch Thread,
+     * launches the smooth rendering animation timer (~60 FPS),
+     * and launches the background vehicle arrival producer daemon.
      */
     private void startTimer() {
+        if (disposed) {
+            return;
+        }
         if (simulationTimer != null && simulationTimer.isRunning()) {
             simulationTimer.stop();
         }
+        if (animationTimer != null && animationTimer.isRunning()) {
+            animationTimer.stop();
+        }
+        if (eventProducer != null) {
+            eventProducer.stop(500);
+        }
+        eventProducer = new TrafficThreading.TrafficEventProducer(model);
+        eventProducer.start();
+
+        lastTickNanos = System.nanoTime();
+        intersectionPanel.snapshotPreviousPositions();
+        intersectionPanel.setInterpolationAlpha(0.0);
+
         simulationTimer = new Timer(1000, e -> onTimerTick());
         simulationTimer.start();
+
+        animationTimer = new Timer(16, e -> onAnimationTick());
+        animationTimer.start();
     }
 
     /**
-     * Stops the simulation timer cleanly without leaving orphaned callbacks.
+     * Stops the simulation timer, animation timer, and background producer cleanly without leaving orphaned threads.
      */
     public void stopTimer() {
         if (simulationTimer != null && simulationTimer.isRunning()) {
             simulationTimer.stop();
         }
+        if (animationTimer != null && animationTimer.isRunning()) {
+            animationTimer.stop();
+        }
+        if (eventProducer != null) {
+            eventProducer.stop(1500);
+        }
     }
 
     @Override
     public void dispose() {
+        disposed = true;
         stopTimer();
         super.dispose();
     }
 
     /**
-     * Called once per second by the Swing Timer.
-     * Advances the deterministic model and repaints the view.
+     * Called once per second by the Swing simulation Timer.
+     * Advances the deterministic model and updates the display.
      */
     private void onTimerTick() {
+        if (disposed) {
+            return;
+        }
+        intersectionPanel.snapshotPreviousPositions();
         model.tick();
+        lastTickNanos = System.nanoTime();
         updateStatusBar();
+        intersectionPanel.setInterpolationAlpha(0.0);
+        intersectionPanel.repaint();
+    }
+
+    /**
+     * Called approximately every 16ms (~60 FPS) by the Swing animation Timer.
+     * Interpolates vehicle rendering positions between discrete 1-second ticks.
+     */
+    private void onAnimationTick() {
+        if (disposed || !isDisplayable()) {
+            return;
+        }
+        long now = System.nanoTime();
+        double elapsedSec = (now - lastTickNanos) / 1_000_000_000.0;
+        double alpha = Math.max(0.0, Math.min(1.0, elapsedSec));
+        intersectionPanel.setInterpolationAlpha(alpha);
         intersectionPanel.repaint();
     }
 
@@ -176,6 +241,9 @@ public class TrafficSimulationFrame extends JFrame {
         model.applyCurrentState();
         updateStatusBar();
         intersectionPanel.updateRoads(northRoad, southRoad, eastRoad, westRoad);
+        intersectionPanel.snapshotPreviousPositions();
+        lastTickNanos = System.nanoTime();
+        intersectionPanel.setInterpolationAlpha(1.0);
     }
 
     /**
@@ -188,6 +256,9 @@ public class TrafficSimulationFrame extends JFrame {
 
         updateStatusBar();
         intersectionPanel.updateRoads(northRoad, southRoad, eastRoad, westRoad);
+        intersectionPanel.snapshotPreviousPositions();
+        lastTickNanos = System.nanoTime();
+        intersectionPanel.setInterpolationAlpha(1.0);
     }
 
     /**
@@ -197,10 +268,14 @@ public class TrafficSimulationFrame extends JFrame {
         model.manualPhaseToggle();
         updateStatusBar();
         intersectionPanel.updateRoads(northRoad, southRoad, eastRoad, westRoad);
+        intersectionPanel.snapshotPreviousPositions();
+        lastTickNanos = System.nanoTime();
+        intersectionPanel.setInterpolationAlpha(1.0);
     }
 
     /**
      * Updates the status bar text reflecting active axis, state, countdown, and strategy.
+     * Avoids redundant setText() calls when the text is unchanged.
      */
     private void updateStatusBar() {
         String phaseText;
@@ -218,12 +293,18 @@ public class TrafficSimulationFrame extends JFrame {
                     : "Active Phase: EAST-WEST YELLOW (Clearance Phase)";
         }
 
-        statusLabel.setText(phaseText + "  |  Time Remaining: " + remainingSeconds + "s  |  Strategy: " + activeStrategy.getStrategyName());
+        String newText = phaseText + "  |  Time Remaining: " + remainingSeconds + "s  |  Strategy: " + activeStrategy.getStrategyName();
+        if (!newText.equals(lastStatusText)) {
+            lastStatusText = newText;
+            statusLabel.setText(newText);
+        }
     }
 
     // Deterministic simulation & inspection helpers (Preserves backward compatibility)
     public void advanceSimulationTick() {
         onTimerTick();
+        intersectionPanel.setInterpolationAlpha(1.0);
+        intersectionPanel.repaint();
     }
 
     public void requestManualPhaseToggle() {
@@ -259,7 +340,29 @@ public class TrafficSimulationFrame extends JFrame {
         return simulationTimer;
     }
 
+    public Timer getAnimationTimer() {
+        return animationTimer;
+    }
+
+    public boolean isDisposed() {
+        return disposed;
+    }
+
     public TrafficSimulationModel getModel() {
         return model;
+    }
+
+    public TrafficThreading.TrafficEventProducer getEventProducer() {
+        return eventProducer;
+    }
+
+    public void setEventProducer(TrafficThreading.TrafficEventProducer producer) {
+        if (this.eventProducer != null) {
+            this.eventProducer.stop(1500);
+        }
+        this.eventProducer = producer;
+        if (producer != null) {
+            producer.start();
+        }
     }
 }

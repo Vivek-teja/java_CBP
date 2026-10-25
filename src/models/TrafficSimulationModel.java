@@ -4,6 +4,9 @@ import controller.IntersectionController;
 import controller.TrafficController;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.atomic.AtomicLong;
 import strategy.DensityBasedTimingStrategy;
 import strategy.FixedTimingStrategy;
 import strategy.SignalTimingStrategy;
@@ -56,6 +59,16 @@ public class TrafficSimulationModel {
 
     private long totalTicks = 0;
 
+    // Phase 3: Bounded pending event queue and thread-safe counters
+    public static final int PENDING_QUEUE_CAPACITY = 50;
+    public static final int MAX_ARRIVALS_PER_TICK = 2;
+    private final BlockingQueue<VehicleArrivalEvent> arrivalQueue = new ArrayBlockingQueue<>(PENDING_QUEUE_CAPACITY);
+    private final AtomicLong sequenceGenerator = new AtomicLong(0);
+    private final AtomicLong queueOverflowRejections = new AtomicLong(0);
+    private final AtomicLong roadCapacityRejections = new AtomicLong(0);
+    private final AtomicLong totalArrivalsConsumed = new AtomicLong(0);
+    private volatile long currentGenerationToken = 1;
+
     public TrafficSimulationModel(Road north, Road south, Road east, Road west) {
         this.northRoad = north;
         this.southRoad = south;
@@ -106,18 +119,22 @@ public class TrafficSimulationModel {
 
     /**
      * Advances the simulation state by exactly one deterministic tick.
-     * 1. Moves vehicles according to signals and conflict clearance.
-     * 2. Updates signal countdown and triggers phase transitions.
-     * 3. Cleans up vehicles that have completely exited.
+     * 1. Drains and processes up to 2 pending dynamic vehicle arrivals on EDT.
+     * 2. Moves vehicles according to signals and conflict clearance.
+     * 3. Updates signal countdown and triggers phase transitions.
+     * 4. Cleans up vehicles that have completely exited.
      */
     public void tick() {
-        // 1. Advance vehicle movements
+        // 1. Ingest pending dynamic vehicle arrivals (max 2 per tick)
+        consumePendingArrivals();
+
+        // 2. Advance vehicle movements
         moveVehicles();
 
-        // 2. Advance signal timing / countdown
+        // 3. Advance signal timing / countdown
         advanceSignalTiming();
 
-        // 3. Remove vehicles that have reached the exit boundary
+        // 4. Remove vehicles that have reached the exit boundary
         cleanupExitedVehicles();
 
         totalTicks++;
@@ -134,46 +151,47 @@ public class TrafficSimulationModel {
     }
 
     private void moveVehiclesOnRoad(Road road, double stopDist, double clearDist, double exitDist, String conflictingAxis) {
-        if (road == null) return;
-        List<Vehicle> list = road.getAllVehicles();
-        if (list.isEmpty()) return;
+        if (road == null || road.lanes == null) return;
 
         boolean isGreen = road.getSignal() != null && road.getSignal().isGreen();
         boolean conflictOccupied = isIntersectionOccupiedByAxis(conflictingAxis);
 
-        for (int i = 0; i < list.size(); i++) {
-            Vehicle v = list.get(i);
-            double curr = v.getDistance();
-            double target = curr + v.getSpeed();
+        for (Lane lane : road.lanes) {
+            if (lane == null || lane.vehicles == null || lane.vehicles.isEmpty()) continue;
+            for (int i = 0; i < lane.vehicles.size(); i++) {
+                Vehicle v = lane.vehicles.get(i);
+                double curr = v.getDistance();
+                double target = curr + v.getSpeed();
 
-            // Constraint 1: Safe following distance behind car ahead
-            if (i > 0) {
-                Vehicle ahead = list.get(i - 1);
-                double maxAllowedBehind = ahead.getDistance() - (ahead.getLength() + v.getMinSpacing());
-                if (target > maxAllowedBehind) {
-                    target = Math.max(curr, maxAllowedBehind);
+                // Constraint 1: Safe following distance behind car ahead in the same lane
+                if (i > 0) {
+                    Vehicle ahead = lane.vehicles.get(i - 1);
+                    double maxAllowedBehind = ahead.getDistance() - (ahead.getLength() + v.getMinSpacing());
+                    if (target > maxAllowedBehind) {
+                        target = Math.max(curr, maxAllowedBehind);
+                    }
                 }
-            }
 
-            // Constraint 2: Stop line & signal constraint
-            // If the vehicle has NOT yet entered the intersection:
-            if (!v.isEnteredIntersection()) {
-                if (!isGreen || conflictOccupied) {
-                    // Cannot enter intersection: must stop at stop line
-                    target = Math.min(target, stopDist);
+                // Constraint 2: Stop line & signal constraint
+                // If the vehicle has NOT yet entered the intersection:
+                if (!v.isEnteredIntersection()) {
+                    if (!isGreen || conflictOccupied) {
+                        // Cannot enter intersection: must stop at stop line
+                        target = Math.min(target, stopDist);
+                    }
                 }
-            }
 
-            // Update distance
-            v.setDistance(target);
+                // Update distance
+                v.setDistance(target);
 
-            // Update intersection status
-            if (target > stopDist && target < clearDist) {
-                v.setEnteredIntersection(true);
-            } else if (target >= clearDist && target < exitDist) {
-                v.setClearedIntersection(true);
-            } else if (target >= exitDist) {
-                v.setExited(true);
+                // Update intersection status
+                if (target > stopDist && target < clearDist) {
+                    v.setEnteredIntersection(true);
+                } else if (target >= clearDist && target < exitDist) {
+                    v.setClearedIntersection(true);
+                } else if (target >= exitDist) {
+                    v.setExited(true);
+                }
             }
         }
     }
@@ -320,7 +338,7 @@ public class TrafficSimulationModel {
     private boolean isRoadInIntersection(Road road, double stopDist, double clearDist) {
         if (road == null) return false;
         for (Vehicle v : road.getAllVehicles()) {
-            if (v.getDistance() > stopDist && v.getDistance() < clearDist) {
+            if (v.getDistance() > stopDist && (v.getDistance() - v.getLength()) < clearDist) {
                 return true;
             }
         }
@@ -352,21 +370,225 @@ public class TrafficSimulationModel {
      */
     public void addVehicle(Road road, Vehicle vehicle) {
         if (road == null || vehicle == null) return;
-        if (road.lanes.isEmpty()) {
-            road.addLane(new Lane(road.roadId * 10 + 1));
-        }
-        Lane targetLane = road.lanes.get(0);
-        List<Vehicle> existing = road.getAllVehicles();
+        Lane targetLane = resolveTargetLane(road);
         double stopDist = (road == northRoad || road == southRoad) ? NS_STOP_DISTANCE : EW_STOP_DISTANCE;
         double pos;
-        if (existing.isEmpty()) {
+        if (targetLane.vehicles.isEmpty()) {
             pos = stopDist;
         } else {
-            Vehicle last = existing.get(existing.size() - 1);
+            Vehicle last = targetLane.vehicles.get(targetLane.vehicles.size() - 1);
             pos = last.getDistance() - (last.getLength() + vehicle.getMinSpacing());
         }
         vehicle.setDistance(pos);
         targetLane.vehicles.add(vehicle);
+    }
+
+    // =========================================================================
+    // Phase 3: Thread-Safe Dynamic Vehicle Arrivals & Concurrency Controls
+    // =========================================================================
+
+    /**
+     * Resolves the target receiving lane for vehicle arrivals on an approach road.
+     * Default policy assigns arrivals to the approach lane (Lane 1 / index 0).
+     *
+     * @param road target approach road
+     * @return designated receiving Lane instance
+     */
+    public Lane resolveTargetLane(Road road) {
+        if (road == null) return null;
+        if (road.lanes == null || road.lanes.isEmpty()) {
+            road.addLane(new Lane(road.roadId * 10 + 1));
+        }
+        return road.lanes.get(0);
+    }
+
+    /**
+     * Evaluates available entrance clearance using the target lane's vehicles.
+     * Evaluates true if the lane has no vehicles, or if the tail vehicle has cleared
+     * the entrance by more than its length + minimum following headway spacing:
+     * (lastVehicle.getDistance() - (length + minSpacing)) > 0.
+     *
+     * @param lane target approach lane
+     * @return true if safe entry is guaranteed, false if lane entrance is blocked/unsafe
+     */
+    public boolean canSafelyEnterLane(Lane lane) {
+        if (lane == null) return false;
+        if (lane.vehicles == null || lane.vehicles.isEmpty()) {
+            return true;
+        }
+        Vehicle last = lane.vehicles.get(lane.vehicles.size() - 1);
+        double safeThreshold = last.getDistance() - (last.getLength() + last.getMinSpacing());
+        return safeThreshold > 0.0;
+    }
+
+    /**
+     * Checks if a vehicle can safely enter the target road approach at distance 0.0.
+     * Resolves the designated receiving lane and evaluates its entrance clearance.
+     *
+     * @param road target approach road
+     * @return true if safe entry is guaranteed, false if road entrance is blocked/unsafe
+     */
+    public boolean canSafelyEnterRoad(Road road) {
+        if (road == null) return false;
+        Lane targetLane = resolveTargetLane(road);
+        return canSafelyEnterLane(targetLane);
+    }
+
+    public boolean canSafelyEnterRoad(Road road, int laneIndex) {
+        if (road == null || road.lanes == null || laneIndex < 0 || laneIndex >= road.lanes.size()) {
+            return false;
+        }
+        return canSafelyEnterLane(road.lanes.get(laneIndex));
+    }
+
+    public boolean canSafelyEnterRoad(Road road, Lane targetLane) {
+        return canSafelyEnterLane(targetLane);
+    }
+
+    /**
+     * Submits an arrival event to the bounded queue in a non-blocking, thread-safe manner.
+     * If the queue is at capacity (50 events), rejects the newest event and increments
+     * the queue-overflow rejection counter.
+     * If the event has a stale generation token, it is rejected immediately.
+     *
+     * @param event the immutable arrival event to enqueue
+     * @return true if enqueued successfully, false if rejected due to overflow or stale token
+     */
+    public boolean enqueueArrival(VehicleArrivalEvent event) {
+        if (event == null) {
+            return false;
+        }
+        if (event.getGenerationToken() != this.currentGenerationToken) {
+            return false;
+        }
+        boolean offered = arrivalQueue.offer(event);
+        if (!offered) {
+            queueOverflowRejections.incrementAndGet();
+        }
+        return offered;
+    }
+
+    /**
+     * Drains up to maxDrain pending arrival events from the bounded queue on the EDT.
+     * Validates generation tokens, road IDs, and entrance tail clearance before safely
+     * instantiating and adding a Vehicle.
+     *
+     * @param maxDrain maximum number of events to process in this cycle (default 2)
+     * @return number of events processed (both added and road-capacity rejected)
+     */
+    public int consumePendingArrivals(int maxDrain) {
+        int processedThisTick = 0;
+        while (processedThisTick < maxDrain && !arrivalQueue.isEmpty()) {
+            VehicleArrivalEvent event = arrivalQueue.poll();
+            if (event == null) {
+                break;
+            }
+
+            // 1. Generation token validation: reject stale events from prior runs/restarts
+            if (event.getGenerationToken() != this.currentGenerationToken) {
+                continue;
+            }
+
+            // 2. Road identification
+            Road targetRoad = getRoadById(event.getTargetRoadId());
+            if (targetRoad == null) {
+                continue;
+            }
+
+            // 3. Vehicle configuration validation
+            String vType = event.getVehicleType();
+            if (vType == null || vType.trim().isEmpty()) {
+                vType = "Car";
+            }
+
+            // 4. Resolve the target lane that will receive this arrival
+            Lane targetLane = resolveTargetLane(targetRoad);
+
+            // 5. Safe entry spacing check at consumption time on the exact target lane
+            if (!canSafelyEnterLane(targetLane)) {
+                roadCapacityRejections.incrementAndGet();
+                processedThisTick++;
+                totalArrivalsConsumed.incrementAndGet();
+                continue;
+            }
+
+            // 6. Model-owned safe vehicle insertion on simulation thread (EDT) into targetLane
+            int vId = (int) (event.getSequenceId() & 0x7FFFFFFF);
+            Vehicle vehicle = new Vehicle(vId, vType, 0.0);
+            targetLane.vehicles.add(vehicle);
+
+            processedThisTick++;
+            totalArrivalsConsumed.incrementAndGet();
+        }
+        return processedThisTick;
+    }
+
+    /**
+     * Drains up to 2 pending arrival events (MAX_ARRIVALS_PER_TICK) per simulation tick.
+     *
+     * @return number of events processed
+     */
+    public int consumePendingArrivals() {
+        return consumePendingArrivals(MAX_ARRIVALS_PER_TICK);
+    }
+
+    /**
+     * Resolves an approach road by its unique roadId (1 = North, 2 = South, 3 = East, 4 = West).
+     *
+     * @param roadId road identity
+     * @return matching Road instance or null if not found
+     */
+    public Road getRoadById(int roadId) {
+        switch (roadId) {
+            case 1: return northRoad;
+            case 2: return southRoad;
+            case 3: return eastRoad;
+            case 4: return westRoad;
+            default:
+                if (northRoad != null && northRoad.roadId == roadId) return northRoad;
+                if (southRoad != null && southRoad.roadId == roadId) return southRoad;
+                if (eastRoad != null && eastRoad.roadId == roadId) return eastRoad;
+                if (westRoad != null && westRoad.roadId == roadId) return westRoad;
+                return null;
+        }
+    }
+
+    public long nextSequenceId() {
+        return sequenceGenerator.incrementAndGet();
+    }
+
+    public long getCurrentGenerationToken() {
+        return currentGenerationToken;
+    }
+
+    public void resetGenerationToken() {
+        this.currentGenerationToken++;
+        this.arrivalQueue.clear();
+    }
+
+    public void setGenerationToken(long token) {
+        this.currentGenerationToken = token;
+        this.arrivalQueue.clear();
+    }
+
+    public int getPendingQueueSize() {
+        return arrivalQueue.size();
+    }
+
+    public long getQueueOverflowRejections() {
+        return queueOverflowRejections.get();
+    }
+
+    public long getRoadCapacityRejections() {
+        return roadCapacityRejections.get();
+    }
+
+    public long getTotalArrivalsConsumed() {
+        return totalArrivalsConsumed.get();
+    }
+
+    public BlockingQueue<VehicleArrivalEvent> getArrivalQueue() {
+        return arrivalQueue;
     }
 
     // Getters
