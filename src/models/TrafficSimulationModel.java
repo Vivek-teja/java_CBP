@@ -198,10 +198,13 @@ public class TrafficSimulationModel {
         if (road == null || road.lanes == null) return;
 
         boolean isGreen = road.getSignal() != null && road.getSignal().isGreen();
-        boolean conflictOccupied = isIntersectionOccupiedByAxis(conflictingAxis);
 
         for (Lane lane : road.lanes) {
             if (lane == null || lane.vehicles == null || lane.vehicles.isEmpty()) continue;
+
+            // Maintain invariant: vehicles are strictly sorted descending by distance along the approach
+            lane.vehicles.sort((v1, v2) -> Double.compare(v2.getDistance(), v1.getDistance()));
+
             for (int i = 0; i < lane.vehicles.size(); i++) {
                 Vehicle v = lane.vehicles.get(i);
                 double curr = v.getDistance();
@@ -217,10 +220,9 @@ public class TrafficSimulationModel {
                 }
 
                 // Constraint 2: Stop line & signal constraint
-                // If the vehicle has NOT yet entered the intersection:
+                // Only vehicles that have NOT yet entered the intersection stop on RED or YELLOW
                 if (!v.isEnteredIntersection()) {
-                    if (!isGreen || conflictOccupied) {
-                        // Cannot enter intersection: must stop at stop line
+                    if (!isGreen) {
                         target = Math.min(target, stopDist);
                     }
                 }
@@ -249,7 +251,8 @@ public class TrafficSimulationModel {
             remainingSeconds = currentGreenDuration - elapsedGreenSeconds;
 
             // Intelligent queue clearance & actuated stop ("if no vehicles are at the lane just stops")
-            if (autoStopOnEmpty && !emergencyActive) {
+            // Apply minimum green guarantee of 3 seconds so green does not cut off abruptly
+            if (autoStopOnEmpty && !emergencyActive && elapsedGreenSeconds >= 3) {
                 int waitingThisAxis = getWaitingVehicleCount(currentAxis);
                 boolean occupied = isIntersectionOccupiedByAxis(currentAxis);
 
@@ -527,21 +530,41 @@ public class TrafficSimulationModel {
     }
 
     /**
-     * Adds a vehicle to a road, placing it in queue order.
+     * Adds a vehicle to a road, placing it in approach queue order.
+     * Ensures newly arriving vehicles are queued behind waiting approach traffic,
+     * and NEVER placed behind vehicles that have already passed the stop line.
      */
     public void addVehicle(Road road, Vehicle vehicle) {
         if (road == null || vehicle == null) return;
         Lane targetLane = resolveTargetLane(road);
         double stopDist = (road == northRoad || road == southRoad) ? NS_STOP_DISTANCE : EW_STOP_DISTANCE;
+
+        // Find the rearmost vehicle waiting behind the stop line on the incoming approach
+        Vehicle lastWaiting = null;
+        for (Vehicle existing : targetLane.vehicles) {
+            if (existing.getDistance() <= stopDist) {
+                if (lastWaiting == null || existing.getDistance() < lastWaiting.getDistance()) {
+                    lastWaiting = existing;
+                }
+            }
+        }
+
         double pos;
-        if (targetLane.vehicles.isEmpty()) {
+        if (lastWaiting == null) {
+            // No vehicles currently waiting on the incoming approach: queue at the stop line
             pos = stopDist;
         } else {
-            Vehicle last = targetLane.vehicles.get(targetLane.vehicles.size() - 1);
-            pos = last.getDistance() - (last.getLength() + vehicle.getMinSpacing());
+            // Queue safely behind the rearmost waiting vehicle on the approach
+            pos = lastWaiting.getDistance() - (lastWaiting.getLength() + vehicle.getMinSpacing());
         }
         vehicle.setDistance(pos);
+        vehicle.setEnteredIntersection(false);
+        vehicle.setClearedIntersection(false);
+        vehicle.setExited(false);
         targetLane.vehicles.add(vehicle);
+
+        // Keep lane vehicles strictly sorted descending by distance
+        targetLane.vehicles.sort((v1, v2) -> Double.compare(v2.getDistance(), v1.getDistance()));
     }
 
     // =========================================================================
@@ -852,15 +875,33 @@ public class TrafficSimulationModel {
         v.setSpeed(this.vehicleSpeed);
 
         double stopDist = (road == northRoad || road == southRoad) ? NS_STOP_DISTANCE : EW_STOP_DISTANCE;
+
+        // Find the rearmost vehicle waiting behind the stop line on the incoming approach
+        Vehicle lastWaiting = null;
+        for (Vehicle existing : targetLane.vehicles) {
+            if (existing.getDistance() <= stopDist) {
+                if (lastWaiting == null || existing.getDistance() < lastWaiting.getDistance()) {
+                    lastWaiting = existing;
+                }
+            }
+        }
+
         double pos;
-        if (targetLane.vehicles.isEmpty()) {
+        if (lastWaiting == null) {
+            // No vehicles currently waiting on the incoming approach: queue at the stop line
             pos = stopDist;
         } else {
-            Vehicle last = targetLane.vehicles.get(targetLane.vehicles.size() - 1);
-            pos = last.getDistance() - (last.getLength() + v.getMinSpacing());
+            // Queue safely behind the rearmost waiting vehicle on the approach
+            pos = lastWaiting.getDistance() - (lastWaiting.getLength() + v.getMinSpacing());
         }
         v.setDistance(pos);
+        v.setEnteredIntersection(false);
+        v.setClearedIntersection(false);
+        v.setExited(false);
         targetLane.vehicles.add(v);
+
+        // Keep lane vehicles strictly sorted descending by distance
+        targetLane.vehicles.sort((v1, v2) -> Double.compare(v2.getDistance(), v1.getDistance()));
 
         // Wake up intersection if it was resting stopped/idle because no vehicles were present
         if (intersectionIdle) {

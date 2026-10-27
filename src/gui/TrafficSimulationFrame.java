@@ -92,34 +92,35 @@ public class TrafficSimulationFrame extends JFrame {
         startTimer();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(960, 860);
+        setSize(1100, 890);
         setLocationRelativeTo(null); // Center on screen
     }
 
     private void initComponents() {
         setLayout(new BorderLayout());
 
-        // 1. Control Panel at the top with two structured rows
-        JPanel controlPanel = new JPanel(new GridLayout(2, 1, 0, 3));
+        // 1. Control Panel at the top with two structured, descriptive rows
+        JPanel controlPanel = new JPanel(new GridLayout(2, 1, 0, 4));
         controlPanel.setBackground(new Color(240, 244, 248));
         controlPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(200, 210, 220)));
 
         // Row 1: Strategy, Speed, Auto-Stop, and Signal Phase Controls
-        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 5));
         row1.setOpaque(false);
 
-        JLabel strategyLabel = new JLabel("Strategy:");
+        JLabel strategyLabel = new JLabel("Timing Strategy:");
         strategyLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
 
         strategyCombo = new JComboBox<>(new String[] {
-            "Speed-Based Density (Actuated)",
-            "Density Formula (10s + 5s/veh)",
-            "Fixed Timing (30s)"
+            "Speed-Based Density (Calculates Time from Speed & Density)",
+            "Theoretical Density Formula (10s + 5s/veh)",
+            "Fixed Timing (Constant 30s Duration)"
         });
-        strategyCombo.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        strategyCombo.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        strategyCombo.setToolTipText("Selects signal timing algorithm: Speed-Based adapts to clearance speed; Theoretical uses 10+5N; Fixed uses constant 30s");
         strategyCombo.addActionListener(e -> onStrategyChanged());
 
-        JLabel speedLabel = new JLabel("Speed:");
+        JLabel speedLabel = new JLabel("Vehicle Speed:");
         speedLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
 
         speedCombo = new JComboBox<>(new String[] {
@@ -128,32 +129,36 @@ public class TrafficSimulationFrame extends JFrame {
             "Fast (70 px/s)"
         });
         speedCombo.setSelectedIndex(1); // Normal (50 px/s)
-        speedCombo.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        speedCombo.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        speedCombo.setToolTipText("Changes physical movement speed of vehicles across the junction and recalculates green times");
         speedCombo.addActionListener(e -> onSpeedChanged());
 
-        autoStopCheckbox = new JCheckBox("Auto-Stop Empty Lane", true);
-        autoStopCheckbox.setFont(new Font("SansSerif", Font.BOLD, 12));
+        autoStopCheckbox = new JCheckBox("Auto-Stop When Queue Clears", true);
+        autoStopCheckbox.setFont(new Font("SansSerif", Font.BOLD, 11));
         autoStopCheckbox.setForeground(new Color(25, 120, 35));
         autoStopCheckbox.setOpaque(false);
-        autoStopCheckbox.setToolTipText("Immediately terminates green phase when all waiting vehicles on active axis have cleared");
+        autoStopCheckbox.setToolTipText("Actuated Signal Control: Terminates green phase immediately once all waiting vehicles on active axis have crossed");
         autoStopCheckbox.addActionListener(e -> model.setAutoStopOnEmpty(autoStopCheckbox.isSelected()));
 
-        JButton togglePhaseBtn = new JButton("Toggle Phase");
+        JButton togglePhaseBtn = new JButton("Switch Phase (N-S / E-W)");
         togglePhaseBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
         togglePhaseBtn.setBackground(new Color(50, 110, 200));
         togglePhaseBtn.setForeground(Color.WHITE);
         togglePhaseBtn.setFocusPainted(false);
+        togglePhaseBtn.setToolTipText("Manually toggles green right-of-way between North-South and East-West corridors");
         togglePhaseBtn.addActionListener(e -> onManualPhaseToggle());
 
-        JButton emergencyBtn = new JButton("Dispatch Ambulance");
+        JButton emergencyBtn = new JButton("Dispatch Ambulance (Priority)");
         emergencyBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
         emergencyBtn.setBackground(new Color(210, 45, 45));
         emergencyBtn.setForeground(Color.WHITE);
         emergencyBtn.setFocusPainted(false);
+        emergencyBtn.setToolTipText("Dispatches emergency vehicle on North approach, preempting conflicting traffic through yellow clearance");
         emergencyBtn.addActionListener(e -> onDispatchEmergency());
 
-        JButton refreshBtn = new JButton("Refresh");
+        JButton refreshBtn = new JButton("Refresh Signals");
         refreshBtn.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        refreshBtn.setToolTipText("Recalculates vehicle counts and synchronizes signal phase durations");
         refreshBtn.addActionListener(e -> applyCurrentState());
 
         row1.add(strategyLabel);
@@ -165,40 +170,43 @@ public class TrafficSimulationFrame extends JFrame {
         row1.add(emergencyBtn);
         row1.add(refreshBtn);
 
-        // Row 2: Dynamic Vehicle Addition & Queue Management Controls
-        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 4));
+        // Row 2: Dynamic Vehicle Addition & Direction-Annotated Queue Management Controls
+        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 4));
         row2.setOpaque(false);
 
         JLabel addLabel = new JLabel("Add Vehicles:");
         addLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
 
-        JButton addNorthBtn = createAddVehicleButton("+ North", 1);
-        JButton addSouthBtn = createAddVehicleButton("+ South", 2);
-        JButton addEastBtn = createAddVehicleButton("+ East", 3);
-        JButton addWestBtn = createAddVehicleButton("+ West", 4);
+        JButton addNorthBtn = createAddVehicleButton("+ North (Heading South ↓)", 1, "Queues a vehicle at North approach travelling Southward into the intersection");
+        JButton addSouthBtn = createAddVehicleButton("+ South (Heading North ↑)", 2, "Queues a vehicle at South approach travelling Northward into the intersection");
+        JButton addEastBtn = createAddVehicleButton("+ East (Heading West ←)", 3, "Queues a vehicle at East approach travelling Westward into the intersection");
+        JButton addWestBtn = createAddVehicleButton("+ West (Heading East →)", 4, "Queues a vehicle at West approach travelling Eastward into the intersection");
 
-        JButton addRandomBtn = new JButton("+5 Random");
+        JButton addRandomBtn = new JButton("+5 Random (All Roads)");
         addRandomBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
         addRandomBtn.setBackground(new Color(60, 130, 200));
         addRandomBtn.setForeground(Color.WHITE);
         addRandomBtn.setFocusPainted(false);
+        addRandomBtn.setToolTipText("Spreads 5 new vehicles randomly across North, South, East, and West approach queues");
         addRandomBtn.addActionListener(e -> onAddRandomVehicles());
 
-        JButton setDensityBtn = new JButton("Set Count...");
+        JButton setDensityBtn = new JButton("Set Exact Count (Select Road)");
         setDensityBtn.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        setDensityBtn.setToolTipText("Opens dialog to set an exact vehicle count for a selected approach");
         setDensityBtn.addActionListener(e -> onSetVehicleDensity());
 
-        JButton clearAllBtn = new JButton("Clear All");
+        JButton clearAllBtn = new JButton("Clear All Vehicles (Test Idle Stop)");
         clearAllBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
         clearAllBtn.setBackground(new Color(175, 65, 65));
         clearAllBtn.setForeground(Color.WHITE);
         clearAllBtn.setFocusPainted(false);
-        clearAllBtn.setToolTipText("Removes all vehicles to test empty lane stopping behavior");
+        clearAllBtn.setToolTipText("Removes all vehicles from all approaches to test how signals stop in idle rest when lanes are empty");
         clearAllBtn.addActionListener(e -> onClearAllVehicles());
 
-        autoSpawnCheck = new JCheckBox("Auto-Spawn (Background)", false);
+        autoSpawnCheck = new JCheckBox("Background Traffic (Random Arrivals)", false);
         autoSpawnCheck.setFont(new Font("SansSerif", Font.PLAIN, 11));
         autoSpawnCheck.setOpaque(false);
+        autoSpawnCheck.setToolTipText("Enables background daemon thread to continuously spawn random vehicle arrivals");
         autoSpawnCheck.addActionListener(e -> onAutoSpawnToggled());
 
         row2.add(addLabel);
@@ -240,12 +248,13 @@ public class TrafficSimulationFrame extends JFrame {
         });
     }
 
-    private JButton createAddVehicleButton(String label, int roadId) {
+    private JButton createAddVehicleButton(String label, int roadId, String tooltip) {
         JButton btn = new JButton(label);
         btn.setFont(new Font("SansSerif", Font.BOLD, 11));
         btn.setBackground(new Color(35, 145, 75));
         btn.setForeground(Color.WHITE);
         btn.setFocusPainted(false);
+        btn.setToolTipText(tooltip);
         btn.addActionListener(e -> onAddVehicle(roadId));
         return btn;
     }

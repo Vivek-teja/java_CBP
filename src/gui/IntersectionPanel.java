@@ -688,9 +688,20 @@ public class IntersectionPanel extends JPanel {
         boolean isYellow = "YELLOW".equalsIgnoreCase(color);
 
         // Road Name & Status Dot
+        String headingDesc;
+        if ("North".equalsIgnoreCase(road.getDirection())) {
+            headingDesc = "North Road (Heading South ↓)";
+        } else if ("South".equalsIgnoreCase(road.getDirection())) {
+            headingDesc = "South Road (Heading North ↑)";
+        } else if ("East".equalsIgnoreCase(road.getDirection())) {
+            headingDesc = "East Road (Heading West ←)";
+        } else {
+            headingDesc = "West Road (Heading East →)";
+        }
+
         g2.setFont(FONT_CARD_TITLE);
         g2.setColor(Color.WHITE);
-        g2.drawString(road.getDirection() + " Road (Two-Way)", x + 12, y + 20);
+        g2.drawString(headingDesc, x + 10, y + 20);
 
         Color dotColor;
         if (isGreen) {
