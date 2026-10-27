@@ -88,12 +88,78 @@ public class IntersectionPanel extends JPanel {
     private double interpolationAlpha = 1.0;
     private final transient Map<Integer, Double> prevDistances = new HashMap<>();
 
+    public interface VehicleAddListener {
+        void onVehicleAddRequested(int roadId);
+    }
+    private VehicleAddListener vehicleAddListener;
+
+    public void setVehicleAddListener(VehicleAddListener listener) {
+        this.vehicleAddListener = listener;
+    }
+
     public IntersectionPanel(Road north, Road south, Road east, Road west) {
         this.northRoad = north;
         this.southRoad = south;
         this.eastRoad = east;
         this.westRoad = west;
         setBackground(GRASS_COLOR);
+
+        // Click on roads or corner info cards to dynamically add vehicles
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                handleMouseClick(e.getX(), e.getY());
+            }
+        });
+    }
+
+    private void handleMouseClick(int mx, int my) {
+        if (vehicleAddListener == null) return;
+        int w = getWidth();
+        int h = getHeight();
+        int cx = w / 2;
+        int cy = h / 2;
+        int halfRoad = 60;
+
+        // 1. Check corner cards
+        if (mx >= 15 && mx <= 215 && my >= 15 && my <= 95) {
+            vehicleAddListener.onVehicleAddRequested(1); // North card
+            return;
+        }
+        if (mx >= (w - 215) && mx <= (w - 15) && my >= 15 && my <= 95) {
+            vehicleAddListener.onVehicleAddRequested(3); // East card
+            return;
+        }
+        if (mx >= 15 && mx <= 215 && my >= (h - 95) && my <= (h - 15)) {
+            vehicleAddListener.onVehicleAddRequested(4); // West card
+            return;
+        }
+        if (mx >= (w - 215) && mx <= (w - 15) && my >= (h - 95) && my <= (h - 15)) {
+            vehicleAddListener.onVehicleAddRequested(2); // South card
+            return;
+        }
+
+        // 2. Check road approaches
+        // North Road approach (top vertical)
+        if (mx >= (cx - halfRoad) && mx <= (cx + halfRoad) && my >= 0 && my <= (cy - halfRoad)) {
+            vehicleAddListener.onVehicleAddRequested(1);
+            return;
+        }
+        // South Road approach (bottom vertical)
+        if (mx >= (cx - halfRoad) && mx <= (cx + halfRoad) && my >= (cy + halfRoad) && my <= h) {
+            vehicleAddListener.onVehicleAddRequested(2);
+            return;
+        }
+        // East Road approach (right horizontal)
+        if (mx >= (cx + halfRoad) && mx <= w && my >= (cy - halfRoad) && my <= (cy + halfRoad)) {
+            vehicleAddListener.onVehicleAddRequested(3);
+            return;
+        }
+        // West Road approach (left horizontal)
+        if (mx >= 0 && mx <= (cx - halfRoad) && my >= (cy - halfRoad) && my <= (cy + halfRoad)) {
+            vehicleAddListener.onVehicleAddRequested(4);
+            return;
+        }
     }
 
     public void updateRoads(Road north, Road south, Road east, Road west) {
@@ -363,8 +429,7 @@ public class IntersectionPanel extends JPanel {
                     Vehicle v = lane.vehicles.get(vi);
                     double d = getRenderDistance(v);
                     int y = (int) (d - carL);
-                    Color color = CAR_COLORS[Math.abs(v.vehicleId) % CAR_COLORS.length];
-                    drawCarRectangle(g2, x, y, carW, carL, color, true);
+                    drawCar(g2, v, x, y, carW, carL, true);
                 }
             }
         }
@@ -382,8 +447,7 @@ public class IntersectionPanel extends JPanel {
                     Vehicle v = lane.vehicles.get(vi);
                     double d = getRenderDistance(v);
                     int y = (int) (h - d);
-                    Color color = CAR_COLORS[Math.abs(v.vehicleId) % CAR_COLORS.length];
-                    drawCarRectangle(g2, x, y, carW, carL, color, true);
+                    drawCar(g2, v, x, y, carW, carL, true);
                 }
             }
         }
@@ -400,8 +464,7 @@ public class IntersectionPanel extends JPanel {
                     Vehicle v = lane.vehicles.get(vi);
                     double d = getRenderDistance(v);
                     int x = (int) (d - carL);
-                    Color color = CAR_COLORS[Math.abs(v.vehicleId + 2) % CAR_COLORS.length];
-                    drawCarRectangle(g2, x, y, carL, carW, color, false);
+                    drawCar(g2, v, x, y, carL, carW, false);
                 }
             }
         }
@@ -419,8 +482,7 @@ public class IntersectionPanel extends JPanel {
                     Vehicle v = lane.vehicles.get(vi);
                     double d = getRenderDistance(v);
                     int x = (int) (w - d);
-                    Color color = CAR_COLORS[Math.abs(v.vehicleId) % CAR_COLORS.length];
-                    drawCarRectangle(g2, x, y, carL, carW, color, false);
+                    drawCar(g2, v, x, y, carL, carW, false);
                 }
             }
         }
@@ -484,6 +546,45 @@ public class IntersectionPanel extends JPanel {
         }
         double laneWidth = 60.0 / numLanes;
         return (int) Math.round((cy - 60) + (laneIndex + 0.5) * laneWidth);
+    }
+
+    private void drawCar(Graphics2D g2, Vehicle v, int x, int y, int w, int h, boolean vertical) {
+        if (v != null && v.isEmergency()) {
+            drawAmbulance(g2, x, y, w, h, vertical);
+        } else {
+            Color color = CAR_COLORS[Math.abs(v != null ? v.vehicleId : 0) % CAR_COLORS.length];
+            drawCarRectangle(g2, x, y, w, h, color, vertical);
+        }
+    }
+
+    private void drawAmbulance(Graphics2D g2, int x, int y, int w, int h, boolean vertical) {
+        // Ambulance body: crisp white with red edge
+        g2.setColor(Color.WHITE);
+        g2.fillRoundRect(x, y, w, h, 6, 6);
+        g2.setColor(new Color(220, 20, 20));
+        g2.setStroke(new BasicStroke(1.5f));
+        g2.drawRoundRect(x, y, w, h, 6, 6);
+
+        // Windshield
+        g2.setColor(WINDSHIELD_COLOR);
+        if (vertical) {
+            g2.fillRect(x + 3, y + 4, w - 6, 4);
+            g2.fillRect(x + 3, y + h - 7, w - 6, 3);
+        } else {
+            g2.fillRect(x + 4, y + 3, 4, h - 6);
+            g2.fillRect(x + w - 7, y + 3, 3, h - 6);
+        }
+
+        // Center Red Cross
+        g2.setColor(new Color(220, 20, 20));
+        int cx = x + w / 2;
+        int cy = y + h / 2;
+        g2.fillRect(cx - 2, cy - 5, 4, 10);
+        g2.fillRect(cx - 5, cy - 2, 10, 4);
+
+        // Emergency flashing beacon (Red / Blue)
+        g2.setColor(new Color(255, 30, 30));
+        g2.fillOval(cx - 2, y + 2, 4, 4);
     }
 
     private void drawCarRectangle(Graphics2D g2, int x, int y, int w, int h, Color color, boolean vertical) {
@@ -574,7 +675,7 @@ public class IntersectionPanel extends JPanel {
         if (road == null) return;
 
         int cardW = 200;
-        int cardH = 75;
+        int cardH = 82;
 
         g2.setColor(CARD_BG);
         g2.fillRoundRect(x, y, cardW, cardH, 10, 10);
@@ -603,9 +704,29 @@ public class IntersectionPanel extends JPanel {
         g2.fillOval(x + cardW - 22, y + 9, 11, 11);
 
         // Details
-        g2.setFont(FONT_CARD_DETAILS);
-        g2.setColor(CARD_DETAILS_COLOR);
-        g2.drawString("Waiting Vehicles: " + road.getTotalVehicles(), x + 12, y + 40);
+        boolean hasEmergency = false;
+        if (road.lanes != null) {
+            for (Lane l : road.lanes) {
+                if (l.vehicles != null) {
+                    for (Vehicle v : l.vehicles) {
+                        if (v.isEmergency()) {
+                            hasEmergency = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (hasEmergency) {
+            g2.setFont(FONT_CARD_STATUS);
+            g2.setColor(new Color(255, 70, 70));
+            g2.drawString("[EMERGENCY PRIORITY ACTIVE]", x + 12, y + 40);
+        } else {
+            g2.setFont(FONT_CARD_DETAILS);
+            g2.setColor(CARD_DETAILS_COLOR);
+            g2.drawString("Waiting Vehicles: " + road.getTotalVehicles(), x + 12, y + 40);
+        }
 
         String statusText;
         Color textColor;
@@ -623,6 +744,11 @@ public class IntersectionPanel extends JPanel {
 
         g2.setFont(FONT_CARD_STATUS);
         g2.setColor(textColor);
-        g2.drawString(statusText, x + 12, y + 60);
+        g2.drawString(statusText, x + 12, y + 58);
+
+        // Click to add hint
+        g2.setFont(new Font("SansSerif", Font.PLAIN, 10));
+        g2.setColor(new Color(160, 200, 240, 200));
+        g2.drawString("[Click card/road to + vehicle]", x + 12, y + 74);
     }
 }

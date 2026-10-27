@@ -41,10 +41,21 @@ public class TrafficSimulationModel {
     private int elapsedGreenSeconds = 0;
     public static final int YELLOW_DURATION = 3;
 
+    // Emergency Vehicle Priority state
+    private volatile boolean emergencyActive = false;
+    private volatile int emergencyTargetRoadId = -1;
+    private volatile Vehicle activeEmergencyVehicle = null;
+
     // Simulation metrics & geometry (pixels)
     public static final double DEFAULT_SPEED = 40.0;
     public static final double DEFAULT_LENGTH = 26.0;
     public static final double DEFAULT_MIN_SPACING = 6.0;
+
+    // Dynamic vehicle speed & intelligent actuated stop controls
+    private double vehicleSpeed = 50.0;
+    private boolean autoStopOnEmpty = true;
+    private boolean speedBasedTimingEnabled = true;
+    private boolean intersectionIdle = false;
 
     // Approach and Intersection Distance Thresholds
     // North/South: stop at 280, clear intersection at 400, exit road at 706
@@ -109,6 +120,7 @@ public class TrafficSimulationModel {
         double currentPos = stopDistance;
         for (int i = 0; i < list.size(); i++) {
             Vehicle v = list.get(i);
+            v.setSpeed(this.vehicleSpeed);
             v.setDistance(currentPos);
             v.setEnteredIntersection(false);
             v.setClearedIntersection(false);
@@ -125,16 +137,48 @@ public class TrafficSimulationModel {
      * 4. Cleans up vehicles that have completely exited.
      */
     public void tick() {
+        if (intersectionIdle) {
+            // Check if any vehicles were added to wake up the intersection
+            if (getWaitingVehicleCount("NORTH_SOUTH") > 0 || getWaitingVehicleCount("EAST_WEST") > 0) {
+                intersectionIdle = false;
+                if (getWaitingVehicleCount(currentAxis) == 0) {
+                    currentAxis = currentAxis.equals("NORTH_SOUTH") ? "EAST_WEST" : "NORTH_SOUTH";
+                }
+                currentSignalState = TrafficSignal.GREEN;
+                elapsedGreenSeconds = 0;
+                currentGreenDuration = getCalculatedGreenDuration(currentAxis, activeStrategy);
+                if (currentGreenDuration <= 0) currentGreenDuration = 6;
+                remainingSeconds = currentGreenDuration;
+                controller.applyPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, activeStrategy);
+            } else {
+                return; // Nothing to move or cycle when all lanes are empty
+            }
+        }
+
         // 1. Ingest pending dynamic vehicle arrivals (max 2 per tick)
         consumePendingArrivals();
 
         // 2. Advance vehicle movements
         moveVehicles();
 
-        // 3. Advance signal timing / countdown
+        // 3. Monitor active emergency vehicle status
+        if (emergencyActive && activeEmergencyVehicle != null) {
+            if (activeEmergencyVehicle.isClearedIntersection() || activeEmergencyVehicle.isExited()) {
+                // Emergency vehicle has cleared the intersection safely
+                emergencyActive = false;
+                activeEmergencyVehicle = null;
+                emergencyTargetRoadId = -1;
+            } else if (TrafficSignal.GREEN.equals(currentSignalState) && remainingSeconds <= 2) {
+                // Extend green window to prevent emergency vehicle being trapped by red signal
+                remainingSeconds = 6;
+                controller.updateSignalCountdown(currentAxis, northRoad, southRoad, eastRoad, westRoad, remainingSeconds);
+            }
+        }
+
+        // 4. Advance signal timing / countdown
         advanceSignalTiming();
 
-        // 4. Remove vehicles that have reached the exit boundary
+        // 5. Remove vehicles that have reached the exit boundary
         cleanupExitedVehicles();
 
         totalTicks++;
@@ -204,6 +248,30 @@ public class TrafficSimulationModel {
             elapsedGreenSeconds++;
             remainingSeconds = currentGreenDuration - elapsedGreenSeconds;
 
+            // Intelligent queue clearance & actuated stop ("if no vehicles are at the lane just stops")
+            if (autoStopOnEmpty && !emergencyActive) {
+                int waitingThisAxis = getWaitingVehicleCount(currentAxis);
+                boolean occupied = isIntersectionOccupiedByAxis(currentAxis);
+
+                // If no vehicles are waiting at this lane and any vehicles inside junction have cleared
+                if (waitingThisAxis == 0 && !occupied) {
+                    String conflictingAxis = currentAxis.equals("NORTH_SOUTH") ? "EAST_WEST" : "NORTH_SOUTH";
+                    int waitingConflicting = getWaitingVehicleCount(conflictingAxis);
+
+                    if (waitingConflicting > 0) {
+                        // Conflicting axis has waiting vehicles: immediately stop green and transition!
+                        transitionToNextPhase();
+                        return;
+                    } else {
+                        // Conflicting axis also has 0 vehicles: all lanes empty, rest stopped!
+                        intersectionIdle = true;
+                        remainingSeconds = 0;
+                        controller.updateSignalCountdown(currentAxis, northRoad, southRoad, eastRoad, westRoad, 0);
+                        return;
+                    }
+                }
+            }
+
             if (remainingSeconds <= 0) {
                 transitionToNextPhase();
             } else {
@@ -230,12 +298,42 @@ public class TrafficSimulationModel {
             remainingSeconds = YELLOW_DURATION;
             controller.applyYellowPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, remainingSeconds);
         } else {
-            currentAxis = currentAxis.equals("NORTH_SOUTH") ? "EAST_WEST" : "NORTH_SOUTH";
+            // After yellow clearance, if an emergency vehicle is active, route green to the emergency axis
+            if (emergencyActive && emergencyTargetRoadId > 0) {
+                currentAxis = (emergencyTargetRoadId == 1 || emergencyTargetRoadId == 2) ? "NORTH_SOUTH" : "EAST_WEST";
+            } else {
+                String candidateAxis = currentAxis.equals("NORTH_SOUTH") ? "EAST_WEST" : "NORTH_SOUTH";
+                if (autoStopOnEmpty) {
+                    int waitingCandidate = getWaitingVehicleCount(candidateAxis);
+                    int waitingCurrent = getWaitingVehicleCount(currentAxis);
+                    if (waitingCandidate > 0) {
+                        currentAxis = candidateAxis;
+                    } else if (waitingCurrent > 0) {
+                        currentAxis = currentAxis; // Keep axis with waiting vehicles
+                    } else {
+                        // All lanes empty! Rest stopped!
+                        intersectionIdle = true;
+                        currentAxis = candidateAxis;
+                        currentSignalState = TrafficSignal.GREEN;
+                        currentGreenDuration = 0;
+                        remainingSeconds = 0;
+                        controller.applyPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, activeStrategy);
+                        controller.updateSignalCountdown(currentAxis, northRoad, southRoad, eastRoad, westRoad, 0);
+                        return;
+                    }
+                } else {
+                    currentAxis = candidateAxis;
+                }
+            }
+            intersectionIdle = false;
             currentSignalState = TrafficSignal.GREEN;
             elapsedGreenSeconds = 0;
             phaseDensityDuration = getCalculatedGreenDuration(currentAxis, densityStrategy);
             phaseFixedDuration = getCalculatedGreenDuration(currentAxis, fixedStrategy);
             currentGreenDuration = (activeStrategy instanceof FixedTimingStrategy) ? phaseFixedDuration : phaseDensityDuration;
+            if (emergencyActive) {
+                currentGreenDuration = Math.max(currentGreenDuration, 25);
+            }
             controller.applyPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, activeStrategy);
 
             remainingSeconds = currentGreenDuration;
@@ -306,12 +404,75 @@ public class TrafficSimulationModel {
 
     /**
      * Calculates the shared coordinated green duration for an axis under a given strategy.
+     * Incorporates vehicle speed and queue headway clearance when speedBasedTimingEnabled is true.
      */
     public int getCalculatedGreenDuration(String axis, SignalTimingStrategy strategy) {
-        if ("NORTH_SOUTH".equalsIgnoreCase(axis)) {
-            return Math.max(strategy.calculateGreenTime(northRoad), strategy.calculateGreenTime(southRoad));
+        if (strategy instanceof FixedTimingStrategy) {
+            return strategy.calculateGreenTime(northRoad);
+        }
+        if (speedBasedTimingEnabled) {
+            if ("NORTH_SOUTH".equalsIgnoreCase(axis)) {
+                return Math.max(calculateSpeedBasedGreenDuration(northRoad), calculateSpeedBasedGreenDuration(southRoad));
+            } else {
+                return Math.max(calculateSpeedBasedGreenDuration(eastRoad), calculateSpeedBasedGreenDuration(westRoad));
+            }
         } else {
-            return Math.max(strategy.calculateGreenTime(eastRoad), strategy.calculateGreenTime(westRoad));
+            if ("NORTH_SOUTH".equalsIgnoreCase(axis)) {
+                return Math.max(strategy.calculateGreenTime(northRoad), strategy.calculateGreenTime(southRoad));
+            } else {
+                return Math.max(strategy.calculateGreenTime(eastRoad), strategy.calculateGreenTime(westRoad));
+            }
+        }
+    }
+
+    /**
+     * Calculates required green duration strictly based on vehicle speed,
+     * intersection clearance geometry, and queued headway spacing.
+     */
+    public int calculateSpeedBasedGreenDuration(Road road) {
+        if (road == null) return 0;
+        int waiting = getWaitingVehicleCount(road);
+        if (waiting == 0) return 0;
+
+        double speed = vehicleSpeed;
+        double clearanceDist = (road == northRoad || road == southRoad)
+                ? (NS_CLEAR_DISTANCE - NS_STOP_DISTANCE)
+                : (EW_CLEAR_DISTANCE - EW_STOP_DISTANCE); // 120px
+        int clearanceSec = (int) Math.ceil(clearanceDist / speed); // ~3s at 50px/s
+        double headwayDist = DEFAULT_LENGTH + DEFAULT_MIN_SPACING; // 32px
+        double headwaySec = Math.max(1.0, (headwayDist / speed) * 1.5); // ~1.2s per vehicle
+        int queueSec = (int) Math.ceil(waiting * headwaySec);
+
+        int total = clearanceSec + queueSec;
+        return Math.max(4, Math.min(45, total));
+    }
+
+    /**
+     * Returns the count of vehicles currently waiting behind the stop line on a road.
+     */
+    public int getWaitingVehicleCount(Road road) {
+        if (road == null || road.lanes == null) return 0;
+        double stopDist = (road == northRoad || road == southRoad) ? NS_STOP_DISTANCE : EW_STOP_DISTANCE;
+        int count = 0;
+        for (Lane lane : road.lanes) {
+            if (lane == null || lane.vehicles == null) continue;
+            for (Vehicle v : lane.vehicles) {
+                if (!v.isEnteredIntersection() && v.getDistance() <= stopDist) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the total count of vehicles currently waiting behind the stop line along an axis.
+     */
+    public int getWaitingVehicleCount(String axis) {
+        if ("NORTH_SOUTH".equalsIgnoreCase(axis)) {
+            return getWaitingVehicleCount(northRoad) + getWaitingVehicleCount(southRoad);
+        } else {
+            return getWaitingVehicleCount(eastRoad) + getWaitingVehicleCount(westRoad);
         }
     }
 
@@ -606,4 +767,180 @@ public class TrafficSimulationModel {
     public long getTotalTicks() { return totalTicks; }
     public TrafficController getController() { return controller; }
     public int getCurrentGreenDuration() { return currentGreenDuration; }
+
+    // =========================================================================
+    // Emergency Vehicle Priority Handling
+    // =========================================================================
+
+    /**
+     * Triggers priority preemption for an emergency vehicle on the designated road approach.
+     * Safely clears perpendicular traffic via a 3-second yellow clearance phase before granting
+     * green right-of-way to the emergency vehicle approach.
+     *
+     * @param roadId ID of the road receiving the emergency vehicle (1=North, 2=South, 3=East, 4=West)
+     * @return the newly spawned emergency vehicle
+     */
+    public Vehicle triggerEmergencyPriority(int roadId) {
+        Road targetRoad = getRoadById(roadId);
+        if (targetRoad == null) {
+            targetRoad = northRoad;
+            roadId = 1;
+        }
+
+        String targetAxis = (roadId == 1 || roadId == 2) ? "NORTH_SOUTH" : "EAST_WEST";
+
+        // Spawn emergency vehicle (Ambulance)
+        Vehicle amb = new Vehicle((int) nextSequenceId(), "Ambulance", 0.0);
+        Lane targetLane = resolveTargetLane(targetRoad);
+        targetLane.vehicles.add(amb);
+
+        this.emergencyActive = true;
+        this.emergencyTargetRoadId = roadId;
+        this.activeEmergencyVehicle = amb;
+
+        // If the emergency axis is already GREEN, ensure sufficient green duration
+        if (currentAxis.equalsIgnoreCase(targetAxis)) {
+            if (TrafficSignal.GREEN.equals(currentSignalState)) {
+                remainingSeconds = Math.max(remainingSeconds, 20);
+                controller.updateSignalCountdown(currentAxis, northRoad, southRoad, eastRoad, westRoad, remainingSeconds);
+            }
+        } else {
+            // Conflicting perpendicular axis is currently active.
+            // Safety invariant: MUST initiate 3-tick yellow clearance before switching to emergency axis
+            if (TrafficSignal.GREEN.equals(currentSignalState)) {
+                currentSignalState = TrafficSignal.YELLOW;
+                remainingSeconds = YELLOW_DURATION;
+                controller.applyYellowPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, remainingSeconds);
+            }
+        }
+        return amb;
+    }
+
+    public boolean isEmergencyActive() { return emergencyActive; }
+    public int getEmergencyTargetRoadId() { return emergencyTargetRoadId; }
+    public Vehicle getActiveEmergencyVehicle() { return activeEmergencyVehicle; }
+
+    // =========================================================================
+    // Dynamic Vehicle Management & Speed-Based Actuated Controls
+    // =========================================================================
+
+    /**
+     * Adds a newly spawned vehicle to the designated road approach,
+     * assigning it to the least congested lane and waking up an idle intersection if needed.
+     *
+     * @param roadId road ID (1=North, 2=South, 3=East, 4=West)
+     * @return the newly instantiated and queued vehicle
+     */
+    public Vehicle addVehicleToRoad(int roadId) {
+        Road road = getRoadById(roadId);
+        if (road == null) return null;
+
+        if (road.lanes == null || road.lanes.isEmpty()) {
+            road.addLane(new Lane(road.roadId * 10 + 1));
+        }
+
+        // Balance across lanes: pick lane with fewest vehicles
+        Lane targetLane = road.lanes.get(0);
+        for (Lane l : road.lanes) {
+            if (l.vehicles.size() < targetLane.vehicles.size()) {
+                targetLane = l;
+            }
+        }
+
+        int nextId = (int) nextSequenceId();
+        Vehicle v = new Vehicle(nextId, "Car", 0.0);
+        v.setSpeed(this.vehicleSpeed);
+
+        double stopDist = (road == northRoad || road == southRoad) ? NS_STOP_DISTANCE : EW_STOP_DISTANCE;
+        double pos;
+        if (targetLane.vehicles.isEmpty()) {
+            pos = stopDist;
+        } else {
+            Vehicle last = targetLane.vehicles.get(targetLane.vehicles.size() - 1);
+            pos = last.getDistance() - (last.getLength() + v.getMinSpacing());
+        }
+        v.setDistance(pos);
+        targetLane.vehicles.add(v);
+
+        // Wake up intersection if it was resting stopped/idle because no vehicles were present
+        if (intersectionIdle) {
+            intersectionIdle = false;
+            String roadAxis = (roadId == 1 || roadId == 2) ? "NORTH_SOUTH" : "EAST_WEST";
+            currentAxis = roadAxis;
+            currentSignalState = TrafficSignal.GREEN;
+            elapsedGreenSeconds = 0;
+            currentGreenDuration = getCalculatedGreenDuration(currentAxis, activeStrategy);
+            if (currentGreenDuration <= 0) currentGreenDuration = 6;
+            remainingSeconds = currentGreenDuration;
+            controller.applyPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, activeStrategy);
+        } else if (TrafficSignal.GREEN.equals(currentSignalState)) {
+            String roadAxis = (roadId == 1 || roadId == 2) ? "NORTH_SOUTH" : "EAST_WEST";
+            if (currentAxis.equalsIgnoreCase(roadAxis)) {
+                // If on the currently green axis, adjust green time if needed to service new vehicle
+                int needed = getCalculatedGreenDuration(currentAxis, activeStrategy);
+                if (remainingSeconds < (needed - elapsedGreenSeconds)) {
+                    currentGreenDuration = needed;
+                    remainingSeconds = Math.max(remainingSeconds, currentGreenDuration - elapsedGreenSeconds);
+                    controller.updateSignalCountdown(currentAxis, northRoad, southRoad, eastRoad, westRoad, remainingSeconds);
+                }
+            }
+        }
+        return v;
+    }
+
+    /**
+     * Clears all vehicles from all lanes on all roads, resetting intersection into stopped/idle state.
+     */
+    public void clearAllVehicles() {
+        if (northRoad != null && northRoad.lanes != null) for (Lane l : northRoad.lanes) l.vehicles.clear();
+        if (southRoad != null && southRoad.lanes != null) for (Lane l : southRoad.lanes) l.vehicles.clear();
+        if (eastRoad != null && eastRoad.lanes != null) for (Lane l : eastRoad.lanes) l.vehicles.clear();
+        if (westRoad != null && westRoad.lanes != null) for (Lane l : westRoad.lanes) l.vehicles.clear();
+        arrivalQueue.clear();
+        intersectionIdle = true;
+        remainingSeconds = 0;
+        controller.updateSignalCountdown(currentAxis, northRoad, southRoad, eastRoad, westRoad, 0);
+    }
+
+    public double getVehicleSpeed() {
+        return vehicleSpeed;
+    }
+
+    public void setVehicleSpeed(double speed) {
+        this.vehicleSpeed = Math.max(10.0, speed);
+        updateSpeedsOnRoad(northRoad, this.vehicleSpeed);
+        updateSpeedsOnRoad(southRoad, this.vehicleSpeed);
+        updateSpeedsOnRoad(eastRoad, this.vehicleSpeed);
+        updateSpeedsOnRoad(westRoad, this.vehicleSpeed);
+    }
+
+    private void updateSpeedsOnRoad(Road road, double speed) {
+        if (road == null || road.lanes == null) return;
+        for (Lane l : road.lanes) {
+            if (l.vehicles == null) continue;
+            for (Vehicle v : l.vehicles) {
+                v.setSpeed(speed);
+            }
+        }
+    }
+
+    public boolean isAutoStopOnEmpty() {
+        return autoStopOnEmpty;
+    }
+
+    public void setAutoStopOnEmpty(boolean autoStop) {
+        this.autoStopOnEmpty = autoStop;
+    }
+
+    public boolean isSpeedBasedTimingEnabled() {
+        return speedBasedTimingEnabled;
+    }
+
+    public void setSpeedBasedTimingEnabled(boolean enabled) {
+        this.speedBasedTimingEnabled = enabled;
+    }
+
+    public boolean isIntersectionIdle() {
+        return intersectionIdle;
+    }
 }

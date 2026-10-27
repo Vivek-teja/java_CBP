@@ -35,6 +35,10 @@ public class Vehicle {
         return vehicleId;
     }
 
+    public boolean isEmergency() {
+        return "Emergency".equalsIgnoreCase(type) || "Ambulance".equalsIgnoreCase(type) || "FireTruck".equalsIgnoreCase(type);
+    }
+
     public String getType() {
         return type;
     }

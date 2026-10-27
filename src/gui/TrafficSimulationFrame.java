@@ -6,13 +6,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import models.Road;
@@ -63,6 +66,9 @@ public class TrafficSimulationFrame extends JFrame {
     private IntersectionPanel intersectionPanel;
     private JLabel statusLabel;
     private JComboBox<String> strategyCombo;
+    private JComboBox<String> speedCombo;
+    private JCheckBox autoStopCheckbox;
+    private JCheckBox autoSpawnCheck;
 
     public TrafficSimulationFrame(Road north, Road south, Road east, Road west) {
         super("Traffic Management System - Bird's-Eye View");
@@ -86,46 +92,131 @@ public class TrafficSimulationFrame extends JFrame {
         startTimer();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(850, 800);
+        setSize(960, 860);
         setLocationRelativeTo(null); // Center on screen
     }
 
     private void initComponents() {
         setLayout(new BorderLayout());
 
-        // 1. Control Panel at the top
-        JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
+        // 1. Control Panel at the top with two structured rows
+        JPanel controlPanel = new JPanel(new GridLayout(2, 1, 0, 3));
         controlPanel.setBackground(new Color(240, 244, 248));
         controlPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(200, 210, 220)));
 
-        JLabel strategyLabel = new JLabel("Timing Strategy:");
-        strategyLabel.setFont(new Font("SansSerif", Font.BOLD, 13));
+        // Row 1: Strategy, Speed, Auto-Stop, and Signal Phase Controls
+        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        row1.setOpaque(false);
+
+        JLabel strategyLabel = new JLabel("Strategy:");
+        strategyLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
 
         strategyCombo = new JComboBox<>(new String[] {
-            "Density-Based Timing",
+            "Speed-Based Density (Actuated)",
+            "Density Formula (10s + 5s/veh)",
             "Fixed Timing (30s)"
         });
-        strategyCombo.setFont(new Font("SansSerif", Font.PLAIN, 13));
+        strategyCombo.setFont(new Font("SansSerif", Font.PLAIN, 12));
         strategyCombo.addActionListener(e -> onStrategyChanged());
 
-        JButton togglePhaseBtn = new JButton("Toggle Signal Phase (N-S / E-W)");
-        togglePhaseBtn.setFont(new Font("SansSerif", Font.BOLD, 12));
+        JLabel speedLabel = new JLabel("Speed:");
+        speedLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
+
+        speedCombo = new JComboBox<>(new String[] {
+            "Slow (35 px/s)",
+            "Normal (50 px/s)",
+            "Fast (70 px/s)"
+        });
+        speedCombo.setSelectedIndex(1); // Normal (50 px/s)
+        speedCombo.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        speedCombo.addActionListener(e -> onSpeedChanged());
+
+        autoStopCheckbox = new JCheckBox("Auto-Stop Empty Lane", true);
+        autoStopCheckbox.setFont(new Font("SansSerif", Font.BOLD, 12));
+        autoStopCheckbox.setForeground(new Color(25, 120, 35));
+        autoStopCheckbox.setOpaque(false);
+        autoStopCheckbox.setToolTipText("Immediately terminates green phase when all waiting vehicles on active axis have cleared");
+        autoStopCheckbox.addActionListener(e -> model.setAutoStopOnEmpty(autoStopCheckbox.isSelected()));
+
+        JButton togglePhaseBtn = new JButton("Toggle Phase");
+        togglePhaseBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
         togglePhaseBtn.setBackground(new Color(50, 110, 200));
         togglePhaseBtn.setForeground(Color.WHITE);
         togglePhaseBtn.setFocusPainted(false);
         togglePhaseBtn.addActionListener(e -> onManualPhaseToggle());
 
-        JButton refreshBtn = new JButton("Refresh Timings");
-        refreshBtn.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        JButton emergencyBtn = new JButton("Dispatch Ambulance");
+        emergencyBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        emergencyBtn.setBackground(new Color(210, 45, 45));
+        emergencyBtn.setForeground(Color.WHITE);
+        emergencyBtn.setFocusPainted(false);
+        emergencyBtn.addActionListener(e -> onDispatchEmergency());
+
+        JButton refreshBtn = new JButton("Refresh");
+        refreshBtn.setFont(new Font("SansSerif", Font.PLAIN, 11));
         refreshBtn.addActionListener(e -> applyCurrentState());
 
-        controlPanel.add(strategyLabel);
-        controlPanel.add(strategyCombo);
-        controlPanel.add(togglePhaseBtn);
-        controlPanel.add(refreshBtn);
+        row1.add(strategyLabel);
+        row1.add(strategyCombo);
+        row1.add(speedLabel);
+        row1.add(speedCombo);
+        row1.add(autoStopCheckbox);
+        row1.add(togglePhaseBtn);
+        row1.add(emergencyBtn);
+        row1.add(refreshBtn);
+
+        // Row 2: Dynamic Vehicle Addition & Queue Management Controls
+        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 4));
+        row2.setOpaque(false);
+
+        JLabel addLabel = new JLabel("Add Vehicles:");
+        addLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
+
+        JButton addNorthBtn = createAddVehicleButton("+ North", 1);
+        JButton addSouthBtn = createAddVehicleButton("+ South", 2);
+        JButton addEastBtn = createAddVehicleButton("+ East", 3);
+        JButton addWestBtn = createAddVehicleButton("+ West", 4);
+
+        JButton addRandomBtn = new JButton("+5 Random");
+        addRandomBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        addRandomBtn.setBackground(new Color(60, 130, 200));
+        addRandomBtn.setForeground(Color.WHITE);
+        addRandomBtn.setFocusPainted(false);
+        addRandomBtn.addActionListener(e -> onAddRandomVehicles());
+
+        JButton setDensityBtn = new JButton("Set Count...");
+        setDensityBtn.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        setDensityBtn.addActionListener(e -> onSetVehicleDensity());
+
+        JButton clearAllBtn = new JButton("Clear All");
+        clearAllBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        clearAllBtn.setBackground(new Color(175, 65, 65));
+        clearAllBtn.setForeground(Color.WHITE);
+        clearAllBtn.setFocusPainted(false);
+        clearAllBtn.setToolTipText("Removes all vehicles to test empty lane stopping behavior");
+        clearAllBtn.addActionListener(e -> onClearAllVehicles());
+
+        autoSpawnCheck = new JCheckBox("Auto-Spawn (Background)", false);
+        autoSpawnCheck.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        autoSpawnCheck.setOpaque(false);
+        autoSpawnCheck.addActionListener(e -> onAutoSpawnToggled());
+
+        row2.add(addLabel);
+        row2.add(addNorthBtn);
+        row2.add(addSouthBtn);
+        row2.add(addEastBtn);
+        row2.add(addWestBtn);
+        row2.add(addRandomBtn);
+        row2.add(setDensityBtn);
+        row2.add(clearAllBtn);
+        row2.add(autoSpawnCheck);
+
+        controlPanel.add(row1);
+        controlPanel.add(row2);
 
         // 2. Bird's-eye view panel in the center
         intersectionPanel = new IntersectionPanel(northRoad, southRoad, eastRoad, westRoad);
+        intersectionPanel.setVehicleAddListener(roadId -> onAddVehicle(roadId));
 
         // 3. Status Bar at the bottom
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 8));
@@ -149,6 +240,16 @@ public class TrafficSimulationFrame extends JFrame {
         });
     }
 
+    private JButton createAddVehicleButton(String label, int roadId) {
+        JButton btn = new JButton(label);
+        btn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        btn.setBackground(new Color(35, 145, 75));
+        btn.setForeground(Color.WHITE);
+        btn.setFocusPainted(false);
+        btn.addActionListener(e -> onAddVehicle(roadId));
+        return btn;
+    }
+
     /**
      * Starts the automatic 1-second simulation clock on the Event Dispatch Thread,
      * launches the smooth rendering animation timer (~60 FPS),
@@ -168,7 +269,9 @@ public class TrafficSimulationFrame extends JFrame {
             eventProducer.stop(500);
         }
         eventProducer = new TrafficThreading.TrafficEventProducer(model);
-        eventProducer.start();
+        if (autoSpawnCheck != null && autoSpawnCheck.isSelected()) {
+            eventProducer.start();
+        }
 
         lastTickNanos = System.nanoTime();
         intersectionPanel.snapshotPreviousPositions();
@@ -251,7 +354,16 @@ public class TrafficSimulationFrame extends JFrame {
      */
     private void onStrategyChanged() {
         int selected = strategyCombo.getSelectedIndex();
-        activeStrategy = (selected == 0) ? densityStrategy : fixedStrategy;
+        if (selected == 0) {
+            activeStrategy = densityStrategy;
+            model.setSpeedBasedTimingEnabled(true);
+        } else if (selected == 1) {
+            activeStrategy = densityStrategy;
+            model.setSpeedBasedTimingEnabled(false);
+        } else {
+            activeStrategy = fixedStrategy;
+            model.setSpeedBasedTimingEnabled(false);
+        }
         model.setActiveStrategy(activeStrategy);
 
         updateStatusBar();
@@ -259,6 +371,67 @@ public class TrafficSimulationFrame extends JFrame {
         intersectionPanel.snapshotPreviousPositions();
         lastTickNanos = System.nanoTime();
         intersectionPanel.setInterpolationAlpha(1.0);
+    }
+
+    /**
+     * Handles vehicle speed dropdown changes in the simulation.
+     */
+    private void onSpeedChanged() {
+        int idx = speedCombo.getSelectedIndex();
+        double speed = 50.0;
+        if (idx == 0) speed = 35.0;
+        else if (idx == 1) speed = 50.0;
+        else if (idx == 2) speed = 70.0;
+
+        model.setVehicleSpeed(speed);
+        applyCurrentState();
+        intersectionPanel.repaint();
+    }
+
+    /**
+     * Toggles the background dynamic vehicle arrival generator daemon.
+     */
+    private void onAutoSpawnToggled() {
+        if (autoSpawnCheck.isSelected()) {
+            if (eventProducer == null || !eventProducer.isRunning()) {
+                eventProducer = new TrafficThreading.TrafficEventProducer(model);
+                eventProducer.start();
+            }
+        } else {
+            if (eventProducer != null) {
+                eventProducer.stop(500);
+            }
+        }
+    }
+
+    /**
+     * Dynamically adds a vehicle to a specified road approach directly in the Swing interface.
+     */
+    public void onAddVehicle(int roadId) {
+        model.addVehicleToRoad(roadId);
+        applyCurrentState();
+        intersectionPanel.repaint();
+    }
+
+    /**
+     * Adds 5 vehicles scattered randomly across approaches.
+     */
+    private void onAddRandomVehicles() {
+        java.util.Random rand = new java.util.Random();
+        for (int i = 0; i < 5; i++) {
+            model.addVehicleToRoad(rand.nextInt(4) + 1);
+        }
+        applyCurrentState();
+        intersectionPanel.repaint();
+    }
+
+    /**
+     * Clears all vehicles from all approaches, immediately stopping signal countdowns into idle rest.
+     */
+    private void onClearAllVehicles() {
+        model.clearAllVehicles();
+        applyCurrentState();
+        intersectionPanel.repaint();
     }
 
     /**
@@ -274,14 +447,77 @@ public class TrafficSimulationFrame extends JFrame {
     }
 
     /**
-     * Updates the status bar text reflecting active axis, state, countdown, and strategy.
+     * Triggers priority preemption for an emergency ambulance approach.
+     */
+    public void onDispatchEmergency() {
+        model.triggerEmergencyPriority(1); // Dispatches on North approach
+        updateStatusBar();
+        intersectionPanel.updateRoads(northRoad, southRoad, eastRoad, westRoad);
+        intersectionPanel.snapshotPreviousPositions();
+        lastTickNanos = System.nanoTime();
+        intersectionPanel.setInterpolationAlpha(1.0);
+    }
+
+    /**
+     * Interactively prompts user to configure vehicle density on any road approach with robust validation.
+     */
+    public void onSetVehicleDensity() {
+        String[] roads = { "North (Road 1)", "South (Road 2)", "East (Road 3)", "West (Road 4)" };
+        String roadChoice = (String) JOptionPane.showInputDialog(
+                this, "Select Road approach to configure:", "Configure Road Density",
+                JOptionPane.QUESTION_MESSAGE, null, roads, roads[0]);
+        if (roadChoice == null) return;
+
+        int roadId = 1;
+        Road targetRoad = northRoad;
+        if (roadChoice.startsWith("South")) { roadId = 2; targetRoad = southRoad; }
+        else if (roadChoice.startsWith("East")) { roadId = 3; targetRoad = eastRoad; }
+        else if (roadChoice.startsWith("West")) { roadId = 4; targetRoad = westRoad; }
+
+        String input = JOptionPane.showInputDialog(this,
+                "Enter vehicle count for " + targetRoad.getDirection() + " Road (0 - 30):",
+                "Configure Road Density", JOptionPane.QUESTION_MESSAGE);
+        if (input == null) return;
+
+        try {
+            int count = Integer.parseInt(input.trim());
+            if (count < 0) throw new IllegalArgumentException("Vehicle count cannot be negative: " + count);
+            if (count > 50) throw new IllegalArgumentException("Vehicle count exceeds road capacity (50): " + count);
+
+            targetRoad.lanes.clear();
+            targetRoad.addLane(Main.MainApp.createPopulatedLane(roadId * 10 + 1, count / 2));
+            targetRoad.addLane(Main.MainApp.createPopulatedLane(roadId * 10 + 2, count - count / 2));
+            model.initializeVehicleQueues();
+            applyCurrentState();
+            JOptionPane.showMessageDialog(this,
+                    targetRoad.getDirection() + " Road updated to " + count + " vehicles.",
+                    "Density Updated", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Invalid input: '" + input + "' is not a valid integer.", "Input Validation Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Input Validation Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Updates the status bar text reflecting active axis, state, countdown, strategy, speed, and empty idle state.
      * Avoids redundant setText() calls when the text is unchanged.
      */
     private void updateStatusBar() {
+        if (model.isIntersectionIdle()) {
+            String text = "[STOPPED - ALL LANES EMPTY] No vehicles waiting. Click '+ North / South / East / West' or click roads to add vehicles.";
+            if (!text.equals(lastStatusText)) {
+                lastStatusText = text;
+                statusLabel.setText(text);
+            }
+            return;
+        }
+
         String phaseText;
         String currentSignalState = model.getCurrentSignalState();
         String currentAxis = model.getCurrentAxis();
         int remainingSeconds = model.getRemainingSeconds();
+        int waitingCurrent = model.getWaitingVehicleCount(currentAxis);
 
         if (models.TrafficSignal.GREEN.equals(currentSignalState)) {
             phaseText = currentAxis.equals("NORTH_SOUTH")
@@ -293,7 +529,10 @@ public class TrafficSimulationFrame extends JFrame {
                     : "Active Phase: EAST-WEST YELLOW (Clearance Phase)";
         }
 
-        String newText = phaseText + "  |  Time Remaining: " + remainingSeconds + "s  |  Strategy: " + activeStrategy.getStrategyName();
+        String prefix = model.isEmergencyActive() ? "[PRIORITY: AMBULANCE IN TRANSIT] " : "";
+        String speedInfo = "Speed: " + (int) model.getVehicleSpeed() + " px/s";
+        String queueInfo = "Waiting: " + waitingCurrent + " veh";
+        String newText = prefix + phaseText + "  |  " + queueInfo + "  |  " + speedInfo + "  |  Remaining: " + remainingSeconds + "s  |  Strategy: " + activeStrategy.getStrategyName();
         if (!newText.equals(lastStatusText)) {
             lastStatusText = newText;
             statusLabel.setText(newText);
