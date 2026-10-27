@@ -142,22 +142,34 @@ public class TrafficSimulationFrame extends JFrame {
 
         JButton togglePhaseBtn = new JButton("Switch Phase (N-S / E-W)");
         togglePhaseBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
-        togglePhaseBtn.setBackground(new Color(50, 110, 200));
-        togglePhaseBtn.setForeground(Color.WHITE);
+        togglePhaseBtn.setForeground(new Color(20, 60, 160));
         togglePhaseBtn.setFocusPainted(false);
+        togglePhaseBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(60, 120, 210), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
         togglePhaseBtn.setToolTipText("Manually toggles green right-of-way between North-South and East-West corridors");
         togglePhaseBtn.addActionListener(e -> onManualPhaseToggle());
 
         JButton emergencyBtn = new JButton("Dispatch Ambulance (Priority)");
         emergencyBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
-        emergencyBtn.setBackground(new Color(210, 45, 45));
-        emergencyBtn.setForeground(Color.WHITE);
+        emergencyBtn.setForeground(new Color(180, 20, 20));
         emergencyBtn.setFocusPainted(false);
+        emergencyBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(210, 50, 50), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
         emergencyBtn.setToolTipText("Dispatches emergency vehicle on North approach, preempting conflicting traffic through yellow clearance");
         emergencyBtn.addActionListener(e -> onDispatchEmergency());
 
         JButton refreshBtn = new JButton("Refresh Signals");
-        refreshBtn.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        refreshBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        refreshBtn.setForeground(new Color(40, 50, 65));
+        refreshBtn.setFocusPainted(false);
+        refreshBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(160, 175, 190), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
         refreshBtn.setToolTipText("Recalculates vehicle counts and synchronizes signal phase durations");
         refreshBtn.addActionListener(e -> applyCurrentState());
 
@@ -176,6 +188,7 @@ public class TrafficSimulationFrame extends JFrame {
 
         JLabel addLabel = new JLabel("Add Vehicles:");
         addLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
+        addLabel.setForeground(new Color(20, 30, 45));
 
         JButton addNorthBtn = createAddVehicleButton("+ North (Heading South ↓)", 1, "Queues a vehicle at North approach travelling Southward into the intersection");
         JButton addSouthBtn = createAddVehicleButton("+ South (Heading North ↑)", 2, "Queues a vehicle at South approach travelling Northward into the intersection");
@@ -184,22 +197,34 @@ public class TrafficSimulationFrame extends JFrame {
 
         JButton addRandomBtn = new JButton("+5 Random (All Roads)");
         addRandomBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
-        addRandomBtn.setBackground(new Color(60, 130, 200));
-        addRandomBtn.setForeground(Color.WHITE);
+        addRandomBtn.setForeground(new Color(20, 60, 160));
         addRandomBtn.setFocusPainted(false);
+        addRandomBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(60, 120, 210), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
         addRandomBtn.setToolTipText("Spreads 5 new vehicles randomly across North, South, East, and West approach queues");
         addRandomBtn.addActionListener(e -> onAddRandomVehicles());
 
         JButton setDensityBtn = new JButton("Set Exact Count (Select Road)");
-        setDensityBtn.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        setDensityBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        setDensityBtn.setForeground(new Color(40, 50, 65));
+        setDensityBtn.setFocusPainted(false);
+        setDensityBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(160, 175, 190), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
         setDensityBtn.setToolTipText("Opens dialog to set an exact vehicle count for a selected approach");
         setDensityBtn.addActionListener(e -> onSetVehicleDensity());
 
         JButton clearAllBtn = new JButton("Clear All Vehicles (Test Idle Stop)");
         clearAllBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
-        clearAllBtn.setBackground(new Color(175, 65, 65));
-        clearAllBtn.setForeground(Color.WHITE);
+        clearAllBtn.setForeground(new Color(180, 20, 20));
         clearAllBtn.setFocusPainted(false);
+        clearAllBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(210, 50, 50), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
         clearAllBtn.setToolTipText("Removes all vehicles from all approaches to test how signals stop in idle rest when lanes are empty");
         clearAllBtn.addActionListener(e -> onClearAllVehicles());
 
@@ -251,10 +276,13 @@ public class TrafficSimulationFrame extends JFrame {
     private JButton createAddVehicleButton(String label, int roadId, String tooltip) {
         JButton btn = new JButton(label);
         btn.setFont(new Font("SansSerif", Font.BOLD, 11));
-        btn.setBackground(new Color(35, 145, 75));
-        btn.setForeground(Color.WHITE);
+        btn.setForeground(new Color(10, 100, 35));
         btn.setFocusPainted(false);
         btn.setToolTipText(tooltip);
+        btn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(40, 150, 70), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
         btn.addActionListener(e -> onAddVehicle(roadId));
         return btn;
     }
