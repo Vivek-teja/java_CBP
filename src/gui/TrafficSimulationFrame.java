@@ -63,12 +63,17 @@ public class TrafficSimulationFrame extends JFrame {
     // Window disposal flag to guard background and EDT callbacks
     private volatile boolean disposed = false;
 
+    // Flag indicating whether vehicle movements and simulation clock are stopped/paused for screenshots
+    private boolean isPaused = false;
+
     private IntersectionPanel intersectionPanel;
     private JLabel statusLabel;
     private JComboBox<String> strategyCombo;
     private JComboBox<String> speedCombo;
     private JCheckBox autoStopCheckbox;
     private JCheckBox autoSpawnCheck;
+    private JButton startStopBtn;
+    private JButton stepBtn;
 
     public TrafficSimulationFrame(Road north, Road south, Road east, Road west) {
         super("Traffic Management System - Bird's-Eye View");
@@ -92,20 +97,23 @@ public class TrafficSimulationFrame extends JFrame {
         startTimer();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1100, 890);
+        setSize(1180, 910);
         setLocationRelativeTo(null); // Center on screen
     }
 
     private void initComponents() {
         setLayout(new BorderLayout());
 
-        // 1. Control Panel at the top with two structured, descriptive rows
-        JPanel controlPanel = new JPanel(new GridLayout(2, 1, 0, 4));
+        // 1. Control Panel at the top with three structured, descriptive rows
+        JPanel controlPanel = new JPanel(new GridLayout(3, 1, 0, 4));
         controlPanel.setBackground(new Color(240, 244, 248));
-        controlPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(200, 210, 220)));
+        controlPanel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(200, 210, 220)),
+            BorderFactory.createEmptyBorder(2, 6, 2, 6)
+        ));
 
-        // Row 1: Strategy, Speed, Auto-Stop, and Signal Phase Controls
-        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 5));
+        // Row 1: Strategy, Speed, Start/Stop (Pause for screenshots), and Step (+1s)
+        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 4));
         row1.setOpaque(false);
 
         JLabel strategyLabel = new JLabel("Timing Strategy:");
@@ -132,6 +140,41 @@ public class TrafficSimulationFrame extends JFrame {
         speedCombo.setFont(new Font("SansSerif", Font.PLAIN, 11));
         speedCombo.setToolTipText("Changes physical movement speed of vehicles across the junction and recalculates green times");
         speedCombo.addActionListener(e -> onSpeedChanged());
+
+        // Simple Toggle Button that Stops and Starts vehicle simulation for taking screenshots at exact timings
+        startStopBtn = new JButton("⏸ Stop Vehicles (Pause)");
+        startStopBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        startStopBtn.setForeground(new Color(180, 40, 20));
+        startStopBtn.setFocusPainted(false);
+        startStopBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(210, 60, 40), 1),
+            BorderFactory.createEmptyBorder(4, 10, 4, 10)
+        ));
+        startStopBtn.setToolTipText("Freezes all vehicle movement and signal timers so you can capture screenshots at different timings");
+        startStopBtn.addActionListener(e -> togglePause());
+
+        stepBtn = new JButton("⏭ Step (+1s)");
+        stepBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        stepBtn.setForeground(new Color(20, 60, 160));
+        stepBtn.setFocusPainted(false);
+        stepBtn.setEnabled(false); // Enabled only when stopped
+        stepBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(60, 120, 210), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
+        stepBtn.setToolTipText("Advances simulation by exactly 1 second while stopped for precise screenshot timing");
+        stepBtn.addActionListener(e -> onStepTick());
+
+        row1.add(strategyLabel);
+        row1.add(strategyCombo);
+        row1.add(speedLabel);
+        row1.add(speedCombo);
+        row1.add(startStopBtn);
+        row1.add(stepBtn);
+
+        // Row 2: Actuated Empty-Lane Cutoff, Signal Phase Progression & Emergency Preemption
+        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 4));
+        row2.setOpaque(false);
 
         autoStopCheckbox = new JCheckBox("Auto-Stop When Queue Clears", true);
         autoStopCheckbox.setFont(new Font("SansSerif", Font.BOLD, 11));
@@ -162,51 +205,7 @@ public class TrafficSimulationFrame extends JFrame {
         emergencyBtn.setToolTipText("Dispatches emergency vehicle on North approach, preempting conflicting traffic through yellow clearance");
         emergencyBtn.addActionListener(e -> onDispatchEmergency());
 
-        JButton refreshBtn = new JButton("Refresh Signals");
-        refreshBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
-        refreshBtn.setForeground(new Color(40, 50, 65));
-        refreshBtn.setFocusPainted(false);
-        refreshBtn.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(160, 175, 190), 1),
-            BorderFactory.createEmptyBorder(4, 8, 4, 8)
-        ));
-        refreshBtn.setToolTipText("Recalculates vehicle counts and synchronizes signal phase durations");
-        refreshBtn.addActionListener(e -> applyCurrentState());
-
-        row1.add(strategyLabel);
-        row1.add(strategyCombo);
-        row1.add(speedLabel);
-        row1.add(speedCombo);
-        row1.add(autoStopCheckbox);
-        row1.add(togglePhaseBtn);
-        row1.add(emergencyBtn);
-        row1.add(refreshBtn);
-
-        // Row 2: Dynamic Vehicle Addition & Direction-Annotated Queue Management Controls
-        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 4));
-        row2.setOpaque(false);
-
-        JLabel addLabel = new JLabel("Add Vehicles:");
-        addLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
-        addLabel.setForeground(new Color(20, 30, 45));
-
-        JButton addNorthBtn = createAddVehicleButton("+ North (Heading South ↓)", 1, "Queues a vehicle at North approach travelling Southward into the intersection");
-        JButton addSouthBtn = createAddVehicleButton("+ South (Heading North ↑)", 2, "Queues a vehicle at South approach travelling Northward into the intersection");
-        JButton addEastBtn = createAddVehicleButton("+ East (Heading West ←)", 3, "Queues a vehicle at East approach travelling Westward into the intersection");
-        JButton addWestBtn = createAddVehicleButton("+ West (Heading East →)", 4, "Queues a vehicle at West approach travelling Eastward into the intersection");
-
-        JButton addRandomBtn = new JButton("+5 Random (All Roads)");
-        addRandomBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
-        addRandomBtn.setForeground(new Color(20, 60, 160));
-        addRandomBtn.setFocusPainted(false);
-        addRandomBtn.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(60, 120, 210), 1),
-            BorderFactory.createEmptyBorder(4, 8, 4, 8)
-        ));
-        addRandomBtn.setToolTipText("Spreads 5 new vehicles randomly across North, South, East, and West approach queues");
-        addRandomBtn.addActionListener(e -> onAddRandomVehicles());
-
-        JButton setDensityBtn = new JButton("Set Exact Count (Select Road)");
+        JButton setDensityBtn = new JButton("Set Exact Count");
         setDensityBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
         setDensityBtn.setForeground(new Color(40, 50, 65));
         setDensityBtn.setFocusPainted(false);
@@ -234,18 +233,59 @@ public class TrafficSimulationFrame extends JFrame {
         autoSpawnCheck.setToolTipText("Enables background daemon thread to continuously spawn random vehicle arrivals");
         autoSpawnCheck.addActionListener(e -> onAutoSpawnToggled());
 
-        row2.add(addLabel);
-        row2.add(addNorthBtn);
-        row2.add(addSouthBtn);
-        row2.add(addEastBtn);
-        row2.add(addWestBtn);
-        row2.add(addRandomBtn);
+        row2.add(autoStopCheckbox);
+        row2.add(togglePhaseBtn);
+        row2.add(emergencyBtn);
         row2.add(setDensityBtn);
         row2.add(clearAllBtn);
         row2.add(autoSpawnCheck);
 
+        // Row 3: Dynamic Vehicle Addition & Direction-Annotated Queue Management Controls
+        JPanel row3 = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 4));
+        row3.setOpaque(false);
+
+        JLabel addLabel = new JLabel("Add Vehicles:");
+        addLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
+        addLabel.setForeground(new Color(20, 30, 45));
+
+        JButton addNorthBtn = createAddVehicleButton("+ North (Heading South ↓)", 1, "Queues a vehicle at North approach travelling Southward into the intersection");
+        JButton addSouthBtn = createAddVehicleButton("+ South (Heading North ↑)", 2, "Queues a vehicle at South approach travelling Northward into the intersection");
+        JButton addEastBtn = createAddVehicleButton("+ East (Heading West ←)", 3, "Queues a vehicle at East approach travelling Westward into the intersection");
+        JButton addWestBtn = createAddVehicleButton("+ West (Heading East →)", 4, "Queues a vehicle at West approach travelling Eastward into the intersection");
+
+        JButton addRandomBtn = new JButton("+5 Random");
+        addRandomBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        addRandomBtn.setForeground(new Color(20, 60, 160));
+        addRandomBtn.setFocusPainted(false);
+        addRandomBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(60, 120, 210), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
+        addRandomBtn.setToolTipText("Spreads 5 new vehicles randomly across North, South, East, and West approach queues");
+        addRandomBtn.addActionListener(e -> onAddRandomVehicles());
+
+        JButton refreshBtn = new JButton("Refresh Signals");
+        refreshBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        refreshBtn.setForeground(new Color(40, 50, 65));
+        refreshBtn.setFocusPainted(false);
+        refreshBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(160, 175, 190), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
+        refreshBtn.setToolTipText("Recalculates vehicle counts and synchronizes signal phase durations");
+        refreshBtn.addActionListener(e -> applyCurrentState());
+
+        row3.add(addLabel);
+        row3.add(addNorthBtn);
+        row3.add(addSouthBtn);
+        row3.add(addEastBtn);
+        row3.add(addWestBtn);
+        row3.add(addRandomBtn);
+        row3.add(refreshBtn);
+
         controlPanel.add(row1);
         controlPanel.add(row2);
+        controlPanel.add(row3);
 
         // 2. Bird's-eye view panel in the center
         intersectionPanel = new IntersectionPanel(northRoad, southRoad, eastRoad, westRoad);
@@ -348,7 +388,7 @@ public class TrafficSimulationFrame extends JFrame {
      * Advances the deterministic model and updates the display.
      */
     private void onTimerTick() {
-        if (disposed) {
+        if (disposed || isPaused) {
             return;
         }
         intersectionPanel.snapshotPreviousPositions();
@@ -364,13 +404,92 @@ public class TrafficSimulationFrame extends JFrame {
      * Interpolates vehicle rendering positions between discrete 1-second ticks.
      */
     private void onAnimationTick() {
-        if (disposed || !isDisplayable()) {
+        if (disposed || !isDisplayable() || isPaused) {
             return;
         }
         long now = System.nanoTime();
         double elapsedSec = (now - lastTickNanos) / 1_000_000_000.0;
         double alpha = Math.max(0.0, Math.min(1.0, elapsedSec));
         intersectionPanel.setInterpolationAlpha(alpha);
+        intersectionPanel.repaint();
+    }
+
+    /**
+     * Toggles the simulation between running and stopped (paused) states.
+     * When stopped, all vehicle movement, timers, and countdowns freeze in place,
+     * allowing clean screenshots at any timing or signal state.
+     */
+    public void togglePause() {
+        isPaused = !isPaused;
+        if (isPaused) {
+            if (simulationTimer != null && simulationTimer.isRunning()) {
+                simulationTimer.stop();
+            }
+            if (animationTimer != null && animationTimer.isRunning()) {
+                animationTimer.stop();
+            }
+            if (eventProducer != null) {
+                eventProducer.stop(200);
+            }
+            // Snap rendering interpolation alpha to 1.0 so vehicle bodies freeze cleanly in position
+            intersectionPanel.setInterpolationAlpha(1.0);
+            intersectionPanel.repaint();
+
+            if (startStopBtn != null) {
+                startStopBtn.setText("▶ Start Vehicles (Resume)");
+                startStopBtn.setForeground(new Color(10, 120, 35));
+                startStopBtn.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(30, 160, 60), 1),
+                    BorderFactory.createEmptyBorder(4, 10, 4, 10)
+                ));
+                startStopBtn.setToolTipText("Resumes vehicle movement and simulation clock");
+            }
+            if (stepBtn != null) {
+                stepBtn.setEnabled(true);
+            }
+        } else {
+            lastTickNanos = System.nanoTime();
+            intersectionPanel.snapshotPreviousPositions();
+            intersectionPanel.setInterpolationAlpha(0.0);
+            if (simulationTimer != null) {
+                simulationTimer.start();
+            }
+            if (animationTimer != null) {
+                animationTimer.start();
+            }
+            if (autoSpawnCheck != null && autoSpawnCheck.isSelected()) {
+                eventProducer = new TrafficThreading.TrafficEventProducer(model);
+                eventProducer.start();
+            }
+
+            if (startStopBtn != null) {
+                startStopBtn.setText("⏸ Stop Vehicles (Pause)");
+                startStopBtn.setForeground(new Color(180, 40, 20));
+                startStopBtn.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(210, 60, 40), 1),
+                    BorderFactory.createEmptyBorder(4, 10, 4, 10)
+                ));
+                startStopBtn.setToolTipText("Freezes all vehicle movement and signal timers so you can capture screenshots at different timings");
+            }
+            if (stepBtn != null) {
+                stepBtn.setEnabled(false);
+            }
+        }
+        updateStatusBar();
+    }
+
+    /**
+     * Advances the simulation by exactly 1 deterministic second when stopped/paused.
+     * Updates vehicle positions and signal countdowns, then freezes for inspection or screenshots.
+     */
+    public void onStepTick() {
+        if (!isPaused || disposed) {
+            return;
+        }
+        intersectionPanel.snapshotPreviousPositions();
+        model.tick();
+        intersectionPanel.setInterpolationAlpha(1.0);
+        updateStatusBar();
         intersectionPanel.repaint();
     }
 
@@ -537,10 +656,38 @@ public class TrafficSimulationFrame extends JFrame {
     }
 
     /**
-     * Updates the status bar text reflecting active axis, state, countdown, strategy, speed, and empty idle state.
+     * Updates the status bar text reflecting active axis, state, countdown, strategy, speed, and pause/empty idle state.
      * Avoids redundant setText() calls when the text is unchanged.
      */
     private void updateStatusBar() {
+        if (isPaused) {
+            String currentSignalState = model.getCurrentSignalState();
+            String currentAxis = model.getCurrentAxis();
+            int remainingSeconds = model.getRemainingSeconds();
+            int waitingCurrent = model.getWaitingVehicleCount(currentAxis);
+
+            String phaseText;
+            if (models.TrafficSignal.GREEN.equals(currentSignalState)) {
+                phaseText = currentAxis.equals("NORTH_SOUTH")
+                        ? "NORTH-SOUTH GREEN (East-West Stopped)"
+                        : "EAST-WEST GREEN (North-South Stopped)";
+            } else {
+                phaseText = currentAxis.equals("NORTH_SOUTH")
+                        ? "NORTH-SOUTH YELLOW (Clearance Phase)"
+                        : "EAST-WEST YELLOW (Clearance Phase)";
+            }
+
+            String prefix = model.isEmergencyActive() ? "[PRIORITY: AMBULANCE] " : "";
+            String speedInfo = "Speed: " + (int) model.getVehicleSpeed() + " px/s";
+            String queueInfo = "Waiting: " + waitingCurrent + " veh";
+            String pausedText = "[PAUSED FOR SCREENSHOT] " + prefix + phaseText + "  |  " + queueInfo + "  |  " + speedInfo + "  |  Remaining: " + remainingSeconds + "s  |  Click '▶ Start Vehicles' to resume or '⏭ Step (+1s)' to advance";
+            if (!pausedText.equals(lastStatusText)) {
+                lastStatusText = pausedText;
+                statusLabel.setText(pausedText);
+            }
+            return;
+        }
+
         if (model.isIntersectionIdle()) {
             String text = "[STOPPED - ALL LANES EMPTY] No vehicles waiting. Click '+ North / South / East / West' or click roads to add vehicles.";
             if (!text.equals(lastStatusText)) {
@@ -574,6 +721,29 @@ public class TrafficSimulationFrame extends JFrame {
             lastStatusText = newText;
             statusLabel.setText(newText);
         }
+    }
+
+    /**
+     * Returns true if vehicle movement and simulation clock are paused for screenshots.
+     */
+    public boolean isPaused() {
+        return isPaused;
+    }
+
+    /**
+     * Programmatically sets pause/resume state.
+     */
+    public void setPaused(boolean pause) {
+        if (this.isPaused != pause) {
+            togglePause();
+        }
+    }
+
+    /**
+     * Manually advances the simulation by 1 second while paused.
+     */
+    public void stepSimulation() {
+        onStepTick();
     }
 
     // Deterministic simulation & inspection helpers (Preserves backward compatibility)
