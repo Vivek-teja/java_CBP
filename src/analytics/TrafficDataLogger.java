@@ -347,6 +347,46 @@ public class TrafficDataLogger {
     }
 
     /**
+     * Logs clearing of all vehicles from all approaches, updating MySQL records to EXITED
+     * and writing an immediate snapshot with 0 waiting vehicles.
+     */
+    public void logClearAllVehicles() {
+        if (!DatabaseConnection.isAvailable() || currentRunId <= 0) return;
+        final int runId = currentRunId;
+        dbExecutor.submit(() -> {
+            try {
+                vehicleDAO.markAllWaitingVehiclesAsExited(runId);
+                analyticsDAO.insertTrafficSnapshot(runId, "North", 1, 0, 0.0, "RED", "ALL_RED", 0, 0, throughputMap.get("North").get());
+                analyticsDAO.insertTrafficSnapshot(runId, "South", 3, 0, 0.0, "RED", "ALL_RED", 0, 0, throughputMap.get("South").get());
+                analyticsDAO.insertTrafficSnapshot(runId, "East", 5, 0, 0.0, "RED", "ALL_RED", 0, 0, throughputMap.get("East").get());
+                analyticsDAO.insertTrafficSnapshot(runId, "West", 7, 0, 0.0, "RED", "ALL_RED", 0, 0, throughputMap.get("West").get());
+                System.out.println("[TrafficDataLogger] Cleared all vehicles in MySQL for Run #" + runId);
+            } catch (Exception e) {
+                System.err.println("[TrafficDataLogger] Error logging clear all vehicles: " + e.getMessage());
+            }
+        });
+    }
+
+    /**
+     * Logs resetting vehicle density on a specific approach road, updating old vehicles to EXITED
+     * and inserting the new vehicles into MySQL.
+     */
+    public void logRoadDensityReset(Road road) {
+        if (road == null || !DatabaseConnection.isAvailable() || currentRunId <= 0) return;
+        final int runId = currentRunId;
+        final String dir = road.getDirection();
+        dbExecutor.submit(() -> {
+            try {
+                vehicleDAO.markRoadWaitingVehiclesAsExited(runId, dir);
+                registerInitialVehicles(road, runId);
+                System.out.println("[TrafficDataLogger] Reset density for " + dir + " in MySQL for Run #" + runId);
+            } catch (Exception e) {
+                System.err.println("[TrafficDataLogger] Error resetting road density in MySQL: " + e.getMessage());
+            }
+        });
+    }
+
+    /**
      * Waits for all currently queued background database tasks to complete.
      */
     public void flush() {

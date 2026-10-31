@@ -32,6 +32,9 @@ public class RAnalyticsRunner {
 
     private final ExecutorService executor;
     private final AtomicBoolean isGenerating = new AtomicBoolean(false);
+    private final AtomicBoolean pendingRequest = new AtomicBoolean(false);
+    private final java.util.concurrent.atomic.AtomicInteger pendingRunId = new java.util.concurrent.atomic.AtomicInteger(1);
+    private volatile RGraphListener currentListener = null;
     private volatile long lastRunTimestamp = 0;
 
     public RAnalyticsRunner() {
@@ -62,72 +65,91 @@ public class RAnalyticsRunner {
 
     /**
      * Triggers asynchronous graph generation for the given run_id.
-     * Enforces non-blocking execution and debounces excessive rapid invocations.
+     * Enforces non-blocking execution, queues follow-up runs if busy,
+     * and guarantees the latest data is always rendered.
      */
     public void generateGraphsAsync(int runId, RGraphListener listener) {
         if (runId <= 0) return;
+        this.currentListener = listener;
 
-        // Debounce: don't start a new generation if one is already running
+        // If a generation is currently executing, flag a pending follow-up run
         if (isGenerating.get()) {
-            System.out.println("[RAnalyticsRunner] Graph generation already in progress for Run #" + runId + ". Skipping duplicate call.");
+            pendingRunId.set(runId);
+            pendingRequest.set(true);
+            System.out.println("[RAnalyticsRunner] Graph generation already running. Queued auto-followup for Run #" + runId);
             return;
         }
 
         executor.submit(() -> {
             isGenerating.set(true);
-            long startTime = System.currentTimeMillis();
             try {
-                String rScriptBin = DatabaseConnection.getRScriptPath();
-                File scriptFile = new File("R_Analytics/generate_graphs.R");
-                if (!scriptFile.exists()) {
-                    notifyError(listener, runId, "Script not found: " + scriptFile.getAbsolutePath());
-                    return;
+                boolean runAgain = true;
+                while (runAgain) {
+                    int targetRunId = pendingRequest.get() ? pendingRunId.get() : runId;
+                    pendingRequest.set(false);
+                    runScriptSync(targetRunId, currentListener);
+                    runAgain = pendingRequest.getAndSet(false);
                 }
-
-                File outputDir = getRunOutputDirectory(runId);
-
-                System.out.println("[RAnalyticsRunner] Invoking R for Run #" + runId + " via " + rScriptBin + "...");
-
-                ProcessBuilder pb = new ProcessBuilder(
-                        rScriptBin,
-                        scriptFile.getAbsolutePath(),
-                        String.valueOf(runId)
-                );
-                pb.directory(new File("."));
-                pb.redirectErrorStream(true);
-
-                Process process = pb.start();
-
-                // Read output
-                StringBuilder output = new StringBuilder();
-                try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        output.append(line).append("\n");
-                    }
-                }
-
-                int exitCode = process.waitFor();
-                long elapsedMs = System.currentTimeMillis() - startTime;
-
-                if (exitCode == 0) {
-                    System.out.println("[RAnalyticsRunner] Successfully generated graphs for Run #" + runId + " in " + elapsedMs + "ms");
-                    lastRunTimestamp = System.currentTimeMillis();
-                    if (listener != null) {
-                        SwingUtilities.invokeLater(() -> listener.onGraphsUpdated(runId, outputDir));
-                    }
-                } else {
-                    String err = "R exited with code " + exitCode + ":\n" + output;
-                    System.err.println("[RAnalyticsRunner] " + err);
-                    notifyError(listener, runId, err);
-                }
-            } catch (Exception e) {
-                System.err.println("[RAnalyticsRunner] Process error: " + e.getMessage());
-                notifyError(listener, runId, e.getMessage());
             } finally {
                 isGenerating.set(false);
             }
         });
+    }
+
+    private void runScriptSync(int runId, RGraphListener listener) {
+        long startTime = System.currentTimeMillis();
+        try {
+            // Guarantee all pending asynchronous database inserts are flushed into MySQL before R queries
+            TrafficDataLogger.getInstance().flush();
+
+            String rScriptBin = DatabaseConnection.getRScriptPath();
+            File scriptFile = new File("R_Analytics/generate_graphs.R");
+            if (!scriptFile.exists()) {
+                notifyError(listener, runId, "Script not found: " + scriptFile.getAbsolutePath());
+                return;
+            }
+
+            File outputDir = getRunOutputDirectory(runId);
+
+            System.out.println("[RAnalyticsRunner] Invoking R for Run #" + runId + " via " + rScriptBin + "...");
+
+            ProcessBuilder pb = new ProcessBuilder(
+                    rScriptBin,
+                    scriptFile.getAbsolutePath(),
+                    String.valueOf(runId)
+            );
+            pb.directory(new File("."));
+            pb.redirectErrorStream(true);
+
+            Process process = pb.start();
+
+            // Read output
+            StringBuilder output = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    output.append(line).append("\n");
+                }
+            }
+
+            int exitCode = process.waitFor();
+            long elapsedMs = System.currentTimeMillis() - startTime;
+
+            if (exitCode == 0) {
+                System.out.println("[RAnalyticsRunner] Successfully generated graphs for Run #" + runId + " in " + elapsedMs + "ms");
+                lastRunTimestamp = System.currentTimeMillis();
+                if (listener != null) {
+                    SwingUtilities.invokeLater(() -> listener.onGraphsUpdated(runId, outputDir));
+                }
+            } else {
+                String err = "R exited with code " + exitCode + ":\n" + output;
+                System.err.println("[RAnalyticsRunner] " + err);
+                notifyError(listener, runId, err);
+            }
+        } catch (Exception e) {
+            System.err.println("[RAnalyticsRunner] Process error: " + e.getMessage());
+            notifyError(listener, runId, e.getMessage());
+        }
     }
 
     private void notifyError(RGraphListener listener, int runId, String error) {

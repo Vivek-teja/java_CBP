@@ -13,3 +13,4 @@ database.properties
 
 # Crash logs
 hs_err_pid*.log
+.Rproj.user

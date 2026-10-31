@@ -210,6 +210,44 @@ public class VehicleDAO {
     }
 
     /**
+     * Marks all active waiting or in-transit vehicles for a run as EXITED (e.g. when user clears intersection).
+     */
+    public int markAllWaitingVehiclesAsExited(int runId) {
+        if (runId <= 0) return 0;
+        String sql = "UPDATE vehicles SET current_status = 'EXITED', intersection_exit_time = COALESCE(intersection_exit_time, CURRENT_TIMESTAMP) " +
+                     "WHERE run_id = ? AND current_status IN ('WAITING', 'ENTERED_INTERSECTION')";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, runId);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("[VehicleDAO] Failed to mark waiting vehicles as exited: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    /**
+     * Marks active waiting vehicles on a specific road approach as EXITED (e.g. when density is reset).
+     */
+    public int markRoadWaitingVehiclesAsExited(int runId, String roadDirection) {
+        if (runId <= 0 || roadDirection == null) return 0;
+        String sql = "UPDATE vehicles v " +
+                     "JOIN lanes l ON v.lane_id = l.lane_id " +
+                     "JOIN roads r ON l.road_id = r.road_id " +
+                     "SET v.current_status = 'EXITED', v.intersection_exit_time = COALESCE(v.intersection_exit_time, CURRENT_TIMESTAMP) " +
+                     "WHERE v.run_id = ? AND r.direction = ? AND v.current_status IN ('WAITING', 'ENTERED_INTERSECTION')";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, runId);
+            ps.setString(2, roadDirection);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("[VehicleDAO] Failed to mark road vehicles as exited: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    /**
      * Retrieves all vehicles associated with a specific simulation run.
      */
     public List<VehicleRecord> getVehiclesByRun(int runId) {

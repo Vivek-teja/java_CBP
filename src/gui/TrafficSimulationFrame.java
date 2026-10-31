@@ -411,6 +411,21 @@ public class TrafficSimulationFrame extends JFrame {
         }
         analyticsDashboard.setVisible(true);
         analyticsDashboard.toFront();
+        notifyAnalyticsDataChanged();
+    }
+
+    /**
+     * Immediately pushes updated traffic snapshot telemetry to MySQL and
+     * triggers fresh data reload and R graph regeneration in the analytics dashboard.
+     */
+    public void notifyAnalyticsDataChanged() {
+        if (model != null) {
+            analytics.TrafficDataLogger.getInstance().logTickSnapshot(model);
+        }
+        if (analyticsDashboard != null && analyticsDashboard.isVisible()) {
+            analyticsDashboard.refreshData();
+            analyticsDashboard.triggerRGeneration();
+        }
     }
 
     /**
@@ -428,9 +443,9 @@ public class TrafficSimulationFrame extends JFrame {
         intersectionPanel.setInterpolationAlpha(0.0);
         intersectionPanel.repaint();
 
-        // Refresh analytics dashboard if currently open (approximately every 5 seconds)
+        // Refresh analytics dashboard if currently open (approximately every 4 seconds)
         if (analyticsDashboard != null && analyticsDashboard.isVisible()) {
-            if (model.getTotalTicks() % 5 == 0) {
+            if (model.getTotalTicks() % 4 == 0) {
                 analyticsDashboard.refreshData();
                 analyticsDashboard.triggerRGeneration();
             }
@@ -529,6 +544,7 @@ public class TrafficSimulationFrame extends JFrame {
         intersectionPanel.setInterpolationAlpha(1.0);
         updateStatusBar();
         intersectionPanel.repaint();
+        notifyAnalyticsDataChanged();
     }
 
     /**
@@ -605,6 +621,7 @@ public class TrafficSimulationFrame extends JFrame {
         model.addVehicleToRoad(roadId);
         applyCurrentState();
         intersectionPanel.repaint();
+        notifyAnalyticsDataChanged();
     }
 
     /**
@@ -617,6 +634,7 @@ public class TrafficSimulationFrame extends JFrame {
         }
         applyCurrentState();
         intersectionPanel.repaint();
+        notifyAnalyticsDataChanged();
     }
 
     /**
@@ -624,8 +642,10 @@ public class TrafficSimulationFrame extends JFrame {
      */
     private void onClearAllVehicles() {
         model.clearAllVehicles();
+        analytics.TrafficDataLogger.getInstance().logClearAllVehicles();
         applyCurrentState();
         intersectionPanel.repaint();
+        notifyAnalyticsDataChanged();
     }
 
     /**
@@ -638,6 +658,7 @@ public class TrafficSimulationFrame extends JFrame {
         intersectionPanel.snapshotPreviousPositions();
         lastTickNanos = System.nanoTime();
         intersectionPanel.setInterpolationAlpha(1.0);
+        notifyAnalyticsDataChanged();
     }
 
     /**
@@ -650,6 +671,7 @@ public class TrafficSimulationFrame extends JFrame {
         intersectionPanel.snapshotPreviousPositions();
         lastTickNanos = System.nanoTime();
         intersectionPanel.setInterpolationAlpha(1.0);
+        notifyAnalyticsDataChanged();
     }
 
     /**
@@ -682,7 +704,9 @@ public class TrafficSimulationFrame extends JFrame {
             targetRoad.addLane(Main.MainApp.createPopulatedLane(roadId * 10 + 1, count / 2));
             targetRoad.addLane(Main.MainApp.createPopulatedLane(roadId * 10 + 2, count - count / 2));
             model.initializeVehicleQueues();
+            analytics.TrafficDataLogger.getInstance().logRoadDensityReset(targetRoad);
             applyCurrentState();
+            notifyAnalyticsDataChanged();
             JOptionPane.showMessageDialog(this,
                     targetRoad.getDirection() + " Road updated to " + count + " vehicles.",
                     "Density Updated", JOptionPane.INFORMATION_MESSAGE);

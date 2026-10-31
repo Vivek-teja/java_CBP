@@ -4,17 +4,24 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.DriverPropertyInfo;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
  * Manages JDBC connections to MySQL for the Traffic Management System.
  * Loads connection configuration from an external database.properties file
  * or environment variables without hardcoding credentials in source code.
  *
- * Gracefully detects database availability and falls back to offline mode
- * without crashing or interrupting simulation physics.
+ * Implements multi-tier failsafe driver loading:
+ * 1. Direct module binding (mysql.connector.j)
+ * 2. Standard Class.forName reflection
+ * 3. Dynamic JAR ClassLoader with DriverShim for Eclipse modular isolation
+ * 4. Direct Driver.connect() invocation (completely immune to DriverManager "No suitable driver found")
  */
 public class DatabaseConnection {
 
@@ -33,6 +40,8 @@ public class DatabaseConnection {
     private static volatile boolean initialized = false;
     private static volatile boolean available = false;
     private static String lastErrorMessage = "";
+
+    private static volatile Driver registeredDriver = null;
 
     static {
         loadConfiguration();
@@ -82,18 +91,15 @@ public class DatabaseConnection {
         String envRscript = System.getenv("RSCRIPT_PATH");
         if (envRscript != null && !envRscript.trim().isEmpty()) rScriptPath = envRscript.trim();
 
-        // 4. Test driver loading and connection
-        try {
-            Class.forName(dbDriver);
-            try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword)) {
-                available = (conn != null && !conn.isClosed());
-                lastErrorMessage = "";
-                System.out.println("[DatabaseConnection] MySQL connection established successfully to " + dbUrl);
-            }
-        } catch (ClassNotFoundException e) {
-            available = false;
-            lastErrorMessage = "JDBC Driver class not found: " + dbDriver;
-            System.err.println("[DatabaseConnection] Warning: " + lastErrorMessage + ". Simulation will continue in in-memory mode.");
+        // 4. Multi-tier driver resolution
+        ensureDriverRegistered();
+        initialized = true;
+
+        // 5. Test connection
+        try (Connection conn = getConnection()) {
+            available = (conn != null && !conn.isClosed());
+            lastErrorMessage = "";
+            System.out.println("[DatabaseConnection] MySQL connection established successfully to " + dbUrl);
         } catch (SQLException e) {
             available = false;
             lastErrorMessage = e.getMessage();
@@ -103,8 +109,71 @@ public class DatabaseConnection {
             lastErrorMessage = t.getMessage();
             System.err.println("[DatabaseConnection] Warning: Unexpected database error: " + t.getMessage());
         }
+    }
 
-        initialized = true;
+    /**
+     * Resolves and registers the MySQL JDBC Driver across any modular, Eclipse, or Classpath configuration.
+     */
+    private static void ensureDriverRegistered() {
+        if (registeredDriver != null) return;
+
+        // Tier 1: Direct instantiation (if mysql.connector.j is required in module-info)
+        try {
+            registeredDriver = new com.mysql.cj.jdbc.Driver();
+            DriverManager.registerDriver(registeredDriver);
+            return;
+        } catch (Throwable ignored) {
+        }
+
+        // Tier 2: Reflection via Class.forName
+        try {
+            Class<?> clazz = Class.forName(dbDriver);
+            registeredDriver = (Driver) clazz.getDeclaredConstructor().newInstance();
+            DriverManager.registerDriver(registeredDriver);
+            return;
+        } catch (Throwable ignored) {
+        }
+
+        // Tier 3: Dynamic lookup from local lib/ directory using URLClassLoader & DriverShim
+        String[] candidatePaths = {
+            "lib/mysql-connector-j-9.2.0.jar",
+            "../lib/mysql-connector-j-9.2.0.jar",
+            "mysql-connector-j-9.2.0.jar"
+        };
+
+        for (String p : candidatePaths) {
+            File jar = new File(p);
+            if (jar.exists()) {
+                try {
+                    java.net.URLClassLoader ucl = new java.net.URLClassLoader(
+                        new java.net.URL[] { jar.toURI().toURL() },
+                        DatabaseConnection.class.getClassLoader()
+                    );
+                    Class<?> clazz = Class.forName(dbDriver, true, ucl);
+                    Driver raw = (Driver) clazz.getDeclaredConstructor().newInstance();
+                    registeredDriver = new DriverShim(raw);
+                    DriverManager.registerDriver(registeredDriver);
+                    System.out.println("[DatabaseConnection] Dynamically loaded MySQL driver from: " + jar.getAbsolutePath());
+                    return;
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+    }
+
+    /**
+     * Wrapper shim to register foreign-classloader drivers with DriverManager safely.
+     */
+    public static class DriverShim implements Driver {
+        private final Driver driver;
+        public DriverShim(Driver d) { this.driver = d; }
+        @Override public boolean acceptsURL(String u) throws SQLException { return driver.acceptsURL(u); }
+        @Override public Connection connect(String u, Properties p) throws SQLException { return driver.connect(u, p); }
+        @Override public int getMajorVersion() { return driver.getMajorVersion(); }
+        @Override public int getMinorVersion() { return driver.getMinorVersion(); }
+        @Override public DriverPropertyInfo[] getPropertyInfo(String u, Properties p) throws SQLException { return driver.getPropertyInfo(u, p); }
+        @Override public boolean jdbcCompliant() { return driver.jdbcCompliant(); }
+        @Override public Logger getParentLogger() throws SQLFeatureNotSupportedException { return driver.getParentLogger(); }
     }
 
     /**
@@ -118,13 +187,34 @@ public class DatabaseConnection {
     }
 
     /**
-     * Obtains a new JDBC connection from DriverManager.
+     * Obtains a new JDBC connection from the driver.
+     * Uses direct driver invocation to bypass any DriverManager "No suitable driver found" limitations.
      * Callers must close this connection when finished (use try-with-resources).
      */
     public static Connection getConnection() throws SQLException {
         if (!initialized) {
             loadConfiguration();
         }
+
+        // Direct connection attempt using registeredDriver instance
+        if (registeredDriver != null) {
+            try {
+                Properties info = new Properties();
+                if (dbUser != null) info.put("user", dbUser);
+                if (dbPassword != null) info.put("password", dbPassword);
+                Connection conn = registeredDriver.connect(dbUrl, info);
+                if (conn != null && !conn.isClosed()) {
+                    return conn;
+                }
+            } catch (SQLException ex) {
+                // If it was an authentication/network error, rethrow; otherwise fall back to DriverManager
+                if (!ex.getMessage().contains("No suitable driver")) {
+                    throw ex;
+                }
+            }
+        }
+
+        // Standard DriverManager fallback
         return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
     }
 

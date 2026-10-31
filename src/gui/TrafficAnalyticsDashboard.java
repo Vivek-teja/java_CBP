@@ -7,6 +7,7 @@ import database.SimulationDAO;
 import database.TrafficAnalyticsDAO;
 import database.VehicleDAO;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -16,10 +17,14 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -45,8 +50,44 @@ import javax.swing.table.DefaultTableModel;
  * Integrated Traffic Analytics Dashboard for the Java CBP.
  * Connects directly to MySQL for vehicle records and telemetry,
  * and renders R-generated ggplot2 visual graphs asynchronously.
+ *
+ * Provides both an all-in-one Grid View (showing all 8 graphs simultaneously)
+ * and a high-resolution Single Graph Inspector for deep analysis.
  */
 public class TrafficAnalyticsDashboard extends JFrame implements RAnalyticsRunner.RGraphListener {
+
+    private static final String[] GRAPH_TITLES = {
+        "Graph 1: Vehicle Distribution by Road",
+        "Graph 2: Allocated Green Time by Phase",
+        "Graph 3: Waiting Queue Length Timeline",
+        "Graph 4: Traffic Signal State Timeline",
+        "Graph 5: Vehicle Throughput by Road",
+        "Graph 6: Average Waiting Time by Approach",
+        "Graph 7: Emergency Vehicle Priority Analysis",
+        "Graph 8: Strategy Comparison (Fixed vs Density)"
+    };
+
+    private static final String[] GRAPH_FILES = {
+        "graph1_vehicle_distribution.png",
+        "graph2_green_time_allocation.png",
+        "graph3_queue_length_timeline.png",
+        "graph4_signal_state_timeline.png",
+        "graph5_vehicle_throughput.png",
+        "graph6_waiting_time.png",
+        "graph7_emergency_analysis.png",
+        "graph8_strategy_comparison.png"
+    };
+
+    private static final String[] GRAPH_DESCRIPTIONS = {
+        "Waiting vehicle count on North, South, East, West approaches retrieved directly from MySQL vehicles table.",
+        "Average and maximum green-light seconds assigned by Java controller across signal phases stored in signal_events.",
+        "Second-by-second accumulation and dissipation of waiting queues recorded in traffic_snapshots table.",
+        "Timeline sequence of green right-of-way, yellow clearance transitions, and red intervals.",
+        "Cumulative count of vehicles that completed transit through the intersection and exited safely.",
+        "Average duration (in seconds) between queue arrival and intersection box entry per approach road.",
+        "Preemption duration and phase extension metrics when emergency ambulance priority is triggered.",
+        "Comparative evaluation of fixed-time vs density-based dynamic timing strategies across simulation sessions."
+    };
 
     private final SimulationDAO simulationDAO = new SimulationDAO();
     private final VehicleDAO vehicleDAO = new VehicleDAO();
@@ -61,7 +102,17 @@ public class TrafficAnalyticsDashboard extends JFrame implements RAnalyticsRunne
     private JLabel statusBanner;
     private JProgressBar progressBar;
 
-    private JTabbedPane graphTabbedPane;
+    // View switching between All 8 Graphs Grid and Inspector
+    private CardLayout graphCardLayout;
+    private JPanel graphViewContainer;
+    private final JLabel[] gridImageLabels = new JLabel[8];
+    private JLabel inspectorImageLabel;
+    private JLabel inspectorDescLabel;
+    private JComboBox<String> inspectorCombo;
+    private int selectedInspectorIndex = 0;
+    private JButton gridViewBtn;
+    private JButton inspectorViewBtn;
+
     private JTable vehicleTable;
     private DefaultTableModel vehicleTableModel;
     private JTextField searchField;
@@ -78,7 +129,8 @@ public class TrafficAnalyticsDashboard extends JFrame implements RAnalyticsRunne
 
         initComponents();
 
-        setSize(1140, 820);
+        setSize(1220, 880);
+        setMinimumSize(new Dimension(1000, 700));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -144,7 +196,7 @@ public class TrafficAnalyticsDashboard extends JFrame implements RAnalyticsRunne
         progressBar = new JProgressBar();
         progressBar.setIndeterminate(false);
         progressBar.setVisible(false);
-        progressBar.setPreferredSize(new Dimension(100, 20));
+        progressBar.setPreferredSize(new Dimension(110, 20));
 
         toolbar.add(runLabel);
         toolbar.add(runCombo);
@@ -216,51 +268,253 @@ public class TrafficAnalyticsDashboard extends JFrame implements RAnalyticsRunne
         return card;
     }
 
+    /**
+     * Builds the Graphs tab containing both the All 8 Graphs Grid View and the Single Graph Inspector.
+     */
     private JPanel buildGraphsTab() {
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(new Color(241, 245, 249));
+
+        // Sub-toolbar for switching between Grid View and Inspector View
+        JPanel viewBar = new JPanel(new BorderLayout());
+        viewBar.setBackground(Color.WHITE);
+        viewBar.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(226, 232, 240)),
+            BorderFactory.createEmptyBorder(6, 14, 6, 14)
+        ));
+
+        JPanel leftButtons = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
+        leftButtons.setOpaque(false);
+
+        gridViewBtn = createStyledButton("⊞ View All 8 Graphs (Grid View)", new Color(37, 99, 235), Color.WHITE);
+        inspectorViewBtn = createStyledButton("🔍 Single Graph Inspector", new Color(100, 116, 139), Color.WHITE);
+        JButton regenBtn = createStyledButton("🔄 Regenerate All 8 Graphs", new Color(16, 185, 129), Color.WHITE);
+
+        gridViewBtn.addActionListener(e -> {
+            graphCardLayout.show(graphViewContainer, "GRID");
+            gridViewBtn.setBackground(new Color(37, 99, 235));
+            inspectorViewBtn.setBackground(new Color(100, 116, 139));
+        });
+
+        inspectorViewBtn.addActionListener(e -> {
+            graphCardLayout.show(graphViewContainer, "INSPECTOR");
+            inspectorViewBtn.setBackground(new Color(37, 99, 235));
+            gridViewBtn.setBackground(new Color(100, 116, 139));
+            updateInspectorGraph();
+        });
+
+        regenBtn.addActionListener(e -> triggerRGeneration());
+
+        leftButtons.add(gridViewBtn);
+        leftButtons.add(inspectorViewBtn);
+        leftButtons.add(regenBtn);
+
+        JLabel infoLabel = new JLabel("All 8 graphs are generated directly by R & ggplot2 from MySQL data");
+        infoLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        infoLabel.setForeground(new Color(100, 116, 139));
+
+        viewBar.add(leftButtons, BorderLayout.WEST);
+        viewBar.add(infoLabel, BorderLayout.EAST);
+
+        mainPanel.add(viewBar, BorderLayout.NORTH);
+
+        // Container with CardLayout: GRID vs INSPECTOR
+        graphCardLayout = new CardLayout();
+        graphViewContainer = new JPanel(graphCardLayout);
+
+        JPanel gridPanel = buildGridOverviewPanel();
+        JPanel inspectorPanel = buildInspectorPanel();
+
+        graphViewContainer.add(gridPanel, "GRID");
+        graphViewContainer.add(inspectorPanel, "INSPECTOR");
+
+        mainPanel.add(graphViewContainer, BorderLayout.CENTER);
+        return mainPanel;
+    }
+
+    /**
+     * Builds the primary scrollable 2-column grid displaying ALL 8 graphs simultaneously.
+     */
+    private JPanel buildGridOverviewPanel() {
+        JPanel grid = new JPanel(new GridLayout(4, 2, 14, 14));
+        grid.setBackground(new Color(241, 245, 249));
+        grid.setBorder(BorderFactory.createEmptyBorder(14, 14, 14, 14));
+
+        for (int i = 0; i < 8; i++) {
+            final int idx = i;
+            JPanel card = new JPanel(new BorderLayout(0, 6));
+            card.setBackground(Color.WHITE);
+            card.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(226, 232, 240), 1),
+                BorderFactory.createEmptyBorder(10, 12, 10, 12)
+            ));
+
+            // Card Header: Title + "Zoom to Full View" button
+            JPanel cardHeader = new JPanel(new BorderLayout());
+            cardHeader.setOpaque(false);
+
+            JLabel titleLbl = new JLabel(GRAPH_TITLES[i]);
+            titleLbl.setFont(new Font("SansSerif", Font.BOLD, 12));
+            titleLbl.setForeground(new Color(15, 23, 42));
+
+            JButton zoomBtn = new JButton("🔍 Zoom to Full View");
+            zoomBtn.setFont(new Font("SansSerif", Font.PLAIN, 11));
+            zoomBtn.setForeground(new Color(37, 99, 235));
+            zoomBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            zoomBtn.setFocusPainted(false);
+            zoomBtn.addActionListener(e -> {
+                selectedInspectorIndex = idx;
+                inspectorCombo.setSelectedIndex(idx);
+                graphCardLayout.show(graphViewContainer, "INSPECTOR");
+                inspectorViewBtn.setBackground(new Color(37, 99, 235));
+                gridViewBtn.setBackground(new Color(100, 116, 139));
+                updateInspectorGraph();
+            });
+
+            cardHeader.add(titleLbl, BorderLayout.WEST);
+            cardHeader.add(zoomBtn, BorderLayout.EAST);
+
+            // Card Image Container
+            gridImageLabels[i] = new JLabel("Loading visualization...", SwingConstants.CENTER);
+            gridImageLabels[i].setPreferredSize(new Dimension(520, 325));
+            gridImageLabels[i].setFont(new Font("SansSerif", Font.ITALIC, 12));
+            gridImageLabels[i].setForeground(new Color(100, 116, 139));
+
+            // Card Description Footer
+            JLabel descLbl = new JLabel(GRAPH_DESCRIPTIONS[i]);
+            descLbl.setFont(new Font("SansSerif", Font.PLAIN, 10));
+            descLbl.setForeground(new Color(100, 116, 139));
+
+            card.add(cardHeader, BorderLayout.NORTH);
+            card.add(gridImageLabels[i], BorderLayout.CENTER);
+            card.add(descLbl, BorderLayout.SOUTH);
+
+            grid.add(card);
+        }
+
+        JScrollPane scroll = new JScrollPane(grid);
+        scroll.getVerticalScrollBar().setUnitIncrement(24);
+        scroll.setBorder(null);
+
+        JPanel wrapper = new JPanel(new BorderLayout());
+        wrapper.add(scroll, BorderLayout.CENTER);
+        return wrapper;
+    }
+
+    /**
+     * Builds the Single Graph Inspector for deep, high-resolution viewing of any selected chart.
+     */
+    private JPanel buildInspectorPanel() {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.WHITE);
 
-        graphTabbedPane = new JTabbedPane();
-        graphTabbedPane.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        // Top Navigation Bar
+        JPanel navBar = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 8));
+        navBar.setBackground(new Color(248, 250, 252));
+        navBar.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(226, 232, 240)));
 
-        String[] graphTitles = {
-            "Graph 1: Vehicle Distribution",
-            "Graph 2: Green Time Allocation",
-            "Graph 3: Queue Length Timeline",
-            "Graph 4: Signal State Timeline",
-            "Graph 5: Vehicle Throughput",
-            "Graph 6: Average Waiting Time",
-            "Graph 7: Emergency Priority",
-            "Graph 8: Strategy Comparison"
-        };
+        JButton backBtn = new JButton("⬅ Back to All 8 Graphs Grid");
+        backBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        backBtn.addActionListener(e -> {
+            graphCardLayout.show(graphViewContainer, "GRID");
+            gridViewBtn.setBackground(new Color(37, 99, 235));
+            inspectorViewBtn.setBackground(new Color(100, 116, 139));
+        });
 
-        String[] graphFiles = {
-            "graph1_vehicle_distribution.png",
-            "graph2_green_time_allocation.png",
-            "graph3_queue_length_timeline.png",
-            "graph4_signal_state_timeline.png",
-            "graph5_vehicle_throughput.png",
-            "graph6_waiting_time.png",
-            "graph7_emergency_analysis.png",
-            "graph8_strategy_comparison.png"
-        };
+        JLabel selectLbl = new JLabel("Select Graph:");
+        selectLbl.setFont(new Font("SansSerif", Font.BOLD, 12));
 
-        for (int i = 0; i < graphTitles.length; i++) {
-            JPanel card = new JPanel(new BorderLayout());
-            card.setBackground(Color.WHITE);
-            JLabel imgLabel = new JLabel("Loading graph visualization from R engine...", SwingConstants.CENTER);
-            imgLabel.setFont(new Font("SansSerif", Font.ITALIC, 13));
-            imgLabel.setForeground(new Color(100, 116, 139));
-            imgLabel.setName(graphFiles[i]);
+        inspectorCombo = new JComboBox<>(GRAPH_TITLES);
+        inspectorCombo.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        inspectorCombo.setPreferredSize(new Dimension(380, 28));
+        inspectorCombo.addActionListener(e -> {
+            selectedInspectorIndex = inspectorCombo.getSelectedIndex();
+            updateInspectorGraph();
+        });
 
-            JScrollPane scroll = new JScrollPane(imgLabel);
-            scroll.setBorder(null);
-            card.add(scroll, BorderLayout.CENTER);
-            graphTabbedPane.addTab(graphTitles[i], card);
-        }
+        JButton prevBtn = new JButton("◀ Prev");
+        prevBtn.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        prevBtn.addActionListener(e -> {
+            if (selectedInspectorIndex > 0) {
+                selectedInspectorIndex--;
+                inspectorCombo.setSelectedIndex(selectedInspectorIndex);
+            }
+        });
 
-        panel.add(graphTabbedPane, BorderLayout.CENTER);
+        JButton nextBtn = new JButton("Next ▶");
+        nextBtn.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        nextBtn.addActionListener(e -> {
+            if (selectedInspectorIndex < GRAPH_TITLES.length - 1) {
+                selectedInspectorIndex++;
+                inspectorCombo.setSelectedIndex(selectedInspectorIndex);
+            }
+        });
+
+        navBar.add(backBtn);
+        navBar.add(Box.createHorizontalStrut(15));
+        navBar.add(selectLbl);
+        navBar.add(inspectorCombo);
+        navBar.add(prevBtn);
+        navBar.add(nextBtn);
+
+        // Center: Full-Res Image in ScrollPane
+        inspectorImageLabel = new JLabel("Loading full resolution graph...", SwingConstants.CENTER);
+        inspectorImageLabel.setFont(new Font("SansSerif", Font.ITALIC, 14));
+        inspectorImageLabel.setForeground(new Color(100, 116, 139));
+
+        JScrollPane scroll = new JScrollPane(inspectorImageLabel);
+        scroll.getVerticalScrollBar().setUnitIncrement(24);
+        scroll.setBorder(null);
+
+        // Bottom: Description & Insights Card
+        JPanel descCard = new JPanel(new BorderLayout());
+        descCard.setBackground(new Color(248, 250, 252));
+        descCard.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(226, 232, 240)),
+            BorderFactory.createEmptyBorder(8, 16, 8, 16)
+        ));
+
+        inspectorDescLabel = new JLabel(GRAPH_DESCRIPTIONS[0]);
+        inspectorDescLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        inspectorDescLabel.setForeground(new Color(51, 65, 85));
+        descCard.add(inspectorDescLabel, BorderLayout.CENTER);
+
+        panel.add(navBar, BorderLayout.NORTH);
+        panel.add(scroll, BorderLayout.CENTER);
+        panel.add(descCard, BorderLayout.SOUTH);
         return panel;
+    }
+
+    /**
+     * Updates the high-resolution image in the Single Graph Inspector.
+     */
+    private void updateInspectorGraph() {
+        if (selectedInspectorIndex < 0 || selectedInspectorIndex >= GRAPH_FILES.length) return;
+        inspectorDescLabel.setText(GRAPH_DESCRIPTIONS[selectedInspectorIndex]);
+
+        File outDir = RAnalyticsRunner.getRunOutputDirectory(activeRunId);
+        File imgFile = new File(outDir, GRAPH_FILES[selectedInspectorIndex]);
+        if (imgFile.exists() && imgFile.length() > 0) {
+            try {
+                // Read directly via ImageIO to guarantee fresh reload
+                BufferedImage bImg = ImageIO.read(imgFile);
+                if (bImg != null) {
+                    int origW = bImg.getWidth();
+                    int origH = bImg.getHeight();
+                    int targetW = Math.min(origW, 1020);
+                    int targetH = (int) ((double) targetW / origW * origH);
+                    Image scaled = bImg.getScaledInstance(targetW, targetH, Image.SCALE_SMOOTH);
+                    inspectorImageLabel.setIcon(new ImageIcon(scaled));
+                    inspectorImageLabel.setText(null);
+                }
+            } catch (Exception ex) {
+                inspectorImageLabel.setIcon(null);
+                inspectorImageLabel.setText("Failed to load graph: " + ex.getMessage());
+            }
+        } else {
+            inspectorImageLabel.setIcon(null);
+            inspectorImageLabel.setText("Graph image not generated yet. Click '🔄 Refresh Dashboard' to run R analysis.");
+        }
     }
 
     private JPanel buildVehiclesTableTab() {
@@ -504,38 +758,42 @@ public class TrafficAnalyticsDashboard extends JFrame implements RAnalyticsRunne
     }
 
     /**
-     * Reads and displays the 8 R-generated PNG graphs inside the tab panels.
+     * Reads and displays all 8 R-generated PNG graphs using ImageIO to bypass AWT Toolkit caching.
      */
     private void loadGraphImages() {
         File outDir = RAnalyticsRunner.getRunOutputDirectory(activeRunId);
-        for (int i = 0; i < graphTabbedPane.getTabCount(); i++) {
-            Component c = graphTabbedPane.getComponentAt(i);
-            if (c instanceof JPanel) {
-                JPanel card = (JPanel) c;
-                JScrollPane sp = (JScrollPane) card.getComponent(0);
-                JLabel lbl = (JLabel) sp.getViewport().getView();
-                String fileName = lbl.getName();
-                if (fileName != null) {
-                    File imgFile = new File(outDir, fileName);
-                    if (imgFile.exists() && imgFile.length() > 0) {
-                        ImageIcon icon = new ImageIcon(imgFile.getAbsolutePath());
-                        // Scale nicely for display
-                        int origW = icon.getIconWidth();
-                        int origH = icon.getIconHeight();
-                        if (origW > 0 && origH > 0) {
-                            int targetW = Math.min(origW, 950);
-                            int targetH = (int) ((double) targetW / origW * origH);
-                            Image scaled = icon.getImage().getScaledInstance(targetW, targetH, Image.SCALE_SMOOTH);
-                            lbl.setIcon(new ImageIcon(scaled));
-                            lbl.setText(null);
-                        }
-                    } else {
-                        lbl.setIcon(null);
-                        lbl.setText("Graph image not generated yet. Click '🔄 Refresh Dashboard' to run R analysis.");
+        for (int i = 0; i < 8; i++) {
+            File imgFile = new File(outDir, GRAPH_FILES[i]);
+            if (imgFile.exists() && imgFile.length() > 0) {
+                try {
+                    // MUST read fresh bytes with ImageIO to bypass AWT Toolkit image cache
+                    BufferedImage bImg = ImageIO.read(imgFile);
+                    if (bImg != null) {
+                        int origW = bImg.getWidth();
+                        int origH = bImg.getHeight();
+
+                        // 1. Scale for Grid View card (~520px width)
+                        int gridW = 520;
+                        int gridH = (int) ((double) gridW / origW * origH);
+                        Image gridScaled = bImg.getScaledInstance(gridW, gridH, Image.SCALE_SMOOTH);
+                        gridImageLabels[i].setIcon(new ImageIcon(gridScaled));
+                        gridImageLabels[i].setText(null);
                     }
+                } catch (Exception ex) {
+                    gridImageLabels[i].setIcon(null);
+                    gridImageLabels[i].setText("Error loading graph: " + ex.getMessage());
                 }
+            } else {
+                gridImageLabels[i].setIcon(null);
+                gridImageLabels[i].setText("Awaiting R analysis for Run #" + activeRunId + "...");
             }
         }
+
+        // Also refresh inspector if visible
+        updateInspectorGraph();
+
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
 
     /**
@@ -552,7 +810,8 @@ public class TrafficAnalyticsDashboard extends JFrame implements RAnalyticsRunne
     public void onGraphsUpdated(int runId, File outputDir) {
         progressBar.setIndeterminate(false);
         progressBar.setVisible(false);
-        statusBanner.setText("Graphs generated successfully for Run #" + runId);
+        String timeStr = new SimpleDateFormat("HH:mm:ss").format(new Date());
+        statusBanner.setText("All 8 graphs updated successfully at " + timeStr + " for Run #" + runId);
         statusBanner.setForeground(new Color(34, 197, 94));
         if (runId == activeRunId) {
             loadGraphImages();
