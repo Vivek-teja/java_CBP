@@ -99,6 +99,12 @@ public class TrafficSimulationModel {
         this.phaseFixedDuration = getCalculatedGreenDuration(currentAxis, fixedStrategy);
         this.currentGreenDuration = (activeStrategy instanceof FixedTimingStrategy) ? phaseFixedDuration : phaseDensityDuration;
         applyCurrentState();
+
+        // Initialize persistent MySQL database logging session
+        analytics.TrafficDataLogger.getInstance().startSession(
+            activeStrategy.getStrategyName(), this.vehicleSpeed, "DEFAULT_SCENARIO",
+            northRoad, southRoad, eastRoad, westRoad
+        );
     }
 
     /**
@@ -165,6 +171,7 @@ public class TrafficSimulationModel {
         if (emergencyActive && activeEmergencyVehicle != null) {
             if (activeEmergencyVehicle.isClearedIntersection() || activeEmergencyVehicle.isExited()) {
                 // Emergency vehicle has cleared the intersection safely
+                analytics.TrafficDataLogger.getInstance().logEmergencyCleared(activeEmergencyVehicle);
                 emergencyActive = false;
                 activeEmergencyVehicle = null;
                 emergencyTargetRoadId = -1;
@@ -180,6 +187,9 @@ public class TrafficSimulationModel {
 
         // 5. Remove vehicles that have reached the exit boundary
         cleanupExitedVehicles();
+
+        // 6. Record periodic second-by-second analytics snapshot in MySQL
+        analytics.TrafficDataLogger.getInstance().logTickSnapshot(this);
 
         totalTicks++;
     }
@@ -232,11 +242,17 @@ public class TrafficSimulationModel {
 
                 // Update intersection status
                 if (target > stopDist && target < clearDist) {
-                    v.setEnteredIntersection(true);
+                    if (!v.isEnteredIntersection()) {
+                        v.setEnteredIntersection(true);
+                        analytics.TrafficDataLogger.getInstance().logVehicleEntered(v);
+                    }
                 } else if (target >= clearDist && target < exitDist) {
                     v.setClearedIntersection(true);
                 } else if (target >= exitDist) {
-                    v.setExited(true);
+                    if (!v.isExited()) {
+                        v.setExited(true);
+                        analytics.TrafficDataLogger.getInstance().logVehicleExited(v);
+                    }
                 }
             }
         }
@@ -300,6 +316,13 @@ public class TrafficSimulationModel {
             currentSignalState = TrafficSignal.YELLOW;
             remainingSeconds = YELLOW_DURATION;
             controller.applyYellowPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, remainingSeconds);
+            analytics.TrafficDataLogger.getInstance().logSignalTransition(
+                currentAxis,
+                "NORTH_SOUTH".equals(currentAxis) ? "North-South" : "East-West",
+                "YELLOW",
+                currentGreenDuration,
+                remainingSeconds
+            );
         } else {
             // After yellow clearance, if an emergency vehicle is active, route green to the emergency axis
             if (emergencyActive && emergencyTargetRoadId > 0) {
@@ -322,6 +345,13 @@ public class TrafficSimulationModel {
                         remainingSeconds = 0;
                         controller.applyPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, activeStrategy);
                         controller.updateSignalCountdown(currentAxis, northRoad, southRoad, eastRoad, westRoad, 0);
+                        analytics.TrafficDataLogger.getInstance().logSignalTransition(
+                            currentAxis,
+                            "NORTH_SOUTH".equals(currentAxis) ? "North-South" : "East-West",
+                            "GREEN",
+                            0,
+                            0
+                        );
                         return;
                     }
                 } else {
@@ -340,6 +370,13 @@ public class TrafficSimulationModel {
             controller.applyPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, activeStrategy);
 
             remainingSeconds = currentGreenDuration;
+            analytics.TrafficDataLogger.getInstance().logSignalTransition(
+                currentAxis,
+                "NORTH_SOUTH".equals(currentAxis) ? "North-South" : "East-West",
+                "GREEN",
+                currentGreenDuration,
+                remainingSeconds
+            );
         }
     }
 
@@ -383,8 +420,22 @@ public class TrafficSimulationModel {
             controller.applyPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, activeStrategy);
             remainingSeconds = Math.max(0, currentGreenDuration - elapsedGreenSeconds);
             controller.updateSignalCountdown(currentAxis, northRoad, southRoad, eastRoad, westRoad, remainingSeconds);
+            analytics.TrafficDataLogger.getInstance().logSignalTransition(
+                currentAxis,
+                "NORTH_SOUTH".equals(currentAxis) ? "North-South" : "East-West",
+                "GREEN",
+                currentGreenDuration,
+                remainingSeconds
+            );
         } else {
             controller.applyYellowPhase(currentAxis, northRoad, southRoad, eastRoad, westRoad, remainingSeconds);
+            analytics.TrafficDataLogger.getInstance().logSignalTransition(
+                currentAxis,
+                "NORTH_SOUTH".equals(currentAxis) ? "North-South" : "East-West",
+                "YELLOW",
+                currentGreenDuration,
+                remainingSeconds
+            );
         }
     }
 
@@ -561,7 +612,11 @@ public class TrafficSimulationModel {
         vehicle.setEnteredIntersection(false);
         vehicle.setClearedIntersection(false);
         vehicle.setExited(false);
+        vehicle.setRoadDirection(road.getDirection());
+        vehicle.setLaneId(targetLane.laneId);
         targetLane.vehicles.add(vehicle);
+
+        analytics.TrafficDataLogger.getInstance().logVehicleAdded(vehicle, road.getDirection(), targetLane.laneId);
 
         // Keep lane vehicles strictly sorted descending by distance
         targetLane.vehicles.sort((v1, v2) -> Double.compare(v2.getDistance(), v1.getDistance()));
@@ -699,7 +754,10 @@ public class TrafficSimulationModel {
             // 6. Model-owned safe vehicle insertion on simulation thread (EDT) into targetLane
             int vId = (int) (event.getSequenceId() & 0x7FFFFFFF);
             Vehicle vehicle = new Vehicle(vId, vType, 0.0);
+            vehicle.setRoadDirection(targetRoad.getDirection());
+            vehicle.setLaneId(targetLane.laneId);
             targetLane.vehicles.add(vehicle);
+            analytics.TrafficDataLogger.getInstance().logVehicleAdded(vehicle, targetRoad.getDirection(), targetLane.laneId);
 
             processedThisTick++;
             totalArrivalsConsumed.incrementAndGet();
@@ -815,11 +873,16 @@ public class TrafficSimulationModel {
         // Spawn emergency vehicle (Ambulance)
         Vehicle amb = new Vehicle((int) nextSequenceId(), "Ambulance", 0.0);
         Lane targetLane = resolveTargetLane(targetRoad);
+        amb.setRoadDirection(targetRoad.getDirection());
+        amb.setLaneId(targetLane.laneId);
         targetLane.vehicles.add(amb);
 
         this.emergencyActive = true;
         this.emergencyTargetRoadId = roadId;
         this.activeEmergencyVehicle = amb;
+
+        // Record emergency priority preemption event in MySQL
+        analytics.TrafficDataLogger.getInstance().logEmergencyDispatched(amb, roadId, currentAxis);
 
         // If the emergency axis is already GREEN, ensure sufficient green duration
         if (currentAxis.equalsIgnoreCase(targetAxis)) {
@@ -898,7 +961,12 @@ public class TrafficSimulationModel {
         v.setEnteredIntersection(false);
         v.setClearedIntersection(false);
         v.setExited(false);
+        v.setRoadDirection(road.getDirection());
+        v.setLaneId(targetLane.laneId);
         targetLane.vehicles.add(v);
+
+        // Record persistent vehicle registration in MySQL
+        analytics.TrafficDataLogger.getInstance().logVehicleAdded(v, road.getDirection(), targetLane.laneId);
 
         // Keep lane vehicles strictly sorted descending by distance
         targetLane.vehicles.sort((v1, v2) -> Double.compare(v2.getDistance(), v1.getDistance()));

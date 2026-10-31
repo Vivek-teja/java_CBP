@@ -66,6 +66,9 @@ public class TrafficSimulationFrame extends JFrame {
     // Flag indicating whether vehicle movements and simulation clock are stopped/paused for screenshots
     private boolean isPaused = false;
 
+    // Integrated MySQL & R Analytics Dashboard Window
+    private TrafficAnalyticsDashboard analyticsDashboard;
+
     private IntersectionPanel intersectionPanel;
     private JLabel statusLabel;
     private JComboBox<String> strategyCombo;
@@ -227,6 +230,17 @@ public class TrafficSimulationFrame extends JFrame {
         clearAllBtn.setToolTipText("Removes all vehicles from all approaches to test how signals stop in idle rest when lanes are empty");
         clearAllBtn.addActionListener(e -> onClearAllVehicles());
 
+        JButton analyticsBtn = new JButton("📊 Open Traffic Analytics");
+        analyticsBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        analyticsBtn.setForeground(new Color(110, 30, 160));
+        analyticsBtn.setFocusPainted(false);
+        analyticsBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(150, 60, 200), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
+        analyticsBtn.setToolTipText("Opens the integrated MySQL database & R graphics analytics dashboard");
+        analyticsBtn.addActionListener(e -> openAnalyticsDashboard());
+
         autoSpawnCheck = new JCheckBox("Background Traffic (Random Arrivals)", false);
         autoSpawnCheck.setFont(new Font("SansSerif", Font.PLAIN, 11));
         autoSpawnCheck.setOpaque(false);
@@ -238,6 +252,7 @@ public class TrafficSimulationFrame extends JFrame {
         row2.add(emergencyBtn);
         row2.add(setDensityBtn);
         row2.add(clearAllBtn);
+        row2.add(analyticsBtn);
         row2.add(autoSpawnCheck);
 
         // Row 3: Dynamic Vehicle Addition & Direction-Annotated Queue Management Controls
@@ -380,7 +395,22 @@ public class TrafficSimulationFrame extends JFrame {
     public void dispose() {
         disposed = true;
         stopTimer();
+        if (analyticsDashboard != null) {
+            analyticsDashboard.dispose();
+        }
+        analytics.TrafficDataLogger.getInstance().endSession("COMPLETED");
         super.dispose();
+    }
+
+    /**
+     * Opens the integrated MySQL database and R graphics analytics dashboard window.
+     */
+    public void openAnalyticsDashboard() {
+        if (analyticsDashboard == null || !analyticsDashboard.isDisplayable()) {
+            analyticsDashboard = new TrafficAnalyticsDashboard();
+        }
+        analyticsDashboard.setVisible(true);
+        analyticsDashboard.toFront();
     }
 
     /**
@@ -397,6 +427,14 @@ public class TrafficSimulationFrame extends JFrame {
         updateStatusBar();
         intersectionPanel.setInterpolationAlpha(0.0);
         intersectionPanel.repaint();
+
+        // Refresh analytics dashboard if currently open (approximately every 5 seconds)
+        if (analyticsDashboard != null && analyticsDashboard.isVisible()) {
+            if (model.getTotalTicks() % 5 == 0) {
+                analyticsDashboard.refreshData();
+                analyticsDashboard.triggerRGeneration();
+            }
+        }
     }
 
     /**

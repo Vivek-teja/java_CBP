@@ -1,0 +1,11 @@
+# =============================================================================
+# Database Configuration Template for Intelligent Traffic Management System
+# Copy this file to 'database.properties' and fill in your local MySQL credentials.
+# =============================================================================
+db.url=jdbc:mysql://localhost:3306/traffic_management_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+db.user=root
+db.password=your_mysql_password_here
+db.driver=com.mysql.cj.jdbc.Driver
+
+# Path to Rscript executable on your operating system (macOS/Linux: /usr/local/bin/Rscript, Windows: C:/Program Files/R/R-x.x.x/bin/Rscript.exe)
+r.script.path=/usr/local/bin/Rscript

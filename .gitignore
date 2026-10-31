@@ -7,3 +7,9 @@ bin/
 
 # Temporary scratch files
 scratch/
+
+# Database sensitive configuration (credentials)
+database.properties
+
+# Crash logs
+hs_err_pid*.log
