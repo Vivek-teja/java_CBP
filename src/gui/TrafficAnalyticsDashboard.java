@@ -9,7 +9,6 @@ import database.VehicleDAO;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -42,7 +41,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,7 +52,10 @@ import javax.swing.table.DefaultTableModel;
  * Provides both an all-in-one Grid View (showing all 8 graphs simultaneously)
  * and a high-resolution Single Graph Inspector for deep analysis.
  */
+@SuppressWarnings("serial")
 public class TrafficAnalyticsDashboard extends JFrame implements RAnalyticsRunner.RGraphListener {
+
+    private static final long serialVersionUID = 1L;
 
     private static final String[] GRAPH_TITLES = {
         "Graph 1: Vehicle Distribution by Road",

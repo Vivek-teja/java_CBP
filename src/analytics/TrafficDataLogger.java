@@ -230,7 +230,6 @@ public class TrafficDataLogger {
 
         int runId = currentRunId;
         String activePhase = model.getCurrentAxis();
-        String signalState = model.getCurrentSignalState();
         int allocatedGreen = model.getCurrentGreenDuration();
         int remainingSeconds = model.getRemainingSeconds();
 

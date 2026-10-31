@@ -6,6 +6,8 @@ package exceptions;
  */
 public class NoVehiclesException extends Exception {
 
+    private static final long serialVersionUID = 1L;
+
     // Constructor accepting a descriptive error message
     public NoVehiclesException(String message) {
         super(message);

@@ -23,7 +23,10 @@ import models.Vehicle;
  * eliminates per-frame collections allocation, and supports smooth visual interpolation
  * between simulation ticks without altering authoritative model state.
  */
+@SuppressWarnings("serial")
 public class IntersectionPanel extends JPanel {
+
+    private static final long serialVersionUID = 1L;
 
     private Road northRoad;
     private Road southRoad;

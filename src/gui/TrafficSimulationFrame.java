@@ -1,6 +1,5 @@
 package gui;
 
-import controller.IntersectionController;
 import controller.TrafficController;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,8 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import models.Road;
 import models.TrafficSimulationModel;
-import strategy.DensityBasedTimingStrategy;
-import strategy.FixedTimingStrategy;
 import strategy.SignalTimingStrategy;
 import threading.TrafficThreading;
 
@@ -30,7 +27,10 @@ import threading.TrafficThreading;
  * Drives the deterministic TrafficSimulationModel via a 1-second Swing Timer,
  * rendering dynamic vehicle movements, phase transitions, and countdowns on the EDT.
  */
+@SuppressWarnings("serial")
 public class TrafficSimulationFrame extends JFrame {
+
+    private static final long serialVersionUID = 1L;
 
     private Road northRoad;
     private Road southRoad;
@@ -850,6 +850,10 @@ public class TrafficSimulationFrame extends JFrame {
 
     public Timer getAnimationTimer() {
         return animationTimer;
+    }
+
+    public TrafficController getController() {
+        return controller;
     }
 
     public boolean isDisposed() {

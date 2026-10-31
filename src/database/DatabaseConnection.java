@@ -117,15 +117,7 @@ public class DatabaseConnection {
     private static void ensureDriverRegistered() {
         if (registeredDriver != null) return;
 
-        // Tier 1: Direct instantiation (if mysql.connector.j is required in module-info)
-        try {
-            registeredDriver = new com.mysql.cj.jdbc.Driver();
-            DriverManager.registerDriver(registeredDriver);
-            return;
-        } catch (Throwable ignored) {
-        }
-
-        // Tier 2: Reflection via Class.forName
+        // Tier 1: Reflection via Class.forName with DatabaseConnection's class loader
         try {
             Class<?> clazz = Class.forName(dbDriver);
             registeredDriver = (Driver) clazz.getDeclaredConstructor().newInstance();
@@ -134,7 +126,31 @@ public class DatabaseConnection {
         } catch (Throwable ignored) {
         }
 
-        // Tier 3: Dynamic lookup from local lib/ directory using URLClassLoader & DriverShim
+        // Tier 2: Try Thread context class loader
+        try {
+            ClassLoader ccl = Thread.currentThread().getContextClassLoader();
+            if (ccl != null) {
+                Class<?> clazz = Class.forName(dbDriver, true, ccl);
+                registeredDriver = (Driver) clazz.getDeclaredConstructor().newInstance();
+                DriverManager.registerDriver(new DriverShim(registeredDriver));
+                return;
+            }
+        } catch (Throwable ignored) {
+        }
+
+        // Tier 3: Try System class loader
+        try {
+            ClassLoader scl = ClassLoader.getSystemClassLoader();
+            if (scl != null) {
+                Class<?> clazz = Class.forName(dbDriver, true, scl);
+                registeredDriver = (Driver) clazz.getDeclaredConstructor().newInstance();
+                DriverManager.registerDriver(new DriverShim(registeredDriver));
+                return;
+            }
+        } catch (Throwable ignored) {
+        }
+
+        // Tier 4: Dynamic lookup from local lib/ directory using URLClassLoader & DriverShim
         String[] candidatePaths = {
             "lib/mysql-connector-j-9.2.0.jar",
             "../lib/mysql-connector-j-9.2.0.jar",

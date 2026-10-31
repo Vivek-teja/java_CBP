@@ -2,7 +2,6 @@ package models;
 
 import controller.IntersectionController;
 import controller.TrafficController;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -335,7 +334,7 @@ public class TrafficSimulationModel {
                     if (waitingCandidate > 0) {
                         currentAxis = candidateAxis;
                     } else if (waitingCurrent > 0) {
-                        currentAxis = currentAxis; // Keep axis with waiting vehicles
+                        // Retain active axis since it has waiting vehicles
                     } else {
                         // All lanes empty! Rest stopped!
                         intersectionIdle = true;
