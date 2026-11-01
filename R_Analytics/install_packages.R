@@ -2,7 +2,7 @@
 # Package Installation Script for Traffic Analytics R Visualization
 # =============================================================================
 
-required_packages <- c("DBI", "RMariaDB", "ggplot2", "dplyr", "tidyr", "scales")
+required_packages <- c("DBI", "RMariaDB", "ggplot2", "dplyr", "tidyr", "scales", "shiny", "bslib", "bsicons")
 
 cat("Checking required R packages for Traffic Analytics...\n")
 

@@ -241,6 +241,17 @@ public class TrafficSimulationFrame extends JFrame {
         analyticsBtn.setToolTipText("Opens the integrated MySQL database & R graphics analytics dashboard");
         analyticsBtn.addActionListener(e -> openAnalyticsDashboard());
 
+        JButton shinyBtn = new JButton("🌐 Live R Shiny");
+        shinyBtn.setFont(new Font("SansSerif", Font.BOLD, 11));
+        shinyBtn.setForeground(new Color(210, 80, 10));
+        shinyBtn.setFocusPainted(false);
+        shinyBtn.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(230, 100, 20), 1),
+            BorderFactory.createEmptyBorder(4, 8, 4, 8)
+        ));
+        shinyBtn.setToolTipText("Launches the real-time interactive R Shiny live dashboard on localhost:7860");
+        shinyBtn.addActionListener(e -> analytics.RShinyLauncher.getInstance().launchShinyDashboard());
+
         autoSpawnCheck = new JCheckBox("Background Traffic (Random Arrivals)", false);
         autoSpawnCheck.setFont(new Font("SansSerif", Font.PLAIN, 11));
         autoSpawnCheck.setOpaque(false);
@@ -253,6 +264,7 @@ public class TrafficSimulationFrame extends JFrame {
         row2.add(setDensityBtn);
         row2.add(clearAllBtn);
         row2.add(analyticsBtn);
+        row2.add(shinyBtn);
         row2.add(autoSpawnCheck);
 
         // Row 3: Dynamic Vehicle Addition & Direction-Annotated Queue Management Controls

@@ -188,20 +188,24 @@ public class TrafficAnalyticsDashboard extends JFrame implements RAnalyticsRunne
         JButton exportBtn = createStyledButton("💾 Export Database Data", new Color(16, 185, 129), Color.WHITE);
         exportBtn.addActionListener(e -> exportDataToCSV());
 
-        JButton openRprojBtn = createStyledButton("📊 Open RStudio Project", new Color(139, 92, 246), Color.WHITE);
+        JButton openShinyBtn = createStyledButton("🌐 Open Live R Shiny", new Color(234, 88, 12), Color.WHITE);
+        openShinyBtn.addActionListener(e -> analytics.RShinyLauncher.getInstance().launchShinyDashboard());
+
+        JButton openRprojBtn = createStyledButton("📊 Open RStudio", new Color(139, 92, 246), Color.WHITE);
         openRprojBtn.addActionListener(e -> openRStudioProject());
 
-        JButton openFolderBtn = createStyledButton("📁 Open Graph Folder", new Color(71, 85, 105), Color.WHITE);
+        JButton openFolderBtn = createStyledButton("📁 Open Folder", new Color(71, 85, 105), Color.WHITE);
         openFolderBtn.addActionListener(e -> openOutputFolder());
 
         progressBar = new JProgressBar();
         progressBar.setIndeterminate(false);
         progressBar.setVisible(false);
-        progressBar.setPreferredSize(new Dimension(110, 20));
+        progressBar.setPreferredSize(new Dimension(100, 20));
 
         toolbar.add(runLabel);
         toolbar.add(runCombo);
         toolbar.add(refreshBtn);
+        toolbar.add(openShinyBtn);
         toolbar.add(exportBtn);
         toolbar.add(openRprojBtn);
         toolbar.add(openFolderBtn);
