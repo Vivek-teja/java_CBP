@@ -1,0 +1,262 @@
+{
+  "id": 0,
+  "theme": "CY24SU08",
+  "sections": [
+    {
+      "id": 0,
+      "name": "Section_IntersectionOverview",
+      "displayName": "Intersection Overview & Queues",
+      "filters": "[]",
+      "ordinal": 0,
+      "visualContainers": [
+        {
+          "id": 340975,
+          "x": 20.0,
+          "y": 20.0,
+          "z": 1.0,
+          "width": 220.0,
+          "height": 100.0,
+          "config": "{\"name\": \"24428befc39a43f99bc7\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20.0, \"y\": 20.0, \"z\": 1.0, \"width\": 220.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"vehicles.Total Vehicles\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"vehicles\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Total Vehicles\"}, \"Name\": \"vehicles.Total Vehicles\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Total Vehicles Simulated'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 436961,
+          "x": 260.0,
+          "y": 20.0,
+          "z": 2.0,
+          "width": 220.0,
+          "height": 100.0,
+          "config": "{\"name\": \"cd8af8e1381d4c9f85c4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 260.0, \"y\": 20.0, \"z\": 2.0, \"width\": 220.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"vehicles.Waiting Vehicles\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"vehicles\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Waiting Vehicles\"}, \"Name\": \"vehicles.Waiting Vehicles\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Waiting in Queues'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 539941,
+          "x": 500.0,
+          "y": 20.0,
+          "z": 3.0,
+          "width": 220.0,
+          "height": 100.0,
+          "config": "{\"name\": \"f93d3c6583e147f59184\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 500.0, \"y\": 20.0, \"z\": 3.0, \"width\": 220.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"vehicles.Exited Vehicles\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"vehicles\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Exited Vehicles\"}, \"Name\": \"vehicles.Exited Vehicles\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Completed Vehicles (Exited)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 447463,
+          "x": 740.0,
+          "y": 20.0,
+          "z": 4.0,
+          "width": 220.0,
+          "height": 100.0,
+          "config": "{\"name\": \"78f6e927c66d47278e02\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 740.0, \"y\": 20.0, \"z\": 4.0, \"width\": 220.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"emergency_events.Emergency Preemption Count\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"emergency_events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Emergency Preemption Count\"}, \"Name\": \"emergency_events.Emergency Preemption Count\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Emergency Preemptions'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 146474,
+          "x": 980.0,
+          "y": 20.0,
+          "z": 5.0,
+          "width": 280.0,
+          "height": 100.0,
+          "config": "{\"name\": \"9e7f5aeaa476481086d2\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 980.0, \"y\": 20.0, \"z\": 5.0, \"width\": 280.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"simulation_runs.Total Simulation Runs\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"simulation_runs\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Total Simulation Runs\"}, \"Name\": \"simulation_runs.Total Simulation Runs\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Total Simulation Sessions'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 866152,
+          "x": 20.0,
+          "y": 140.0,
+          "z": 6.0,
+          "width": 600.0,
+          "height": 260.0,
+          "config": "{\"name\": \"03bf42e8e8494739a903\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20.0, \"y\": 140.0, \"z\": 6.0, \"width\": 600.0, \"height\": 260.0}}], \"singleVisual\": {\"visualType\": \"columnChart\", \"projections\": {\"Values\": [{\"queryRef\": \"traffic_snapshots.Avg Waiting Count\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"traffic_snapshots\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Avg Waiting Count\"}, \"Name\": \"traffic_snapshots.Avg Waiting Count\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Approach Road Waiting Vehicle Distribution'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 457577,
+          "x": 640.0,
+          "y": 140.0,
+          "z": 7.0,
+          "width": 620.0,
+          "height": 260.0,
+          "config": "{\"name\": \"3a244d2918c54a03ad27\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640.0, \"y\": 140.0, \"z\": 7.0, \"width\": 620.0, \"height\": 260.0}}], \"singleVisual\": {\"visualType\": \"pieChart\", \"projections\": {\"Values\": [{\"queryRef\": \"vehicles.Total Vehicles\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"vehicles\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Total Vehicles\"}, \"Name\": \"vehicles.Total Vehicles\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Vehicle Fleet Composition (Car, Bus, Bike, Ambulance)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 821895,
+          "x": 20.0,
+          "y": 420.0,
+          "z": 8.0,
+          "width": 600.0,
+          "height": 280.0,
+          "config": "{\"name\": \"b55dc707c74041f2a38b\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20.0, \"y\": 420.0, \"z\": 8.0, \"width\": 600.0, \"height\": 280.0}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Values\": [{\"queryRef\": \"traffic_snapshots.Peak Queue Length\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"traffic_snapshots\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Peak Queue Length\"}, \"Name\": \"traffic_snapshots.Peak Queue Length\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Real-Time Approach Queue Dynamics Over Time'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 850014,
+          "x": 640.0,
+          "y": 420.0,
+          "z": 9.0,
+          "width": 620.0,
+          "height": 280.0,
+          "config": "{\"name\": \"f9f9129e8528412a885b\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640.0, \"y\": 420.0, \"z\": 9.0, \"width\": 620.0, \"height\": 280.0}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"vehicles.Total Vehicles\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"vehicles\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Total Vehicles\"}, \"Name\": \"vehicles.Total Vehicles\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Active Vehicle Identity Ledger (Live Status)'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "config": "{}",
+      "width": 1280.0,
+      "height": 720.0
+    },
+    {
+      "id": 1,
+      "name": "Section_SignalTiming",
+      "displayName": "Signal Timing & Strategy Performance",
+      "filters": "[]",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "id": 221440,
+          "x": 20.0,
+          "y": 20.0,
+          "z": 1.0,
+          "width": 380.0,
+          "height": 100.0,
+          "config": "{\"name\": \"e30c1b40c12b49d19521\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20.0, \"y\": 20.0, \"z\": 1.0, \"width\": 380.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"signal_events.Total Signal Transitions\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"signal_events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Total Signal Transitions\"}, \"Name\": \"signal_events.Total Signal Transitions\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Total Signal Transition Events'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 883638,
+          "x": 430.0,
+          "y": 20.0,
+          "z": 2.0,
+          "width": 400.0,
+          "height": 100.0,
+          "config": "{\"name\": \"dc9700b6b8244d0a92b1\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 430.0, \"y\": 20.0, \"z\": 2.0, \"width\": 400.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"traffic_snapshots.Avg Green Seconds\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"traffic_snapshots\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Avg Green Seconds\"}, \"Name\": \"traffic_snapshots.Avg Green Seconds\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Average Green Phase Duration (sec)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 270297,
+          "x": 860.0,
+          "y": 20.0,
+          "z": 3.0,
+          "width": 400.0,
+          "height": 100.0,
+          "config": "{\"name\": \"925873999e0947a4998d\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 860.0, \"y\": 20.0, \"z\": 3.0, \"width\": 400.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"traffic_snapshots.Total Vehicle Throughput\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"traffic_snapshots\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Total Vehicle Throughput\"}, \"Name\": \"traffic_snapshots.Total Vehicle Throughput\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Total Vehicle Throughput'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 816998,
+          "x": 20.0,
+          "y": 140.0,
+          "z": 4.0,
+          "width": 600.0,
+          "height": 260.0,
+          "config": "{\"name\": \"36e28d66af684b0a868a\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20.0, \"y\": 140.0, \"z\": 4.0, \"width\": 600.0, \"height\": 260.0}}], \"singleVisual\": {\"visualType\": \"barChart\", \"projections\": {\"Values\": [{\"queryRef\": \"traffic_snapshots.Avg Green Seconds\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"traffic_snapshots\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Avg Green Seconds\"}, \"Name\": \"traffic_snapshots.Avg Green Seconds\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Allocated Green Duration by Approach Phase'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 474970,
+          "x": 640.0,
+          "y": 140.0,
+          "z": 5.0,
+          "width": 620.0,
+          "height": 260.0,
+          "config": "{\"name\": \"e1c0481a3b5248a2ac4a\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640.0, \"y\": 140.0, \"z\": 5.0, \"width\": 620.0, \"height\": 260.0}}], \"singleVisual\": {\"visualType\": \"columnChart\", \"projections\": {\"Values\": [{\"queryRef\": \"traffic_snapshots.Peak Queue Length\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"traffic_snapshots\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Peak Queue Length\"}, \"Name\": \"traffic_snapshots.Peak Queue Length\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Traffic Density & Queue Length by Approach Road'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 914187,
+          "x": 20.0,
+          "y": 420.0,
+          "z": 6.0,
+          "width": 600.0,
+          "height": 280.0,
+          "config": "{\"name\": \"42fd91cb6f174b02a30e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20.0, \"y\": 420.0, \"z\": 6.0, \"width\": 600.0, \"height\": 280.0}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Values\": [{\"queryRef\": \"signal_events.Total Signal Transitions\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"signal_events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Total Signal Transitions\"}, \"Name\": \"signal_events.Total Signal Transitions\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Signal Timing Evolution Across Simulation Cycles'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 500505,
+          "x": 640.0,
+          "y": 420.0,
+          "z": 7.0,
+          "width": 620.0,
+          "height": 280.0,
+          "config": "{\"name\": \"bc5226d9a6ed4a96914f\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640.0, \"y\": 420.0, \"z\": 7.0, \"width\": 620.0, \"height\": 280.0}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"signal_events.Total Signal Transitions\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"signal_events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Total Signal Transitions\"}, \"Name\": \"signal_events.Total Signal Transitions\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Signal Phase Control History & Remaining Time'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "config": "{}",
+      "width": 1280.0,
+      "height": 720.0
+    },
+    {
+      "id": 2,
+      "name": "Section_EmergencyPriority",
+      "displayName": "Emergency Preemption & Delays",
+      "filters": "[]",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "id": 235048,
+          "x": 20.0,
+          "y": 20.0,
+          "z": 1.0,
+          "width": 380.0,
+          "height": 100.0,
+          "config": "{\"name\": \"9b85c46848eb4cd0983e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20.0, \"y\": 20.0, \"z\": 1.0, \"width\": 380.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"emergency_events.Emergency Preemption Count\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"emergency_events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Emergency Preemption Count\"}, \"Name\": \"emergency_events.Emergency Preemption Count\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Emergency Preemptions Triggered'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 756390,
+          "x": 430.0,
+          "y": 20.0,
+          "z": 2.0,
+          "width": 400.0,
+          "height": 100.0,
+          "config": "{\"name\": \"b66f6fa635ad4d5eab6e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 430.0, \"y\": 20.0, \"z\": 2.0, \"width\": 400.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"emergency_events.Avg Emergency Clearance Seconds\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"emergency_events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Avg Emergency Clearance Seconds\"}, \"Name\": \"emergency_events.Avg Emergency Clearance Seconds\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Avg Emergency Clearance Duration (sec)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 877931,
+          "x": 860.0,
+          "y": 20.0,
+          "z": 3.0,
+          "width": 400.0,
+          "height": 100.0,
+          "config": "{\"name\": \"2262756bbf134608887d\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 860.0, \"y\": 20.0, \"z\": 3.0, \"width\": 400.0, \"height\": 100.0}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"emergency_events.Max Priority Duration\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"emergency_events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Max Priority Duration\"}, \"Name\": \"emergency_events.Max Priority Duration\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Max Priority Hold Duration (sec)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 342841,
+          "x": 20.0,
+          "y": 140.0,
+          "z": 4.0,
+          "width": 600.0,
+          "height": 260.0,
+          "config": "{\"name\": \"762826b938de4ebbbb50\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20.0, \"y\": 140.0, \"z\": 4.0, \"width\": 600.0, \"height\": 260.0}}], \"singleVisual\": {\"visualType\": \"barChart\", \"projections\": {\"Values\": [{\"queryRef\": \"emergency_events.Avg Emergency Clearance Seconds\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"emergency_events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Avg Emergency Clearance Seconds\"}, \"Name\": \"emergency_events.Avg Emergency Clearance Seconds\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Emergency Preemption Duration per Incident'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 421111,
+          "x": 640.0,
+          "y": 140.0,
+          "z": 5.0,
+          "width": 620.0,
+          "height": 260.0,
+          "config": "{\"name\": \"59f7f037cbce4c70ab04\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640.0, \"y\": 140.0, \"z\": 5.0, \"width\": 620.0, \"height\": 260.0}}], \"singleVisual\": {\"visualType\": \"columnChart\", \"projections\": {\"Values\": [{\"queryRef\": \"vehicles.Avg Vehicle Speed\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"vehicles\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Avg Vehicle Speed\"}, \"Name\": \"vehicles.Avg Vehicle Speed\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Average Vehicle Speed by Fleet Category'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "id": 799150,
+          "x": 20.0,
+          "y": 420.0,
+          "z": 6.0,
+          "width": 1240.0,
+          "height": 280.0,
+          "config": "{\"name\": \"ee2b0e6e2e4044dcbf2c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20.0, \"y\": 420.0, \"z\": 6.0, \"width\": 1240.0, \"height\": 280.0}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"emergency_events.Emergency Preemption Count\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"emergency_events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Emergency Preemption Count\"}, \"Name\": \"emergency_events.Emergency Preemption Count\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Emergency Vehicle Preemption Audit Trail (Priority Timeline)'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "config": "{}",
+      "width": 1280.0,
+      "height": 720.0
+    }
+  ]
+}

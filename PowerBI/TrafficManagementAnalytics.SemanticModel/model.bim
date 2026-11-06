@@ -1,0 +1,672 @@
+{
+  "name": "TrafficManagementSemanticModel",
+  "compatibilityLevel": 1550,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "simulation_runs",
+        "columns": [
+          {
+            "name": "run_id",
+            "dataType": "int64",
+            "sourceColumn": "run_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "start_time",
+            "dataType": "dateTime",
+            "sourceColumn": "start_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "end_time",
+            "dataType": "dateTime",
+            "sourceColumn": "end_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "selected_strategy",
+            "dataType": "string",
+            "sourceColumn": "selected_strategy",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "selected_speed",
+            "dataType": "double",
+            "sourceColumn": "selected_speed",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "simulation_status",
+            "dataType": "string",
+            "sourceColumn": "simulation_status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "scenario_id",
+            "dataType": "string",
+            "sourceColumn": "scenario_id",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "simulation_runs-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(\"localhost:3306\", \"traffic_management_db\", [ReturnSingleDatabase=true]),",
+                "    dbo_Table = Source{[Schema=\"traffic_management_db\",Item=\"simulation_runs\"]}[Data]",
+                "in",
+                "    dbo_Table"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Simulation Runs",
+            "expression": "COUNTROWS('simulation_runs')",
+            "formatString": "#,##0"
+          }
+        ]
+      },
+      {
+        "name": "roads",
+        "columns": [
+          {
+            "name": "road_id",
+            "dataType": "int64",
+            "sourceColumn": "road_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "direction",
+            "dataType": "string",
+            "sourceColumn": "direction",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "roads-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(\"localhost:3306\", \"traffic_management_db\", [ReturnSingleDatabase=true]),",
+                "    dbo_Table = Source{[Schema=\"traffic_management_db\",Item=\"roads\"]}[Data]",
+                "in",
+                "    dbo_Table"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "lanes",
+        "columns": [
+          {
+            "name": "lane_id",
+            "dataType": "int64",
+            "sourceColumn": "lane_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "road_id",
+            "dataType": "int64",
+            "sourceColumn": "road_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "lane_name",
+            "dataType": "string",
+            "sourceColumn": "lane_name",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "lanes-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(\"localhost:3306\", \"traffic_management_db\", [ReturnSingleDatabase=true]),",
+                "    dbo_Table = Source{[Schema=\"traffic_management_db\",Item=\"lanes\"]}[Data]",
+                "in",
+                "    dbo_Table"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "vehicles",
+        "columns": [
+          {
+            "name": "vehicle_id",
+            "dataType": "int64",
+            "sourceColumn": "vehicle_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "vehicle_number",
+            "dataType": "string",
+            "sourceColumn": "vehicle_number",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "run_id",
+            "dataType": "int64",
+            "sourceColumn": "run_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "lane_id",
+            "dataType": "int64",
+            "sourceColumn": "lane_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "vehicle_type",
+            "dataType": "string",
+            "sourceColumn": "vehicle_type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_emergency",
+            "dataType": "int64",
+            "sourceColumn": "is_emergency",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "arrival_time",
+            "dataType": "dateTime",
+            "sourceColumn": "arrival_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "intersection_entry_time",
+            "dataType": "dateTime",
+            "sourceColumn": "intersection_entry_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "intersection_exit_time",
+            "dataType": "dateTime",
+            "sourceColumn": "intersection_exit_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "vehicle_speed",
+            "dataType": "double",
+            "sourceColumn": "vehicle_speed",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "current_status",
+            "dataType": "string",
+            "sourceColumn": "current_status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "current_position",
+            "dataType": "double",
+            "sourceColumn": "current_position",
+            "summarizeBy": "sum"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "vehicles-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(\"localhost:3306\", \"traffic_management_db\", [ReturnSingleDatabase=true]),",
+                "    dbo_Table = Source{[Schema=\"traffic_management_db\",Item=\"vehicles\"]}[Data]",
+                "in",
+                "    dbo_Table"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Vehicles",
+            "expression": "COUNTROWS('vehicles')",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Waiting Vehicles",
+            "expression": "CALCULATE(COUNTROWS('vehicles'), 'vehicles'[current_status] = \"WAITING\")",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "In Intersection Vehicles",
+            "expression": "CALCULATE(COUNTROWS('vehicles'), 'vehicles'[current_status] = \"ENTERED_INTERSECTION\")",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Exited Vehicles",
+            "expression": "CALCULATE(COUNTROWS('vehicles'), 'vehicles'[current_status] = \"EXITED\")",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Emergency Vehicles",
+            "expression": "CALCULATE(COUNTROWS('vehicles'), 'vehicles'[is_emergency] = 1)",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Avg Vehicle Speed",
+            "expression": "AVERAGE('vehicles'[vehicle_speed])",
+            "formatString": "#,##0.0"
+          }
+        ]
+      },
+      {
+        "name": "traffic_snapshots",
+        "columns": [
+          {
+            "name": "snapshot_id",
+            "dataType": "int64",
+            "sourceColumn": "snapshot_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "run_id",
+            "dataType": "int64",
+            "sourceColumn": "run_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "simulation_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "simulation_timestamp",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "road_direction",
+            "dataType": "string",
+            "sourceColumn": "road_direction",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "lane_id",
+            "dataType": "int64",
+            "sourceColumn": "lane_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "waiting_vehicle_count",
+            "dataType": "int64",
+            "sourceColumn": "waiting_vehicle_count",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "queue_length",
+            "dataType": "double",
+            "sourceColumn": "queue_length",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "signal_state",
+            "dataType": "string",
+            "sourceColumn": "signal_state",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "active_phase",
+            "dataType": "string",
+            "sourceColumn": "active_phase",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "allocated_green_seconds",
+            "dataType": "int64",
+            "sourceColumn": "allocated_green_seconds",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "remaining_seconds",
+            "dataType": "int64",
+            "sourceColumn": "remaining_seconds",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "vehicle_throughput",
+            "dataType": "int64",
+            "sourceColumn": "vehicle_throughput",
+            "summarizeBy": "sum"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "traffic_snapshots-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(\"localhost:3306\", \"traffic_management_db\", [ReturnSingleDatabase=true]),",
+                "    dbo_Table = Source{[Schema=\"traffic_management_db\",Item=\"traffic_snapshots\"]}[Data]",
+                "in",
+                "    dbo_Table"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Peak Queue Length",
+            "expression": "MAX('traffic_snapshots'[queue_length])",
+            "formatString": "#,##0.0"
+          },
+          {
+            "name": "Avg Waiting Count",
+            "expression": "AVERAGE('traffic_snapshots'[waiting_vehicle_count])",
+            "formatString": "#,##0.0"
+          },
+          {
+            "name": "Avg Green Seconds",
+            "expression": "AVERAGE('traffic_snapshots'[allocated_green_seconds])",
+            "formatString": "#,##0.0"
+          },
+          {
+            "name": "Total Vehicle Throughput",
+            "expression": "MAX('traffic_snapshots'[vehicle_throughput])",
+            "formatString": "#,##0"
+          }
+        ]
+      },
+      {
+        "name": "signal_events",
+        "columns": [
+          {
+            "name": "signal_event_id",
+            "dataType": "int64",
+            "sourceColumn": "signal_event_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "run_id",
+            "dataType": "int64",
+            "sourceColumn": "run_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "active_phase",
+            "dataType": "string",
+            "sourceColumn": "active_phase",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "road_direction",
+            "dataType": "string",
+            "sourceColumn": "road_direction",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "signal_state",
+            "dataType": "string",
+            "sourceColumn": "signal_state",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "allocated_green_seconds",
+            "dataType": "int64",
+            "sourceColumn": "allocated_green_seconds",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "remaining_seconds",
+            "dataType": "int64",
+            "sourceColumn": "remaining_seconds",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "event_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "event_timestamp",
+            "summarizeBy": "sum"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "signal_events-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(\"localhost:3306\", \"traffic_management_db\", [ReturnSingleDatabase=true]),",
+                "    dbo_Table = Source{[Schema=\"traffic_management_db\",Item=\"signal_events\"]}[Data]",
+                "in",
+                "    dbo_Table"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Signal Transitions",
+            "expression": "COUNTROWS('signal_events')",
+            "formatString": "#,##0"
+          }
+        ]
+      },
+      {
+        "name": "emergency_events",
+        "columns": [
+          {
+            "name": "emergency_event_id",
+            "dataType": "int64",
+            "sourceColumn": "emergency_event_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "run_id",
+            "dataType": "int64",
+            "sourceColumn": "run_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "vehicle_id",
+            "dataType": "int64",
+            "sourceColumn": "vehicle_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "detection_time",
+            "dataType": "dateTime",
+            "sourceColumn": "detection_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "priority_request_time",
+            "dataType": "dateTime",
+            "sourceColumn": "priority_request_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "priority_granted_time",
+            "dataType": "dateTime",
+            "sourceColumn": "priority_granted_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "emergency_exit_time",
+            "dataType": "dateTime",
+            "sourceColumn": "emergency_exit_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "priority_duration",
+            "dataType": "int64",
+            "sourceColumn": "priority_duration",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "affected_phase",
+            "dataType": "string",
+            "sourceColumn": "affected_phase",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "emergency_events-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(\"localhost:3306\", \"traffic_management_db\", [ReturnSingleDatabase=true]),",
+                "    dbo_Table = Source{[Schema=\"traffic_management_db\",Item=\"emergency_events\"]}[Data]",
+                "in",
+                "    dbo_Table"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Emergency Preemption Count",
+            "expression": "COUNTROWS('emergency_events')",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Avg Emergency Clearance Seconds",
+            "expression": "AVERAGE('emergency_events'[priority_duration])",
+            "formatString": "#,##0.0"
+          },
+          {
+            "name": "Max Priority Duration",
+            "expression": "MAX('emergency_events'[priority_duration])",
+            "formatString": "#,##0"
+          }
+        ]
+      },
+      {
+        "name": "vehicle_events",
+        "columns": [
+          {
+            "name": "event_id",
+            "dataType": "int64",
+            "sourceColumn": "event_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "vehicle_id",
+            "dataType": "int64",
+            "sourceColumn": "vehicle_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "run_id",
+            "dataType": "int64",
+            "sourceColumn": "run_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "event_type",
+            "dataType": "string",
+            "sourceColumn": "event_type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "event_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "event_timestamp",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "road_direction",
+            "dataType": "string",
+            "sourceColumn": "road_direction",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "description",
+            "dataType": "string",
+            "sourceColumn": "description",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "vehicle_events-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = MySQL.Database(\"localhost:3306\", \"traffic_management_db\", [ReturnSingleDatabase=true]),",
+                "    dbo_Table = Source{[Schema=\"traffic_management_db\",Item=\"vehicle_events\"]}[Data]",
+                "in",
+                "    dbo_Table"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "rel_vehicles_simulation_runs",
+        "fromTable": "vehicles",
+        "fromColumn": "run_id",
+        "toTable": "simulation_runs",
+        "toColumn": "run_id"
+      },
+      {
+        "name": "rel_traffic_snapshots_simulation_runs",
+        "fromTable": "traffic_snapshots",
+        "fromColumn": "run_id",
+        "toTable": "simulation_runs",
+        "toColumn": "run_id"
+      },
+      {
+        "name": "rel_signal_events_simulation_runs",
+        "fromTable": "signal_events",
+        "fromColumn": "run_id",
+        "toTable": "simulation_runs",
+        "toColumn": "run_id"
+      },
+      {
+        "name": "rel_emergency_events_simulation_runs",
+        "fromTable": "emergency_events",
+        "fromColumn": "run_id",
+        "toTable": "simulation_runs",
+        "toColumn": "run_id"
+      },
+      {
+        "name": "rel_lanes_roads",
+        "fromTable": "lanes",
+        "fromColumn": "road_id",
+        "toTable": "roads",
+        "toColumn": "road_id"
+      },
+      {
+        "name": "rel_vehicles_lanes",
+        "fromTable": "vehicles",
+        "fromColumn": "lane_id",
+        "toTable": "lanes",
+        "toColumn": "lane_id"
+      }
+    ]
+  }
+}

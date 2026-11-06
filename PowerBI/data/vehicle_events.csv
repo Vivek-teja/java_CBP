@@ -1,0 +1,2199 @@
+event_id,vehicle_id,run_id,event_type,event_timestamp,road_direction,description
+1,1,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V001 (Car) queued at North
+2,2,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V002 (Car) queued at North
+3,3,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V003 (Car) queued at North
+4,4,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V004 (Car) queued at North
+5,5,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V005 (Car) queued at North
+6,6,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V006 (Car) queued at North
+7,7,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V007 (Car) queued at North
+8,8,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V008 (Car) queued at North
+9,9,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V009 (Car) queued at North
+10,10,1,VEHICLE_ADDED,2026-10-31 14:45:30,North,Vehicle V010 (Car) queued at North
+11,11,1,VEHICLE_ADDED,2026-10-31 14:45:30,South,Vehicle V011 (Car) queued at South
+12,12,1,VEHICLE_ADDED,2026-10-31 14:45:30,South,Vehicle V012 (Car) queued at South
+13,13,1,VEHICLE_ADDED,2026-10-31 14:45:30,South,Vehicle V013 (Car) queued at South
+14,14,1,VEHICLE_ADDED,2026-10-31 14:45:30,South,Vehicle V014 (Car) queued at South
+15,15,1,VEHICLE_ADDED,2026-10-31 14:45:30,South,Vehicle V015 (Car) queued at South
+16,16,1,VEHICLE_ADDED,2026-10-31 14:45:30,East,Vehicle V016 (Car) queued at East
+17,17,1,VEHICLE_ADDED,2026-10-31 14:45:30,East,Vehicle V017 (Car) queued at East
+18,18,1,VEHICLE_ADDED,2026-10-31 14:45:30,East,Vehicle V018 (Car) queued at East
+19,19,1,VEHICLE_ADDED,2026-10-31 14:45:30,West,Vehicle V019 (Car) queued at West
+20,20,1,VEHICLE_ADDED,2026-10-31 14:45:30,West,Vehicle V020 (Car) queued at West
+21,21,1,VEHICLE_ADDED,2026-10-31 14:45:30,West,Vehicle V021 (Car) queued at West
+22,22,1,VEHICLE_ADDED,2026-10-31 14:45:30,West,Vehicle V022 (Car) queued at West
+23,23,1,VEHICLE_ADDED,2026-10-31 14:45:30,West,Vehicle V023 (Car) queued at West
+24,24,1,VEHICLE_ADDED,2026-10-31 14:45:30,West,Vehicle V024 (Car) queued at West
+25,25,1,VEHICLE_ADDED,2026-10-31 14:45:30,West,Vehicle V025 (Car) queued at West
+26,26,1,VEHICLE_ADDED,2026-10-31 14:45:30,West,Vehicle V026 (Car) queued at West
+27,27,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V001 (Car) queued at North
+28,28,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V002 (Car) queued at North
+29,29,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V003 (Car) queued at North
+30,30,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V004 (Car) queued at North
+31,31,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V005 (Car) queued at North
+32,32,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V006 (Car) queued at North
+33,33,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V007 (Car) queued at North
+34,34,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V008 (Car) queued at North
+35,35,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V009 (Car) queued at North
+36,36,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V010 (Car) queued at North
+37,37,2,VEHICLE_ADDED,2026-10-31 14:46:33,South,Vehicle V011 (Car) queued at South
+38,38,2,VEHICLE_ADDED,2026-10-31 14:46:33,South,Vehicle V012 (Car) queued at South
+39,39,2,VEHICLE_ADDED,2026-10-31 14:46:33,South,Vehicle V013 (Car) queued at South
+40,40,2,VEHICLE_ADDED,2026-10-31 14:46:33,South,Vehicle V014 (Car) queued at South
+41,41,2,VEHICLE_ADDED,2026-10-31 14:46:33,South,Vehicle V015 (Car) queued at South
+42,42,2,VEHICLE_ADDED,2026-10-31 14:46:33,East,Vehicle V016 (Car) queued at East
+43,43,2,VEHICLE_ADDED,2026-10-31 14:46:33,East,Vehicle V017 (Car) queued at East
+44,44,2,VEHICLE_ADDED,2026-10-31 14:46:33,East,Vehicle V018 (Car) queued at East
+45,45,2,VEHICLE_ADDED,2026-10-31 14:46:33,West,Vehicle V019 (Car) queued at West
+46,46,2,VEHICLE_ADDED,2026-10-31 14:46:33,West,Vehicle V020 (Car) queued at West
+47,47,2,VEHICLE_ADDED,2026-10-31 14:46:33,West,Vehicle V021 (Car) queued at West
+48,48,2,VEHICLE_ADDED,2026-10-31 14:46:33,West,Vehicle V022 (Car) queued at West
+49,49,2,VEHICLE_ADDED,2026-10-31 14:46:33,West,Vehicle V023 (Car) queued at West
+50,50,2,VEHICLE_ADDED,2026-10-31 14:46:33,West,Vehicle V024 (Car) queued at West
+51,51,2,VEHICLE_ADDED,2026-10-31 14:46:33,West,Vehicle V025 (Car) queued at West
+52,52,2,VEHICLE_ADDED,2026-10-31 14:46:33,West,Vehicle V026 (Car) queued at West
+53,53,2,VEHICLE_ADDED,2026-10-31 14:46:33,East,Vehicle V027 (Car) queued at East
+54,54,2,VEHICLE_ADDED,2026-10-31 14:46:33,East,Vehicle V028 (Car) queued at East
+55,55,2,VEHICLE_ADDED,2026-10-31 14:46:33,East,Vehicle V029 (Car) queued at East
+56,56,2,VEHICLE_ADDED,2026-10-31 14:46:33,East,Vehicle V030 (Car) queued at East
+57,57,2,VEHICLE_ADDED,2026-10-31 14:46:33,East,Vehicle V031 (Car) queued at East
+58,27,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+59,28,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+60,37,2,VEHICLE_ENTERED,2026-10-31 14:46:33,South,Vehicle entered intersection from South
+61,38,2,VEHICLE_ENTERED,2026-10-31 14:46:33,South,Vehicle entered intersection from South
+62,29,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+63,30,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+64,39,2,VEHICLE_ENTERED,2026-10-31 14:46:33,South,Vehicle entered intersection from South
+65,40,2,VEHICLE_ENTERED,2026-10-31 14:46:33,South,Vehicle entered intersection from South
+66,31,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+67,41,2,VEHICLE_ENTERED,2026-10-31 14:46:33,South,Vehicle entered intersection from South
+68,32,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+69,33,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+70,34,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+71,35,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+72,36,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+73,27,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+74,37,2,VEHICLE_EXITED,2026-10-31 14:46:33,South,Vehicle completed exit from South
+75,28,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+76,29,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+77,38,2,VEHICLE_EXITED,2026-10-31 14:46:33,South,Vehicle completed exit from South
+78,39,2,VEHICLE_EXITED,2026-10-31 14:46:33,South,Vehicle completed exit from South
+79,30,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+80,40,2,VEHICLE_EXITED,2026-10-31 14:46:33,South,Vehicle completed exit from South
+81,31,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+82,32,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+83,41,2,VEHICLE_EXITED,2026-10-31 14:46:33,South,Vehicle completed exit from South
+84,33,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+85,34,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+86,42,2,VEHICLE_ENTERED,2026-10-31 14:46:33,East,Vehicle entered intersection from East
+87,43,2,VEHICLE_ENTERED,2026-10-31 14:46:33,East,Vehicle entered intersection from East
+88,44,2,VEHICLE_ENTERED,2026-10-31 14:46:33,East,Vehicle entered intersection from East
+89,53,2,VEHICLE_ENTERED,2026-10-31 14:46:33,East,Vehicle entered intersection from East
+90,45,2,VEHICLE_ENTERED,2026-10-31 14:46:33,West,Vehicle entered intersection from West
+91,46,2,VEHICLE_ENTERED,2026-10-31 14:46:33,West,Vehicle entered intersection from West
+92,49,2,VEHICLE_ENTERED,2026-10-31 14:46:33,West,Vehicle entered intersection from West
+93,50,2,VEHICLE_ENTERED,2026-10-31 14:46:33,West,Vehicle entered intersection from West
+94,58,2,VEHICLE_ADDED,2026-10-31 14:46:33,North,Vehicle V032 (Ambulance) queued at North
+95,58,2,EMERGENCY_DETECTED,2026-10-31 14:46:33,North,Emergency ambulance dispatched on Road 1
+96,35,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+97,36,2,VEHICLE_EXITED,2026-10-31 14:46:33,North,Vehicle completed exit from North
+98,58,2,VEHICLE_ENTERED,2026-10-31 14:46:33,North,Vehicle entered intersection from North
+99,59,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V001 (Car) queued at North
+100,60,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V002 (Car) queued at North
+101,61,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V003 (Car) queued at North
+102,62,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V004 (Car) queued at North
+103,63,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V005 (Car) queued at North
+104,64,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V006 (Car) queued at North
+105,65,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V007 (Car) queued at North
+106,66,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V008 (Car) queued at North
+107,67,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V009 (Car) queued at North
+108,68,3,VEHICLE_ADDED,2026-10-31 14:47:32,North,Vehicle V010 (Car) queued at North
+109,69,3,VEHICLE_ADDED,2026-10-31 14:47:32,South,Vehicle V011 (Car) queued at South
+110,70,3,VEHICLE_ADDED,2026-10-31 14:47:32,South,Vehicle V012 (Car) queued at South
+111,71,3,VEHICLE_ADDED,2026-10-31 14:47:32,South,Vehicle V013 (Car) queued at South
+112,72,3,VEHICLE_ADDED,2026-10-31 14:47:32,South,Vehicle V014 (Car) queued at South
+113,73,3,VEHICLE_ADDED,2026-10-31 14:47:32,South,Vehicle V015 (Car) queued at South
+114,74,3,VEHICLE_ADDED,2026-10-31 14:47:32,East,Vehicle V016 (Car) queued at East
+115,75,3,VEHICLE_ADDED,2026-10-31 14:47:32,East,Vehicle V017 (Car) queued at East
+116,76,3,VEHICLE_ADDED,2026-10-31 14:47:32,East,Vehicle V018 (Car) queued at East
+117,77,3,VEHICLE_ADDED,2026-10-31 14:47:32,West,Vehicle V019 (Car) queued at West
+118,78,3,VEHICLE_ADDED,2026-10-31 14:47:32,West,Vehicle V020 (Car) queued at West
+119,79,3,VEHICLE_ADDED,2026-10-31 14:47:32,West,Vehicle V021 (Car) queued at West
+120,80,3,VEHICLE_ADDED,2026-10-31 14:47:32,West,Vehicle V022 (Car) queued at West
+121,81,3,VEHICLE_ADDED,2026-10-31 14:47:32,West,Vehicle V023 (Car) queued at West
+122,82,3,VEHICLE_ADDED,2026-10-31 14:47:32,West,Vehicle V024 (Car) queued at West
+123,83,3,VEHICLE_ADDED,2026-10-31 14:47:32,West,Vehicle V025 (Car) queued at West
+124,84,3,VEHICLE_ADDED,2026-10-31 14:47:32,West,Vehicle V026 (Car) queued at West
+125,85,3,VEHICLE_ADDED,2026-10-31 14:47:32,East,Vehicle V027 (Car) queued at East
+126,86,3,VEHICLE_ADDED,2026-10-31 14:47:32,East,Vehicle V028 (Car) queued at East
+127,87,3,VEHICLE_ADDED,2026-10-31 14:47:32,East,Vehicle V029 (Car) queued at East
+128,88,3,VEHICLE_ADDED,2026-10-31 14:47:32,East,Vehicle V030 (Car) queued at East
+129,89,3,VEHICLE_ADDED,2026-10-31 14:47:32,East,Vehicle V031 (Car) queued at East
+130,59,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+131,60,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+132,69,3,VEHICLE_ENTERED,2026-10-31 14:47:32,South,Vehicle entered intersection from South
+133,70,3,VEHICLE_ENTERED,2026-10-31 14:47:32,South,Vehicle entered intersection from South
+134,61,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+135,62,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+136,71,3,VEHICLE_ENTERED,2026-10-31 14:47:32,South,Vehicle entered intersection from South
+137,72,3,VEHICLE_ENTERED,2026-10-31 14:47:32,South,Vehicle entered intersection from South
+138,63,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+139,73,3,VEHICLE_ENTERED,2026-10-31 14:47:32,South,Vehicle entered intersection from South
+140,64,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+141,65,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+142,66,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+143,67,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+144,68,3,VEHICLE_ENTERED,2026-10-31 14:47:32,North,Vehicle entered intersection from North
+145,59,3,VEHICLE_EXITED,2026-10-31 14:47:32,North,Vehicle completed exit from North
+146,69,3,VEHICLE_EXITED,2026-10-31 14:47:32,South,Vehicle completed exit from South
+147,60,3,VEHICLE_EXITED,2026-10-31 14:47:32,North,Vehicle completed exit from North
+148,61,3,VEHICLE_EXITED,2026-10-31 14:47:32,North,Vehicle completed exit from North
+149,70,3,VEHICLE_EXITED,2026-10-31 14:47:32,South,Vehicle completed exit from South
+150,71,3,VEHICLE_EXITED,2026-10-31 14:47:32,South,Vehicle completed exit from South
+151,62,3,VEHICLE_EXITED,2026-10-31 14:47:32,North,Vehicle completed exit from North
+152,72,3,VEHICLE_EXITED,2026-10-31 14:47:32,South,Vehicle completed exit from South
+153,63,3,VEHICLE_EXITED,2026-10-31 14:47:33,North,Vehicle completed exit from North
+154,64,3,VEHICLE_EXITED,2026-10-31 14:47:33,North,Vehicle completed exit from North
+155,73,3,VEHICLE_EXITED,2026-10-31 14:47:33,South,Vehicle completed exit from South
+156,65,3,VEHICLE_EXITED,2026-10-31 14:47:33,North,Vehicle completed exit from North
+157,66,3,VEHICLE_EXITED,2026-10-31 14:47:33,North,Vehicle completed exit from North
+158,74,3,VEHICLE_ENTERED,2026-10-31 14:47:33,East,Vehicle entered intersection from East
+159,75,3,VEHICLE_ENTERED,2026-10-31 14:47:33,East,Vehicle entered intersection from East
+160,76,3,VEHICLE_ENTERED,2026-10-31 14:47:33,East,Vehicle entered intersection from East
+161,85,3,VEHICLE_ENTERED,2026-10-31 14:47:33,East,Vehicle entered intersection from East
+162,77,3,VEHICLE_ENTERED,2026-10-31 14:47:33,West,Vehicle entered intersection from West
+163,78,3,VEHICLE_ENTERED,2026-10-31 14:47:33,West,Vehicle entered intersection from West
+164,81,3,VEHICLE_ENTERED,2026-10-31 14:47:33,West,Vehicle entered intersection from West
+165,82,3,VEHICLE_ENTERED,2026-10-31 14:47:33,West,Vehicle entered intersection from West
+166,90,3,VEHICLE_ADDED,2026-10-31 14:47:33,North,Vehicle V032 (Ambulance) queued at North
+167,90,3,EMERGENCY_DETECTED,2026-10-31 14:47:33,North,Emergency ambulance dispatched on Road 1
+168,67,3,VEHICLE_EXITED,2026-10-31 14:47:33,North,Vehicle completed exit from North
+169,68,3,VEHICLE_EXITED,2026-10-31 14:47:33,North,Vehicle completed exit from North
+170,90,3,VEHICLE_ENTERED,2026-10-31 14:47:33,North,Vehicle entered intersection from North
+171,91,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V001 (Car) queued at North
+172,92,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V002 (Car) queued at North
+173,93,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V003 (Car) queued at North
+174,94,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V004 (Car) queued at North
+175,95,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V005 (Car) queued at North
+176,96,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V006 (Car) queued at North
+177,97,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V007 (Car) queued at North
+178,98,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V008 (Car) queued at North
+179,99,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V009 (Car) queued at North
+180,100,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V010 (Car) queued at North
+181,101,4,VEHICLE_ADDED,2026-10-31 14:47:54,South,Vehicle V011 (Car) queued at South
+182,102,4,VEHICLE_ADDED,2026-10-31 14:47:54,South,Vehicle V012 (Car) queued at South
+183,103,4,VEHICLE_ADDED,2026-10-31 14:47:54,South,Vehicle V013 (Car) queued at South
+184,104,4,VEHICLE_ADDED,2026-10-31 14:47:54,South,Vehicle V014 (Car) queued at South
+185,105,4,VEHICLE_ADDED,2026-10-31 14:47:54,South,Vehicle V015 (Car) queued at South
+186,106,4,VEHICLE_ADDED,2026-10-31 14:47:54,East,Vehicle V016 (Car) queued at East
+187,107,4,VEHICLE_ADDED,2026-10-31 14:47:54,East,Vehicle V017 (Car) queued at East
+188,108,4,VEHICLE_ADDED,2026-10-31 14:47:54,East,Vehicle V018 (Car) queued at East
+189,109,4,VEHICLE_ADDED,2026-10-31 14:47:54,West,Vehicle V019 (Car) queued at West
+190,110,4,VEHICLE_ADDED,2026-10-31 14:47:54,West,Vehicle V020 (Car) queued at West
+191,111,4,VEHICLE_ADDED,2026-10-31 14:47:54,West,Vehicle V021 (Car) queued at West
+192,112,4,VEHICLE_ADDED,2026-10-31 14:47:54,West,Vehicle V022 (Car) queued at West
+193,113,4,VEHICLE_ADDED,2026-10-31 14:47:54,West,Vehicle V023 (Car) queued at West
+194,114,4,VEHICLE_ADDED,2026-10-31 14:47:54,West,Vehicle V024 (Car) queued at West
+195,115,4,VEHICLE_ADDED,2026-10-31 14:47:54,West,Vehicle V025 (Car) queued at West
+196,116,4,VEHICLE_ADDED,2026-10-31 14:47:54,West,Vehicle V026 (Car) queued at West
+197,117,4,VEHICLE_ADDED,2026-10-31 14:47:54,East,Vehicle V027 (Car) queued at East
+198,118,4,VEHICLE_ADDED,2026-10-31 14:47:54,East,Vehicle V028 (Car) queued at East
+199,119,4,VEHICLE_ADDED,2026-10-31 14:47:54,East,Vehicle V029 (Car) queued at East
+200,120,4,VEHICLE_ADDED,2026-10-31 14:47:54,East,Vehicle V030 (Car) queued at East
+201,121,4,VEHICLE_ADDED,2026-10-31 14:47:54,East,Vehicle V031 (Car) queued at East
+202,91,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+203,92,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+204,101,4,VEHICLE_ENTERED,2026-10-31 14:47:54,South,Vehicle entered intersection from South
+205,102,4,VEHICLE_ENTERED,2026-10-31 14:47:54,South,Vehicle entered intersection from South
+206,93,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+207,94,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+208,103,4,VEHICLE_ENTERED,2026-10-31 14:47:54,South,Vehicle entered intersection from South
+209,104,4,VEHICLE_ENTERED,2026-10-31 14:47:54,South,Vehicle entered intersection from South
+210,95,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+211,105,4,VEHICLE_ENTERED,2026-10-31 14:47:54,South,Vehicle entered intersection from South
+212,96,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+213,97,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+214,98,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+215,99,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+216,100,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+217,91,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+218,101,4,VEHICLE_EXITED,2026-10-31 14:47:54,South,Vehicle completed exit from South
+219,92,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+220,93,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+221,102,4,VEHICLE_EXITED,2026-10-31 14:47:54,South,Vehicle completed exit from South
+222,103,4,VEHICLE_EXITED,2026-10-31 14:47:54,South,Vehicle completed exit from South
+223,94,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+224,104,4,VEHICLE_EXITED,2026-10-31 14:47:54,South,Vehicle completed exit from South
+225,95,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+226,96,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+227,105,4,VEHICLE_EXITED,2026-10-31 14:47:54,South,Vehicle completed exit from South
+228,97,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+229,98,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+230,106,4,VEHICLE_ENTERED,2026-10-31 14:47:54,East,Vehicle entered intersection from East
+231,107,4,VEHICLE_ENTERED,2026-10-31 14:47:54,East,Vehicle entered intersection from East
+232,108,4,VEHICLE_ENTERED,2026-10-31 14:47:54,East,Vehicle entered intersection from East
+233,117,4,VEHICLE_ENTERED,2026-10-31 14:47:54,East,Vehicle entered intersection from East
+234,109,4,VEHICLE_ENTERED,2026-10-31 14:47:54,West,Vehicle entered intersection from West
+235,110,4,VEHICLE_ENTERED,2026-10-31 14:47:54,West,Vehicle entered intersection from West
+236,113,4,VEHICLE_ENTERED,2026-10-31 14:47:54,West,Vehicle entered intersection from West
+237,114,4,VEHICLE_ENTERED,2026-10-31 14:47:54,West,Vehicle entered intersection from West
+238,122,4,VEHICLE_ADDED,2026-10-31 14:47:54,North,Vehicle V032 (Ambulance) queued at North
+239,122,4,EMERGENCY_DETECTED,2026-10-31 14:47:54,North,Emergency ambulance dispatched on Road 1
+240,99,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+241,100,4,VEHICLE_EXITED,2026-10-31 14:47:54,North,Vehicle completed exit from North
+242,122,4,VEHICLE_ENTERED,2026-10-31 14:47:54,North,Vehicle entered intersection from North
+243,124,8,VEHICLE_ADDED,2026-10-31 14:48:05,North,Vehicle V001 (Car) queued at North
+244,126,11,VEHICLE_ADDED,2026-10-31 14:48:05,North,Vehicle V001 (Car) queued at North
+245,127,11,VEHICLE_ADDED,2026-10-31 14:48:06,North,Vehicle V002 (Car) queued at North
+246,128,11,VEHICLE_ADDED,2026-10-31 14:48:06,North,Vehicle V003 (Car) queued at North
+247,129,11,VEHICLE_ADDED,2026-10-31 14:48:06,North,Vehicle V004 (Car) queued at North
+248,130,11,VEHICLE_ADDED,2026-10-31 14:48:06,North,Vehicle V005 (Car) queued at North
+249,131,11,VEHICLE_ADDED,2026-10-31 14:48:06,North,Vehicle V006 (Car) queued at North
+250,132,11,VEHICLE_ADDED,2026-10-31 14:48:06,North,Vehicle V007 (Car) queued at North
+251,133,11,VEHICLE_ADDED,2026-10-31 14:48:06,South,Vehicle V008 (Car) queued at South
+252,134,11,VEHICLE_ADDED,2026-10-31 14:48:06,South,Vehicle V009 (Car) queued at South
+253,135,11,VEHICLE_ADDED,2026-10-31 14:48:06,South,Vehicle V010 (Car) queued at South
+254,136,11,VEHICLE_ADDED,2026-10-31 14:48:06,South,Vehicle V011 (Car) queued at South
+255,137,11,VEHICLE_ADDED,2026-10-31 14:48:06,South,Vehicle V012 (Car) queued at South
+256,138,11,VEHICLE_ADDED,2026-10-31 14:48:06,East,Vehicle V013 (Car) queued at East
+257,139,11,VEHICLE_ADDED,2026-10-31 14:48:06,East,Vehicle V014 (Car) queued at East
+258,140,11,VEHICLE_ADDED,2026-10-31 14:48:06,East,Vehicle V015 (Car) queued at East
+259,141,11,VEHICLE_ADDED,2026-10-31 14:48:06,East,Vehicle V016 (Car) queued at East
+260,142,11,VEHICLE_ADDED,2026-10-31 14:48:06,West,Vehicle V017 (Car) queued at West
+261,143,11,VEHICLE_ADDED,2026-10-31 14:48:06,West,Vehicle V018 (Car) queued at West
+262,126,11,VEHICLE_ENTERED,2026-10-31 14:48:06,North,Vehicle entered intersection from North
+263,127,11,VEHICLE_ENTERED,2026-10-31 14:48:06,North,Vehicle entered intersection from North
+264,133,11,VEHICLE_ENTERED,2026-10-31 14:48:06,South,Vehicle entered intersection from South
+265,134,11,VEHICLE_ENTERED,2026-10-31 14:48:06,South,Vehicle entered intersection from South
+266,144,12,VEHICLE_ADDED,2026-10-31 15:08:11,North,Vehicle V001 (Car) queued at North
+267,145,12,VEHICLE_ADDED,2026-10-31 15:08:11,North,Vehicle V002 (Car) queued at North
+268,146,12,VEHICLE_ADDED,2026-10-31 15:08:11,South,Vehicle V003 (Car) queued at South
+269,144,12,VEHICLE_ENTERED,2026-10-31 15:08:12,North,Vehicle entered intersection from North
+270,145,12,VEHICLE_ENTERED,2026-10-31 15:08:12,North,Vehicle entered intersection from North
+271,146,12,VEHICLE_ENTERED,2026-10-31 15:08:12,South,Vehicle entered intersection from South
+272,147,12,VEHICLE_ADDED,2026-10-31 15:08:15,North,Vehicle V004 (Car) queued at North
+273,148,12,VEHICLE_ADDED,2026-10-31 15:08:15,North,Vehicle V005 (Car) queued at North
+274,149,12,VEHICLE_ADDED,2026-10-31 15:08:15,North,Vehicle V006 (Car) queued at North
+275,150,12,VEHICLE_ADDED,2026-10-31 15:08:15,North,Vehicle V007 (Car) queued at North
+276,151,12,VEHICLE_ADDED,2026-10-31 15:08:15,North,Vehicle V008 (Car) queued at North
+277,152,12,VEHICLE_ADDED,2026-10-31 15:08:15,North,Vehicle V009 (Car) queued at North
+278,153,12,VEHICLE_ADDED,2026-10-31 15:08:15,North,Vehicle V010 (Car) queued at North
+279,154,12,VEHICLE_ADDED,2026-10-31 15:08:16,North,Vehicle V011 (Car) queued at North
+280,155,12,VEHICLE_ADDED,2026-10-31 15:08:16,East,Vehicle V012 (Car) queued at East
+281,156,12,VEHICLE_ADDED,2026-10-31 15:08:16,East,Vehicle V013 (Car) queued at East
+282,157,12,VEHICLE_ADDED,2026-10-31 15:08:16,East,Vehicle V014 (Car) queued at East
+283,158,12,VEHICLE_ADDED,2026-10-31 15:08:16,East,Vehicle V015 (Car) queued at East
+284,159,12,VEHICLE_ADDED,2026-10-31 15:08:16,East,Vehicle V016 (Car) queued at East
+285,147,12,VEHICLE_ENTERED,2026-10-31 15:08:16,North,Vehicle entered intersection from North
+286,148,12,VEHICLE_ENTERED,2026-10-31 15:08:16,North,Vehicle entered intersection from North
+287,149,12,VEHICLE_ENTERED,2026-10-31 15:08:17,North,Vehicle entered intersection from North
+288,150,12,VEHICLE_ENTERED,2026-10-31 15:08:17,North,Vehicle entered intersection from North
+289,160,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V001 (Car) queued at North
+290,161,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V002 (Car) queued at North
+291,162,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V003 (Car) queued at North
+292,163,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V004 (Car) queued at North
+293,164,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V005 (Car) queued at North
+294,165,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V006 (Car) queued at North
+295,166,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V007 (Car) queued at North
+296,167,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V008 (Car) queued at North
+297,168,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V009 (Car) queued at North
+298,169,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V010 (Car) queued at North
+299,170,13,VEHICLE_ADDED,2026-10-31 15:08:30,South,Vehicle V011 (Car) queued at South
+300,171,13,VEHICLE_ADDED,2026-10-31 15:08:30,South,Vehicle V012 (Car) queued at South
+301,172,13,VEHICLE_ADDED,2026-10-31 15:08:30,South,Vehicle V013 (Car) queued at South
+302,173,13,VEHICLE_ADDED,2026-10-31 15:08:30,South,Vehicle V014 (Car) queued at South
+303,174,13,VEHICLE_ADDED,2026-10-31 15:08:30,South,Vehicle V015 (Car) queued at South
+304,175,13,VEHICLE_ADDED,2026-10-31 15:08:30,East,Vehicle V016 (Car) queued at East
+305,176,13,VEHICLE_ADDED,2026-10-31 15:08:30,East,Vehicle V017 (Car) queued at East
+306,177,13,VEHICLE_ADDED,2026-10-31 15:08:30,East,Vehicle V018 (Car) queued at East
+307,178,13,VEHICLE_ADDED,2026-10-31 15:08:30,West,Vehicle V019 (Car) queued at West
+308,179,13,VEHICLE_ADDED,2026-10-31 15:08:30,West,Vehicle V020 (Car) queued at West
+309,180,13,VEHICLE_ADDED,2026-10-31 15:08:30,West,Vehicle V021 (Car) queued at West
+310,181,13,VEHICLE_ADDED,2026-10-31 15:08:30,West,Vehicle V022 (Car) queued at West
+311,182,13,VEHICLE_ADDED,2026-10-31 15:08:30,West,Vehicle V023 (Car) queued at West
+312,183,13,VEHICLE_ADDED,2026-10-31 15:08:30,West,Vehicle V024 (Car) queued at West
+313,184,13,VEHICLE_ADDED,2026-10-31 15:08:30,West,Vehicle V025 (Car) queued at West
+314,185,13,VEHICLE_ADDED,2026-10-31 15:08:30,West,Vehicle V026 (Car) queued at West
+315,186,13,VEHICLE_ADDED,2026-10-31 15:08:30,East,Vehicle V027 (Car) queued at East
+316,187,13,VEHICLE_ADDED,2026-10-31 15:08:30,East,Vehicle V028 (Car) queued at East
+317,188,13,VEHICLE_ADDED,2026-10-31 15:08:30,East,Vehicle V029 (Car) queued at East
+318,189,13,VEHICLE_ADDED,2026-10-31 15:08:30,East,Vehicle V030 (Car) queued at East
+319,190,13,VEHICLE_ADDED,2026-10-31 15:08:30,East,Vehicle V031 (Car) queued at East
+320,160,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+321,161,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+322,170,13,VEHICLE_ENTERED,2026-10-31 15:08:30,South,Vehicle entered intersection from South
+323,171,13,VEHICLE_ENTERED,2026-10-31 15:08:30,South,Vehicle entered intersection from South
+324,162,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+325,163,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+326,172,13,VEHICLE_ENTERED,2026-10-31 15:08:30,South,Vehicle entered intersection from South
+327,173,13,VEHICLE_ENTERED,2026-10-31 15:08:30,South,Vehicle entered intersection from South
+328,164,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+329,174,13,VEHICLE_ENTERED,2026-10-31 15:08:30,South,Vehicle entered intersection from South
+330,165,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+331,166,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+332,167,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+333,168,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+334,169,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+335,160,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+336,170,13,VEHICLE_EXITED,2026-10-31 15:08:30,South,Vehicle completed exit from South
+337,161,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+338,162,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+339,171,13,VEHICLE_EXITED,2026-10-31 15:08:30,South,Vehicle completed exit from South
+340,172,13,VEHICLE_EXITED,2026-10-31 15:08:30,South,Vehicle completed exit from South
+341,163,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+342,173,13,VEHICLE_EXITED,2026-10-31 15:08:30,South,Vehicle completed exit from South
+343,164,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+344,165,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+345,174,13,VEHICLE_EXITED,2026-10-31 15:08:30,South,Vehicle completed exit from South
+346,166,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+347,167,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+348,175,13,VEHICLE_ENTERED,2026-10-31 15:08:30,East,Vehicle entered intersection from East
+349,176,13,VEHICLE_ENTERED,2026-10-31 15:08:30,East,Vehicle entered intersection from East
+350,177,13,VEHICLE_ENTERED,2026-10-31 15:08:30,East,Vehicle entered intersection from East
+351,186,13,VEHICLE_ENTERED,2026-10-31 15:08:30,East,Vehicle entered intersection from East
+352,178,13,VEHICLE_ENTERED,2026-10-31 15:08:30,West,Vehicle entered intersection from West
+353,179,13,VEHICLE_ENTERED,2026-10-31 15:08:30,West,Vehicle entered intersection from West
+354,182,13,VEHICLE_ENTERED,2026-10-31 15:08:30,West,Vehicle entered intersection from West
+355,183,13,VEHICLE_ENTERED,2026-10-31 15:08:30,West,Vehicle entered intersection from West
+356,191,13,VEHICLE_ADDED,2026-10-31 15:08:30,North,Vehicle V032 (Ambulance) queued at North
+357,191,13,EMERGENCY_DETECTED,2026-10-31 15:08:30,North,Emergency ambulance dispatched on Road 1
+358,168,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+359,169,13,VEHICLE_EXITED,2026-10-31 15:08:30,North,Vehicle completed exit from North
+360,191,13,VEHICLE_ENTERED,2026-10-31 15:08:30,North,Vehicle entered intersection from North
+361,192,15,VEHICLE_ADDED,2026-10-31 15:10:56,North,Vehicle V001 (Car) queued at North
+362,193,15,VEHICLE_ADDED,2026-10-31 15:10:56,North,Vehicle V002 (Car) queued at North
+363,194,15,VEHICLE_ADDED,2026-10-31 15:10:56,North,Vehicle V003 (Car) queued at North
+364,195,15,VEHICLE_ADDED,2026-10-31 15:10:56,North,Vehicle V004 (Car) queued at North
+365,196,15,VEHICLE_ADDED,2026-10-31 15:10:56,North,Vehicle V005 (Car) queued at North
+366,197,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V006 (Car) queued at East
+367,198,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V007 (Car) queued at East
+368,199,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V008 (Car) queued at East
+369,200,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V009 (Car) queued at East
+370,201,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V010 (Car) queued at East
+371,202,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V011 (Car) queued at East
+372,203,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V012 (Car) queued at East
+373,204,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V013 (Car) queued at East
+374,205,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V014 (Car) queued at East
+375,206,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V015 (Car) queued at East
+376,207,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V016 (Car) queued at East
+377,208,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V017 (Car) queued at East
+378,209,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V018 (Car) queued at East
+379,210,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V019 (Car) queued at East
+380,211,15,VEHICLE_ADDED,2026-10-31 15:10:56,East,Vehicle V020 (Car) queued at East
+381,212,15,VEHICLE_ADDED,2026-10-31 15:10:56,West,Vehicle V021 (Car) queued at West
+382,213,15,VEHICLE_ADDED,2026-10-31 15:10:56,West,Vehicle V022 (Car) queued at West
+383,214,15,VEHICLE_ADDED,2026-10-31 15:10:56,West,Vehicle V023 (Car) queued at West
+384,215,15,VEHICLE_ADDED,2026-10-31 15:10:56,West,Vehicle V024 (Car) queued at West
+385,192,15,VEHICLE_ENTERED,2026-10-31 15:10:57,North,Vehicle entered intersection from North
+386,193,15,VEHICLE_ENTERED,2026-10-31 15:10:57,North,Vehicle entered intersection from North
+387,194,15,VEHICLE_ENTERED,2026-10-31 15:10:58,North,Vehicle entered intersection from North
+388,195,15,VEHICLE_ENTERED,2026-10-31 15:10:58,North,Vehicle entered intersection from North
+389,196,15,VEHICLE_ENTERED,2026-10-31 15:10:59,North,Vehicle entered intersection from North
+390,192,15,VEHICLE_EXITED,2026-10-31 15:11:05,North,Vehicle completed exit from North
+391,193,15,VEHICLE_EXITED,2026-10-31 15:11:06,North,Vehicle completed exit from North
+392,194,15,VEHICLE_EXITED,2026-10-31 15:11:06,North,Vehicle completed exit from North
+393,197,15,VEHICLE_ENTERED,2026-10-31 15:11:06,East,Vehicle entered intersection from East
+394,198,15,VEHICLE_ENTERED,2026-10-31 15:11:06,East,Vehicle entered intersection from East
+395,204,15,VEHICLE_ENTERED,2026-10-31 15:11:06,East,Vehicle entered intersection from East
+396,205,15,VEHICLE_ENTERED,2026-10-31 15:11:06,East,Vehicle entered intersection from East
+397,212,15,VEHICLE_ENTERED,2026-10-31 15:11:06,West,Vehicle entered intersection from West
+398,213,15,VEHICLE_ENTERED,2026-10-31 15:11:06,West,Vehicle entered intersection from West
+399,195,15,VEHICLE_EXITED,2026-10-31 15:11:07,North,Vehicle completed exit from North
+400,199,15,VEHICLE_ENTERED,2026-10-31 15:11:07,East,Vehicle entered intersection from East
+401,200,15,VEHICLE_ENTERED,2026-10-31 15:11:07,East,Vehicle entered intersection from East
+402,206,15,VEHICLE_ENTERED,2026-10-31 15:11:07,East,Vehicle entered intersection from East
+403,207,15,VEHICLE_ENTERED,2026-10-31 15:11:07,East,Vehicle entered intersection from East
+404,214,15,VEHICLE_ENTERED,2026-10-31 15:11:07,West,Vehicle entered intersection from West
+405,215,15,VEHICLE_ENTERED,2026-10-31 15:11:07,West,Vehicle entered intersection from West
+406,216,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V001 (Car) queued at North
+407,217,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V002 (Car) queued at North
+408,218,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V003 (Car) queued at North
+409,219,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V004 (Car) queued at North
+410,220,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V005 (Car) queued at North
+411,221,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V006 (Car) queued at North
+412,222,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V007 (Car) queued at North
+413,223,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V008 (Car) queued at North
+414,224,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V009 (Car) queued at North
+415,225,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V010 (Car) queued at North
+416,226,16,VEHICLE_ADDED,2026-10-31 15:13:52,South,Vehicle V011 (Car) queued at South
+417,227,16,VEHICLE_ADDED,2026-10-31 15:13:52,South,Vehicle V012 (Car) queued at South
+418,228,16,VEHICLE_ADDED,2026-10-31 15:13:52,South,Vehicle V013 (Car) queued at South
+419,229,16,VEHICLE_ADDED,2026-10-31 15:13:52,South,Vehicle V014 (Car) queued at South
+420,230,16,VEHICLE_ADDED,2026-10-31 15:13:52,South,Vehicle V015 (Car) queued at South
+421,231,16,VEHICLE_ADDED,2026-10-31 15:13:52,East,Vehicle V016 (Car) queued at East
+422,232,16,VEHICLE_ADDED,2026-10-31 15:13:52,East,Vehicle V017 (Car) queued at East
+423,233,16,VEHICLE_ADDED,2026-10-31 15:13:52,East,Vehicle V018 (Car) queued at East
+424,234,16,VEHICLE_ADDED,2026-10-31 15:13:52,West,Vehicle V019 (Car) queued at West
+425,235,16,VEHICLE_ADDED,2026-10-31 15:13:52,West,Vehicle V020 (Car) queued at West
+426,236,16,VEHICLE_ADDED,2026-10-31 15:13:52,West,Vehicle V021 (Car) queued at West
+427,237,16,VEHICLE_ADDED,2026-10-31 15:13:52,West,Vehicle V022 (Car) queued at West
+428,238,16,VEHICLE_ADDED,2026-10-31 15:13:52,West,Vehicle V023 (Car) queued at West
+429,239,16,VEHICLE_ADDED,2026-10-31 15:13:52,West,Vehicle V024 (Car) queued at West
+430,240,16,VEHICLE_ADDED,2026-10-31 15:13:52,West,Vehicle V025 (Car) queued at West
+431,241,16,VEHICLE_ADDED,2026-10-31 15:13:52,West,Vehicle V026 (Car) queued at West
+432,242,16,VEHICLE_ADDED,2026-10-31 15:13:52,East,Vehicle V027 (Car) queued at East
+433,243,16,VEHICLE_ADDED,2026-10-31 15:13:52,East,Vehicle V028 (Car) queued at East
+434,244,16,VEHICLE_ADDED,2026-10-31 15:13:52,East,Vehicle V029 (Car) queued at East
+435,245,16,VEHICLE_ADDED,2026-10-31 15:13:52,East,Vehicle V030 (Car) queued at East
+436,246,16,VEHICLE_ADDED,2026-10-31 15:13:52,East,Vehicle V031 (Car) queued at East
+437,216,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+438,217,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+439,226,16,VEHICLE_ENTERED,2026-10-31 15:13:52,South,Vehicle entered intersection from South
+440,227,16,VEHICLE_ENTERED,2026-10-31 15:13:52,South,Vehicle entered intersection from South
+441,218,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+442,219,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+443,228,16,VEHICLE_ENTERED,2026-10-31 15:13:52,South,Vehicle entered intersection from South
+444,229,16,VEHICLE_ENTERED,2026-10-31 15:13:52,South,Vehicle entered intersection from South
+445,220,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+446,230,16,VEHICLE_ENTERED,2026-10-31 15:13:52,South,Vehicle entered intersection from South
+447,221,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+448,222,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+449,223,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+450,224,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+451,225,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+452,216,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+453,226,16,VEHICLE_EXITED,2026-10-31 15:13:52,South,Vehicle completed exit from South
+454,217,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+455,218,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+456,227,16,VEHICLE_EXITED,2026-10-31 15:13:52,South,Vehicle completed exit from South
+457,228,16,VEHICLE_EXITED,2026-10-31 15:13:52,South,Vehicle completed exit from South
+458,219,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+459,229,16,VEHICLE_EXITED,2026-10-31 15:13:52,South,Vehicle completed exit from South
+460,220,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+461,221,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+462,230,16,VEHICLE_EXITED,2026-10-31 15:13:52,South,Vehicle completed exit from South
+463,222,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+464,223,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+465,231,16,VEHICLE_ENTERED,2026-10-31 15:13:52,East,Vehicle entered intersection from East
+466,232,16,VEHICLE_ENTERED,2026-10-31 15:13:52,East,Vehicle entered intersection from East
+467,233,16,VEHICLE_ENTERED,2026-10-31 15:13:52,East,Vehicle entered intersection from East
+468,242,16,VEHICLE_ENTERED,2026-10-31 15:13:52,East,Vehicle entered intersection from East
+469,234,16,VEHICLE_ENTERED,2026-10-31 15:13:52,West,Vehicle entered intersection from West
+470,235,16,VEHICLE_ENTERED,2026-10-31 15:13:52,West,Vehicle entered intersection from West
+471,238,16,VEHICLE_ENTERED,2026-10-31 15:13:52,West,Vehicle entered intersection from West
+472,239,16,VEHICLE_ENTERED,2026-10-31 15:13:52,West,Vehicle entered intersection from West
+473,247,16,VEHICLE_ADDED,2026-10-31 15:13:52,North,Vehicle V032 (Ambulance) queued at North
+474,247,16,EMERGENCY_DETECTED,2026-10-31 15:13:52,North,Emergency ambulance dispatched on Road 1
+475,224,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+476,225,16,VEHICLE_EXITED,2026-10-31 15:13:52,North,Vehicle completed exit from North
+477,247,16,VEHICLE_ENTERED,2026-10-31 15:13:52,North,Vehicle entered intersection from North
+478,248,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V001 (Car) queued at North
+479,249,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V002 (Car) queued at North
+480,250,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V003 (Car) queued at North
+481,251,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V004 (Car) queued at North
+482,252,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V005 (Car) queued at North
+483,253,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V006 (Car) queued at North
+484,254,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V007 (Car) queued at North
+485,255,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V008 (Car) queued at North
+486,256,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V009 (Car) queued at North
+487,257,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V010 (Car) queued at North
+488,258,18,VEHICLE_ADDED,2026-10-31 15:14:00,South,Vehicle V011 (Car) queued at South
+489,259,18,VEHICLE_ADDED,2026-10-31 15:14:00,South,Vehicle V012 (Car) queued at South
+490,260,18,VEHICLE_ADDED,2026-10-31 15:14:00,South,Vehicle V013 (Car) queued at South
+491,261,18,VEHICLE_ADDED,2026-10-31 15:14:00,South,Vehicle V014 (Car) queued at South
+492,262,18,VEHICLE_ADDED,2026-10-31 15:14:00,South,Vehicle V015 (Car) queued at South
+493,263,18,VEHICLE_ADDED,2026-10-31 15:14:00,East,Vehicle V016 (Car) queued at East
+494,264,18,VEHICLE_ADDED,2026-10-31 15:14:00,East,Vehicle V017 (Car) queued at East
+495,265,18,VEHICLE_ADDED,2026-10-31 15:14:00,East,Vehicle V018 (Car) queued at East
+496,266,18,VEHICLE_ADDED,2026-10-31 15:14:00,West,Vehicle V019 (Car) queued at West
+497,267,18,VEHICLE_ADDED,2026-10-31 15:14:00,West,Vehicle V020 (Car) queued at West
+498,268,18,VEHICLE_ADDED,2026-10-31 15:14:00,West,Vehicle V021 (Car) queued at West
+499,269,18,VEHICLE_ADDED,2026-10-31 15:14:00,West,Vehicle V022 (Car) queued at West
+500,270,18,VEHICLE_ADDED,2026-10-31 15:14:00,West,Vehicle V023 (Car) queued at West
+501,271,18,VEHICLE_ADDED,2026-10-31 15:14:00,West,Vehicle V024 (Car) queued at West
+502,272,18,VEHICLE_ADDED,2026-10-31 15:14:00,West,Vehicle V025 (Car) queued at West
+503,273,18,VEHICLE_ADDED,2026-10-31 15:14:00,West,Vehicle V026 (Car) queued at West
+504,274,18,VEHICLE_ADDED,2026-10-31 15:14:00,East,Vehicle V027 (Car) queued at East
+505,275,18,VEHICLE_ADDED,2026-10-31 15:14:00,East,Vehicle V028 (Car) queued at East
+506,276,18,VEHICLE_ADDED,2026-10-31 15:14:00,East,Vehicle V029 (Car) queued at East
+507,277,18,VEHICLE_ADDED,2026-10-31 15:14:00,East,Vehicle V030 (Car) queued at East
+508,278,18,VEHICLE_ADDED,2026-10-31 15:14:00,East,Vehicle V031 (Car) queued at East
+509,248,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+510,249,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+511,258,18,VEHICLE_ENTERED,2026-10-31 15:14:00,South,Vehicle entered intersection from South
+512,259,18,VEHICLE_ENTERED,2026-10-31 15:14:00,South,Vehicle entered intersection from South
+513,250,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+514,251,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+515,260,18,VEHICLE_ENTERED,2026-10-31 15:14:00,South,Vehicle entered intersection from South
+516,261,18,VEHICLE_ENTERED,2026-10-31 15:14:00,South,Vehicle entered intersection from South
+517,252,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+518,262,18,VEHICLE_ENTERED,2026-10-31 15:14:00,South,Vehicle entered intersection from South
+519,253,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+520,254,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+521,255,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+522,256,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+523,257,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+524,248,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+525,258,18,VEHICLE_EXITED,2026-10-31 15:14:00,South,Vehicle completed exit from South
+526,249,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+527,250,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+528,259,18,VEHICLE_EXITED,2026-10-31 15:14:00,South,Vehicle completed exit from South
+529,260,18,VEHICLE_EXITED,2026-10-31 15:14:00,South,Vehicle completed exit from South
+530,251,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+531,261,18,VEHICLE_EXITED,2026-10-31 15:14:00,South,Vehicle completed exit from South
+532,252,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+533,253,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+534,262,18,VEHICLE_EXITED,2026-10-31 15:14:00,South,Vehicle completed exit from South
+535,254,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+536,255,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+537,263,18,VEHICLE_ENTERED,2026-10-31 15:14:00,East,Vehicle entered intersection from East
+538,264,18,VEHICLE_ENTERED,2026-10-31 15:14:00,East,Vehicle entered intersection from East
+539,265,18,VEHICLE_ENTERED,2026-10-31 15:14:00,East,Vehicle entered intersection from East
+540,274,18,VEHICLE_ENTERED,2026-10-31 15:14:00,East,Vehicle entered intersection from East
+541,266,18,VEHICLE_ENTERED,2026-10-31 15:14:00,West,Vehicle entered intersection from West
+542,267,18,VEHICLE_ENTERED,2026-10-31 15:14:00,West,Vehicle entered intersection from West
+543,270,18,VEHICLE_ENTERED,2026-10-31 15:14:00,West,Vehicle entered intersection from West
+544,271,18,VEHICLE_ENTERED,2026-10-31 15:14:00,West,Vehicle entered intersection from West
+545,279,18,VEHICLE_ADDED,2026-10-31 15:14:00,North,Vehicle V032 (Ambulance) queued at North
+546,279,18,EMERGENCY_DETECTED,2026-10-31 15:14:00,North,Emergency ambulance dispatched on Road 1
+547,256,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+548,257,18,VEHICLE_EXITED,2026-10-31 15:14:00,North,Vehicle completed exit from North
+549,279,18,VEHICLE_ENTERED,2026-10-31 15:14:00,North,Vehicle entered intersection from North
+550,280,20,VEHICLE_ADDED,2026-10-31 15:14:08,North,Vehicle V001 (Car) queued at North
+551,281,20,VEHICLE_ADDED,2026-10-31 15:14:08,North,Vehicle V002 (Car) queued at North
+552,282,20,VEHICLE_ADDED,2026-10-31 15:14:08,South,Vehicle V003 (Car) queued at South
+553,280,20,VEHICLE_ENTERED,2026-10-31 15:14:10,North,Vehicle entered intersection from North
+554,281,20,VEHICLE_ENTERED,2026-10-31 15:14:10,North,Vehicle entered intersection from North
+555,282,20,VEHICLE_ENTERED,2026-10-31 15:14:10,South,Vehicle entered intersection from South
+556,283,20,VEHICLE_ADDED,2026-10-31 15:14:13,North,Vehicle V004 (Car) queued at North
+557,284,20,VEHICLE_ADDED,2026-10-31 15:14:13,North,Vehicle V005 (Car) queued at North
+558,285,20,VEHICLE_ADDED,2026-10-31 15:14:13,North,Vehicle V006 (Car) queued at North
+559,286,20,VEHICLE_ADDED,2026-10-31 15:14:13,North,Vehicle V007 (Car) queued at North
+560,287,20,VEHICLE_ADDED,2026-10-31 15:14:13,North,Vehicle V008 (Car) queued at North
+561,288,20,VEHICLE_ADDED,2026-10-31 15:14:13,North,Vehicle V009 (Car) queued at North
+562,289,20,VEHICLE_ADDED,2026-10-31 15:14:13,North,Vehicle V010 (Car) queued at North
+563,290,20,VEHICLE_ADDED,2026-10-31 15:14:13,North,Vehicle V011 (Car) queued at North
+564,291,20,VEHICLE_ADDED,2026-10-31 15:14:13,East,Vehicle V012 (Car) queued at East
+565,292,20,VEHICLE_ADDED,2026-10-31 15:14:13,East,Vehicle V013 (Car) queued at East
+566,293,20,VEHICLE_ADDED,2026-10-31 15:14:13,East,Vehicle V014 (Car) queued at East
+567,294,20,VEHICLE_ADDED,2026-10-31 15:14:13,East,Vehicle V015 (Car) queued at East
+568,295,20,VEHICLE_ADDED,2026-10-31 15:14:13,East,Vehicle V016 (Car) queued at East
+569,283,20,VEHICLE_ENTERED,2026-10-31 15:14:13,North,Vehicle entered intersection from North
+570,284,20,VEHICLE_ENTERED,2026-10-31 15:14:13,North,Vehicle entered intersection from North
+571,285,20,VEHICLE_ENTERED,2026-10-31 15:14:14,North,Vehicle entered intersection from North
+572,286,20,VEHICLE_ENTERED,2026-10-31 15:14:14,North,Vehicle entered intersection from North
+573,287,20,VEHICLE_ENTERED,2026-10-31 15:14:15,North,Vehicle entered intersection from North
+574,296,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V001 (Car) queued at North
+575,297,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V002 (Car) queued at North
+576,298,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V003 (Car) queued at North
+577,299,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V004 (Car) queued at North
+578,300,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V005 (Car) queued at North
+579,301,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V006 (Car) queued at North
+580,302,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V007 (Car) queued at North
+581,303,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V008 (Car) queued at North
+582,304,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V009 (Car) queued at North
+583,305,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V010 (Car) queued at North
+584,306,21,VEHICLE_ADDED,2026-10-31 15:22:45,South,Vehicle V011 (Car) queued at South
+585,307,21,VEHICLE_ADDED,2026-10-31 15:22:45,South,Vehicle V012 (Car) queued at South
+586,308,21,VEHICLE_ADDED,2026-10-31 15:22:45,South,Vehicle V013 (Car) queued at South
+587,309,21,VEHICLE_ADDED,2026-10-31 15:22:45,South,Vehicle V014 (Car) queued at South
+588,310,21,VEHICLE_ADDED,2026-10-31 15:22:45,South,Vehicle V015 (Car) queued at South
+589,311,21,VEHICLE_ADDED,2026-10-31 15:22:45,East,Vehicle V016 (Car) queued at East
+590,312,21,VEHICLE_ADDED,2026-10-31 15:22:45,East,Vehicle V017 (Car) queued at East
+591,313,21,VEHICLE_ADDED,2026-10-31 15:22:45,East,Vehicle V018 (Car) queued at East
+592,314,21,VEHICLE_ADDED,2026-10-31 15:22:45,West,Vehicle V019 (Car) queued at West
+593,315,21,VEHICLE_ADDED,2026-10-31 15:22:45,West,Vehicle V020 (Car) queued at West
+594,316,21,VEHICLE_ADDED,2026-10-31 15:22:45,West,Vehicle V021 (Car) queued at West
+595,317,21,VEHICLE_ADDED,2026-10-31 15:22:45,West,Vehicle V022 (Car) queued at West
+596,318,21,VEHICLE_ADDED,2026-10-31 15:22:45,West,Vehicle V023 (Car) queued at West
+597,319,21,VEHICLE_ADDED,2026-10-31 15:22:45,West,Vehicle V024 (Car) queued at West
+598,320,21,VEHICLE_ADDED,2026-10-31 15:22:45,West,Vehicle V025 (Car) queued at West
+599,321,21,VEHICLE_ADDED,2026-10-31 15:22:45,West,Vehicle V026 (Car) queued at West
+600,322,21,VEHICLE_ADDED,2026-10-31 15:22:45,East,Vehicle V027 (Car) queued at East
+601,323,21,VEHICLE_ADDED,2026-10-31 15:22:45,East,Vehicle V028 (Car) queued at East
+602,324,21,VEHICLE_ADDED,2026-10-31 15:22:45,East,Vehicle V029 (Car) queued at East
+603,325,21,VEHICLE_ADDED,2026-10-31 15:22:45,East,Vehicle V030 (Car) queued at East
+604,326,21,VEHICLE_ADDED,2026-10-31 15:22:45,East,Vehicle V031 (Car) queued at East
+605,296,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+606,297,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+607,306,21,VEHICLE_ENTERED,2026-10-31 15:22:45,South,Vehicle entered intersection from South
+608,307,21,VEHICLE_ENTERED,2026-10-31 15:22:45,South,Vehicle entered intersection from South
+609,298,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+610,299,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+611,308,21,VEHICLE_ENTERED,2026-10-31 15:22:45,South,Vehicle entered intersection from South
+612,309,21,VEHICLE_ENTERED,2026-10-31 15:22:45,South,Vehicle entered intersection from South
+613,300,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+614,310,21,VEHICLE_ENTERED,2026-10-31 15:22:45,South,Vehicle entered intersection from South
+615,301,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+616,302,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+617,303,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+618,304,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+619,305,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+620,296,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+621,306,21,VEHICLE_EXITED,2026-10-31 15:22:45,South,Vehicle completed exit from South
+622,297,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+623,298,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+624,307,21,VEHICLE_EXITED,2026-10-31 15:22:45,South,Vehicle completed exit from South
+625,308,21,VEHICLE_EXITED,2026-10-31 15:22:45,South,Vehicle completed exit from South
+626,299,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+627,309,21,VEHICLE_EXITED,2026-10-31 15:22:45,South,Vehicle completed exit from South
+628,300,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+629,301,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+630,310,21,VEHICLE_EXITED,2026-10-31 15:22:45,South,Vehicle completed exit from South
+631,302,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+632,303,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+633,311,21,VEHICLE_ENTERED,2026-10-31 15:22:45,East,Vehicle entered intersection from East
+634,312,21,VEHICLE_ENTERED,2026-10-31 15:22:45,East,Vehicle entered intersection from East
+635,313,21,VEHICLE_ENTERED,2026-10-31 15:22:45,East,Vehicle entered intersection from East
+636,322,21,VEHICLE_ENTERED,2026-10-31 15:22:45,East,Vehicle entered intersection from East
+637,314,21,VEHICLE_ENTERED,2026-10-31 15:22:45,West,Vehicle entered intersection from West
+638,315,21,VEHICLE_ENTERED,2026-10-31 15:22:45,West,Vehicle entered intersection from West
+639,318,21,VEHICLE_ENTERED,2026-10-31 15:22:45,West,Vehicle entered intersection from West
+640,319,21,VEHICLE_ENTERED,2026-10-31 15:22:45,West,Vehicle entered intersection from West
+641,327,21,VEHICLE_ADDED,2026-10-31 15:22:45,North,Vehicle V032 (Ambulance) queued at North
+642,327,21,EMERGENCY_DETECTED,2026-10-31 15:22:45,North,Emergency ambulance dispatched on Road 1
+643,304,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+644,305,21,VEHICLE_EXITED,2026-10-31 15:22:45,North,Vehicle completed exit from North
+645,327,21,VEHICLE_ENTERED,2026-10-31 15:22:45,North,Vehicle entered intersection from North
+646,328,23,VEHICLE_ADDED,2026-10-31 15:22:58,North,Vehicle V001 (Car) queued at North
+647,329,23,VEHICLE_ADDED,2026-10-31 15:22:58,North,Vehicle V002 (Car) queued at North
+648,330,23,VEHICLE_ADDED,2026-10-31 15:22:58,South,Vehicle V003 (Car) queued at South
+649,328,23,VEHICLE_ENTERED,2026-10-31 15:23:00,North,Vehicle entered intersection from North
+650,329,23,VEHICLE_ENTERED,2026-10-31 15:23:00,North,Vehicle entered intersection from North
+651,330,23,VEHICLE_ENTERED,2026-10-31 15:23:00,South,Vehicle entered intersection from South
+652,331,23,VEHICLE_ADDED,2026-10-31 15:23:03,North,Vehicle V004 (Car) queued at North
+653,332,23,VEHICLE_ADDED,2026-10-31 15:23:03,North,Vehicle V005 (Car) queued at North
+654,333,23,VEHICLE_ADDED,2026-10-31 15:23:03,North,Vehicle V006 (Car) queued at North
+655,334,23,VEHICLE_ADDED,2026-10-31 15:23:03,North,Vehicle V007 (Car) queued at North
+656,335,23,VEHICLE_ADDED,2026-10-31 15:23:03,North,Vehicle V008 (Car) queued at North
+657,336,23,VEHICLE_ADDED,2026-10-31 15:23:03,North,Vehicle V009 (Car) queued at North
+658,337,23,VEHICLE_ADDED,2026-10-31 15:23:03,North,Vehicle V010 (Car) queued at North
+659,338,23,VEHICLE_ADDED,2026-10-31 15:23:03,North,Vehicle V011 (Car) queued at North
+660,339,23,VEHICLE_ADDED,2026-10-31 15:23:03,East,Vehicle V012 (Car) queued at East
+661,340,23,VEHICLE_ADDED,2026-10-31 15:23:03,East,Vehicle V013 (Car) queued at East
+662,341,23,VEHICLE_ADDED,2026-10-31 15:23:03,East,Vehicle V014 (Car) queued at East
+663,342,23,VEHICLE_ADDED,2026-10-31 15:23:03,East,Vehicle V015 (Car) queued at East
+664,343,23,VEHICLE_ADDED,2026-10-31 15:23:03,East,Vehicle V016 (Car) queued at East
+665,331,23,VEHICLE_ENTERED,2026-10-31 15:23:04,North,Vehicle entered intersection from North
+666,332,23,VEHICLE_ENTERED,2026-10-31 15:23:04,North,Vehicle entered intersection from North
+667,333,23,VEHICLE_ENTERED,2026-10-31 15:23:05,North,Vehicle entered intersection from North
+668,334,23,VEHICLE_ENTERED,2026-10-31 15:23:05,North,Vehicle entered intersection from North
+669,344,24,VEHICLE_ADDED,2026-11-01 23:30:27,North,Vehicle V001 (Car) queued at North
+670,345,24,VEHICLE_ADDED,2026-11-01 23:30:27,North,Vehicle V002 (Car) queued at North
+671,346,24,VEHICLE_ADDED,2026-11-01 23:30:27,North,Vehicle V003 (Car) queued at North
+672,347,24,VEHICLE_ADDED,2026-11-01 23:30:27,North,Vehicle V004 (Car) queued at North
+673,348,24,VEHICLE_ADDED,2026-11-01 23:30:27,North,Vehicle V005 (Car) queued at North
+674,349,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V006 (Car) queued at East
+675,350,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V007 (Car) queued at East
+676,351,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V008 (Car) queued at East
+677,352,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V009 (Car) queued at East
+678,353,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V010 (Car) queued at East
+679,354,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V011 (Car) queued at East
+680,355,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V012 (Car) queued at East
+681,356,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V013 (Car) queued at East
+682,357,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V014 (Car) queued at East
+683,358,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V015 (Car) queued at East
+684,359,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V016 (Car) queued at East
+685,360,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V017 (Car) queued at East
+686,361,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V018 (Car) queued at East
+687,362,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V019 (Car) queued at East
+688,363,24,VEHICLE_ADDED,2026-11-01 23:30:27,East,Vehicle V020 (Car) queued at East
+689,364,24,VEHICLE_ADDED,2026-11-01 23:30:27,West,Vehicle V021 (Car) queued at West
+690,365,24,VEHICLE_ADDED,2026-11-01 23:30:27,West,Vehicle V022 (Car) queued at West
+691,366,24,VEHICLE_ADDED,2026-11-01 23:30:27,West,Vehicle V023 (Car) queued at West
+692,367,24,VEHICLE_ADDED,2026-11-01 23:30:27,West,Vehicle V024 (Car) queued at West
+693,344,24,VEHICLE_ENTERED,2026-11-01 23:30:28,North,Vehicle entered intersection from North
+694,345,24,VEHICLE_ENTERED,2026-11-01 23:30:28,North,Vehicle entered intersection from North
+695,346,24,VEHICLE_ENTERED,2026-11-01 23:30:29,North,Vehicle entered intersection from North
+696,347,24,VEHICLE_ENTERED,2026-11-01 23:30:29,North,Vehicle entered intersection from North
+697,348,24,VEHICLE_ENTERED,2026-11-01 23:30:30,North,Vehicle entered intersection from North
+698,344,24,VEHICLE_EXITED,2026-11-01 23:30:36,North,Vehicle completed exit from North
+699,345,24,VEHICLE_EXITED,2026-11-01 23:30:38,North,Vehicle completed exit from North
+700,346,24,VEHICLE_EXITED,2026-11-01 23:30:38,North,Vehicle completed exit from North
+701,349,24,VEHICLE_ENTERED,2026-11-01 23:30:38,East,Vehicle entered intersection from East
+702,350,24,VEHICLE_ENTERED,2026-11-01 23:30:38,East,Vehicle entered intersection from East
+703,356,24,VEHICLE_ENTERED,2026-11-01 23:30:38,East,Vehicle entered intersection from East
+704,357,24,VEHICLE_ENTERED,2026-11-01 23:30:38,East,Vehicle entered intersection from East
+705,364,24,VEHICLE_ENTERED,2026-11-01 23:30:38,West,Vehicle entered intersection from West
+706,365,24,VEHICLE_ENTERED,2026-11-01 23:30:38,West,Vehicle entered intersection from West
+707,347,24,VEHICLE_EXITED,2026-11-01 23:30:38,North,Vehicle completed exit from North
+708,351,24,VEHICLE_ENTERED,2026-11-01 23:30:38,East,Vehicle entered intersection from East
+709,352,24,VEHICLE_ENTERED,2026-11-01 23:30:38,East,Vehicle entered intersection from East
+710,358,24,VEHICLE_ENTERED,2026-11-01 23:30:38,East,Vehicle entered intersection from East
+711,359,24,VEHICLE_ENTERED,2026-11-01 23:30:38,East,Vehicle entered intersection from East
+712,366,24,VEHICLE_ENTERED,2026-11-01 23:30:38,West,Vehicle entered intersection from West
+713,367,24,VEHICLE_ENTERED,2026-11-01 23:30:38,West,Vehicle entered intersection from West
+714,348,24,VEHICLE_EXITED,2026-11-01 23:30:39,North,Vehicle completed exit from North
+715,353,24,VEHICLE_ENTERED,2026-11-01 23:30:39,East,Vehicle entered intersection from East
+716,360,24,VEHICLE_ENTERED,2026-11-01 23:30:39,East,Vehicle entered intersection from East
+717,354,24,VEHICLE_ENTERED,2026-11-01 23:30:40,East,Vehicle entered intersection from East
+718,355,24,VEHICLE_ENTERED,2026-11-01 23:30:40,East,Vehicle entered intersection from East
+719,361,24,VEHICLE_ENTERED,2026-11-01 23:30:40,East,Vehicle entered intersection from East
+720,362,24,VEHICLE_ENTERED,2026-11-01 23:30:40,East,Vehicle entered intersection from East
+721,363,24,VEHICLE_ENTERED,2026-11-01 23:30:41,East,Vehicle entered intersection from East
+722,368,24,VEHICLE_ADDED,2026-11-01 23:30:56,North,Vehicle V025 (Car) queued at North
+723,369,24,VEHICLE_ADDED,2026-11-01 23:30:56,North,Vehicle V026 (Car) queued at North
+724,368,24,VEHICLE_ENTERED,2026-11-01 23:30:57,North,Vehicle entered intersection from North
+725,369,24,VEHICLE_ENTERED,2026-11-01 23:30:57,North,Vehicle entered intersection from North
+726,370,24,VEHICLE_ADDED,2026-11-01 23:30:57,North,Vehicle V027 (Car) queued at North
+727,371,24,VEHICLE_ADDED,2026-11-01 23:30:57,North,Vehicle V028 (Car) queued at North
+728,372,24,VEHICLE_ADDED,2026-11-01 23:30:57,North,Vehicle V029 (Car) queued at North
+729,373,24,VEHICLE_ADDED,2026-11-01 23:30:57,North,Vehicle V030 (Car) queued at North
+730,374,24,VEHICLE_ADDED,2026-11-01 23:30:57,North,Vehicle V031 (Car) queued at North
+731,375,24,VEHICLE_ADDED,2026-11-01 23:30:58,North,Vehicle V032 (Car) queued at North
+732,376,24,VEHICLE_ADDED,2026-11-01 23:30:58,North,Vehicle V033 (Car) queued at North
+733,370,24,VEHICLE_ENTERED,2026-11-01 23:30:58,North,Vehicle entered intersection from North
+734,372,24,VEHICLE_ENTERED,2026-11-01 23:30:58,North,Vehicle entered intersection from North
+735,371,24,VEHICLE_ENTERED,2026-11-01 23:30:58,North,Vehicle entered intersection from North
+736,373,24,VEHICLE_ENTERED,2026-11-01 23:30:58,North,Vehicle entered intersection from North
+737,377,24,VEHICLE_ADDED,2026-11-01 23:30:58,North,Vehicle V034 (Car) queued at North
+738,378,24,VEHICLE_ADDED,2026-11-01 23:30:58,North,Vehicle V035 (Car) queued at North
+739,379,24,VEHICLE_ADDED,2026-11-01 23:30:58,North,Vehicle V036 (Car) queued at North
+740,380,24,VEHICLE_ADDED,2026-11-01 23:30:59,North,Vehicle V037 (Car) queued at North
+741,381,24,VEHICLE_ADDED,2026-11-01 23:30:59,North,Vehicle V038 (Car) queued at North
+742,382,24,VEHICLE_ADDED,2026-11-01 23:30:59,North,Vehicle V039 (Car) queued at North
+743,374,24,VEHICLE_ENTERED,2026-11-01 23:30:59,North,Vehicle entered intersection from North
+744,376,24,VEHICLE_ENTERED,2026-11-01 23:30:59,North,Vehicle entered intersection from North
+745,375,24,VEHICLE_ENTERED,2026-11-01 23:30:59,North,Vehicle entered intersection from North
+746,377,24,VEHICLE_ENTERED,2026-11-01 23:30:59,North,Vehicle entered intersection from North
+747,349,24,VEHICLE_EXITED,2026-11-01 23:30:59,East,Vehicle completed exit from East
+748,350,24,VEHICLE_EXITED,2026-11-01 23:30:59,East,Vehicle completed exit from East
+749,356,24,VEHICLE_EXITED,2026-11-01 23:30:59,East,Vehicle completed exit from East
+750,357,24,VEHICLE_EXITED,2026-11-01 23:30:59,East,Vehicle completed exit from East
+751,364,24,VEHICLE_EXITED,2026-11-01 23:30:59,West,Vehicle completed exit from West
+752,365,24,VEHICLE_EXITED,2026-11-01 23:30:59,West,Vehicle completed exit from West
+753,378,24,VEHICLE_ENTERED,2026-11-01 23:31:00,North,Vehicle entered intersection from North
+754,379,24,VEHICLE_ENTERED,2026-11-01 23:31:00,North,Vehicle entered intersection from North
+755,351,24,VEHICLE_EXITED,2026-11-01 23:31:00,East,Vehicle completed exit from East
+756,352,24,VEHICLE_EXITED,2026-11-01 23:31:00,East,Vehicle completed exit from East
+757,358,24,VEHICLE_EXITED,2026-11-01 23:31:00,East,Vehicle completed exit from East
+758,359,24,VEHICLE_EXITED,2026-11-01 23:31:00,East,Vehicle completed exit from East
+759,366,24,VEHICLE_EXITED,2026-11-01 23:31:00,West,Vehicle completed exit from West
+760,367,24,VEHICLE_EXITED,2026-11-01 23:31:00,West,Vehicle completed exit from West
+761,380,24,VEHICLE_ENTERED,2026-11-01 23:31:01,North,Vehicle entered intersection from North
+762,382,24,VEHICLE_ENTERED,2026-11-01 23:31:01,North,Vehicle entered intersection from North
+763,381,24,VEHICLE_ENTERED,2026-11-01 23:31:01,North,Vehicle entered intersection from North
+764,353,24,VEHICLE_EXITED,2026-11-01 23:31:01,East,Vehicle completed exit from East
+765,360,24,VEHICLE_EXITED,2026-11-01 23:31:01,East,Vehicle completed exit from East
+766,354,24,VEHICLE_EXITED,2026-11-01 23:31:02,East,Vehicle completed exit from East
+767,355,24,VEHICLE_EXITED,2026-11-01 23:31:02,East,Vehicle completed exit from East
+768,361,24,VEHICLE_EXITED,2026-11-01 23:31:02,East,Vehicle completed exit from East
+769,362,24,VEHICLE_EXITED,2026-11-01 23:31:02,East,Vehicle completed exit from East
+770,363,24,VEHICLE_EXITED,2026-11-01 23:31:03,East,Vehicle completed exit from East
+771,383,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V040 (Car) queued at South
+772,384,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V041 (Car) queued at South
+773,385,24,VEHICLE_ADDED,2026-11-01 23:31:04,North,Vehicle V042 (Car) queued at North
+774,386,24,VEHICLE_ADDED,2026-11-01 23:31:04,East,Vehicle V043 (Car) queued at East
+775,387,24,VEHICLE_ADDED,2026-11-01 23:31:04,West,Vehicle V044 (Car) queued at West
+776,388,24,VEHICLE_ADDED,2026-11-01 23:31:04,West,Vehicle V045 (Car) queued at West
+777,389,24,VEHICLE_ADDED,2026-11-01 23:31:04,North,Vehicle V046 (Car) queued at North
+778,390,24,VEHICLE_ADDED,2026-11-01 23:31:04,West,Vehicle V047 (Car) queued at West
+779,391,24,VEHICLE_ADDED,2026-11-01 23:31:04,North,Vehicle V048 (Car) queued at North
+780,392,24,VEHICLE_ADDED,2026-11-01 23:31:04,North,Vehicle V049 (Car) queued at North
+781,393,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V050 (Car) queued at South
+782,394,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V051 (Car) queued at South
+783,395,24,VEHICLE_ADDED,2026-11-01 23:31:04,West,Vehicle V052 (Car) queued at West
+784,396,24,VEHICLE_ADDED,2026-11-01 23:31:04,East,Vehicle V053 (Car) queued at East
+785,397,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V054 (Car) queued at South
+786,398,24,VEHICLE_ADDED,2026-11-01 23:31:04,East,Vehicle V055 (Car) queued at East
+787,399,24,VEHICLE_ADDED,2026-11-01 23:31:04,North,Vehicle V056 (Car) queued at North
+788,400,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V057 (Car) queued at South
+789,401,24,VEHICLE_ADDED,2026-11-01 23:31:04,North,Vehicle V058 (Car) queued at North
+790,402,24,VEHICLE_ADDED,2026-11-01 23:31:04,North,Vehicle V059 (Car) queued at North
+791,389,24,VEHICLE_ENTERED,2026-11-01 23:31:04,North,Vehicle entered intersection from North
+792,392,24,VEHICLE_ENTERED,2026-11-01 23:31:04,North,Vehicle entered intersection from North
+793,385,24,VEHICLE_ENTERED,2026-11-01 23:31:04,North,Vehicle entered intersection from North
+794,391,24,VEHICLE_ENTERED,2026-11-01 23:31:04,North,Vehicle entered intersection from North
+795,383,24,VEHICLE_ENTERED,2026-11-01 23:31:04,South,Vehicle entered intersection from South
+796,393,24,VEHICLE_ENTERED,2026-11-01 23:31:04,South,Vehicle entered intersection from South
+797,384,24,VEHICLE_ENTERED,2026-11-01 23:31:04,South,Vehicle entered intersection from South
+798,394,24,VEHICLE_ENTERED,2026-11-01 23:31:04,South,Vehicle entered intersection from South
+799,403,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V060 (Car) queued at South
+800,404,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V061 (Car) queued at South
+801,405,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V062 (Car) queued at South
+802,406,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V063 (Car) queued at South
+803,407,24,VEHICLE_ADDED,2026-11-01 23:31:04,South,Vehicle V064 (Car) queued at South
+804,408,24,VEHICLE_ADDED,2026-11-01 23:31:05,North,Vehicle V065 (Car) queued at North
+805,409,24,VEHICLE_ADDED,2026-11-01 23:31:05,West,Vehicle V066 (Car) queued at West
+806,410,24,VEHICLE_ADDED,2026-11-01 23:31:05,North,Vehicle V067 (Car) queued at North
+807,411,24,VEHICLE_ADDED,2026-11-01 23:31:05,East,Vehicle V068 (Car) queued at East
+808,412,24,VEHICLE_ADDED,2026-11-01 23:31:05,South,Vehicle V069 (Car) queued at South
+809,413,24,VEHICLE_ADDED,2026-11-01 23:31:05,West,Vehicle V070 (Car) queued at West
+810,414,24,VEHICLE_ADDED,2026-11-01 23:31:05,South,Vehicle V071 (Car) queued at South
+811,415,24,VEHICLE_ADDED,2026-11-01 23:31:05,North,Vehicle V072 (Car) queued at North
+812,416,24,VEHICLE_ADDED,2026-11-01 23:31:05,West,Vehicle V073 (Car) queued at West
+813,417,24,VEHICLE_ADDED,2026-11-01 23:31:05,West,Vehicle V074 (Car) queued at West
+814,418,24,VEHICLE_ADDED,2026-11-01 23:31:05,South,Vehicle V075 (Car) queued at South
+815,419,24,VEHICLE_ADDED,2026-11-01 23:31:05,South,Vehicle V076 (Car) queued at South
+816,420,24,VEHICLE_ADDED,2026-11-01 23:31:05,East,Vehicle V077 (Car) queued at East
+817,421,24,VEHICLE_ADDED,2026-11-01 23:31:05,South,Vehicle V078 (Car) queued at South
+818,422,24,VEHICLE_ADDED,2026-11-01 23:31:05,North,Vehicle V079 (Car) queued at North
+819,423,24,VEHICLE_ADDED,2026-11-01 23:31:05,North,Vehicle V080 (Car) queued at North
+820,424,24,VEHICLE_ADDED,2026-11-01 23:31:05,North,Vehicle V081 (Car) queued at North
+821,425,24,VEHICLE_ADDED,2026-11-01 23:31:05,South,Vehicle V082 (Car) queued at South
+822,426,24,VEHICLE_ADDED,2026-11-01 23:31:05,East,Vehicle V083 (Car) queued at East
+823,427,24,VEHICLE_ADDED,2026-11-01 23:31:05,South,Vehicle V084 (Car) queued at South
+824,428,24,VEHICLE_ADDED,2026-11-01 23:31:05,East,Vehicle V085 (Car) queued at East
+825,429,24,VEHICLE_ADDED,2026-11-01 23:31:05,North,Vehicle V086 (Car) queued at North
+826,430,24,VEHICLE_ADDED,2026-11-01 23:31:05,North,Vehicle V087 (Car) queued at North
+827,431,24,VEHICLE_ADDED,2026-11-01 23:31:05,West,Vehicle V088 (Car) queued at West
+828,432,24,VEHICLE_ADDED,2026-11-01 23:31:05,South,Vehicle V089 (Car) queued at South
+829,433,24,VEHICLE_ADDED,2026-11-01 23:31:06,East,Vehicle V090 (Car) queued at East
+830,434,24,VEHICLE_ADDED,2026-11-01 23:31:06,South,Vehicle V091 (Car) queued at South
+831,435,24,VEHICLE_ADDED,2026-11-01 23:31:06,South,Vehicle V092 (Car) queued at South
+832,436,24,VEHICLE_ADDED,2026-11-01 23:31:06,West,Vehicle V093 (Car) queued at West
+833,437,24,VEHICLE_ADDED,2026-11-01 23:31:06,North,Vehicle V094 (Car) queued at North
+834,438,24,VEHICLE_ADDED,2026-11-01 23:31:06,East,Vehicle V095 (Car) queued at East
+835,439,24,VEHICLE_ADDED,2026-11-01 23:31:06,East,Vehicle V096 (Car) queued at East
+836,440,24,VEHICLE_ADDED,2026-11-01 23:31:06,East,Vehicle V097 (Car) queued at East
+837,441,24,VEHICLE_ADDED,2026-11-01 23:31:06,North,Vehicle V098 (Car) queued at North
+838,442,24,VEHICLE_ADDED,2026-11-01 23:31:06,South,Vehicle V099 (Car) queued at South
+839,443,24,VEHICLE_ADDED,2026-11-01 23:31:06,East,Vehicle V100 (Car) queued at East
+840,444,24,VEHICLE_ADDED,2026-11-01 23:31:06,East,Vehicle V101 (Car) queued at East
+841,445,24,VEHICLE_ADDED,2026-11-01 23:31:06,East,Vehicle V102 (Car) queued at East
+842,446,24,VEHICLE_ADDED,2026-11-01 23:31:06,North,Vehicle V103 (Car) queued at North
+843,447,24,VEHICLE_ADDED,2026-11-01 23:31:06,West,Vehicle V104 (Car) queued at West
+844,448,24,VEHICLE_ADDED,2026-11-01 23:31:06,South,Vehicle V105 (Car) queued at South
+845,449,24,VEHICLE_ADDED,2026-11-01 23:31:06,West,Vehicle V106 (Car) queued at West
+846,450,24,VEHICLE_ADDED,2026-11-01 23:31:06,South,Vehicle V107 (Car) queued at South
+847,451,24,VEHICLE_ADDED,2026-11-01 23:31:06,East,Vehicle V108 (Car) queued at East
+848,452,24,VEHICLE_ADDED,2026-11-01 23:31:06,West,Vehicle V109 (Car) queued at West
+849,453,24,VEHICLE_ADDED,2026-11-01 23:31:07,East,Vehicle V110 (Car) queued at East
+850,454,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V111 (Car) queued at North
+851,455,24,VEHICLE_ADDED,2026-11-01 23:31:07,West,Vehicle V112 (Car) queued at West
+852,456,24,VEHICLE_ADDED,2026-11-01 23:31:07,South,Vehicle V113 (Car) queued at South
+853,457,24,VEHICLE_ADDED,2026-11-01 23:31:07,South,Vehicle V114 (Car) queued at South
+854,458,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V115 (Car) queued at North
+855,459,24,VEHICLE_ADDED,2026-11-01 23:31:07,South,Vehicle V116 (Car) queued at South
+856,460,24,VEHICLE_ADDED,2026-11-01 23:31:07,South,Vehicle V117 (Car) queued at South
+857,461,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V118 (Car) queued at North
+858,462,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V119 (Car) queued at North
+859,463,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V120 (Car) queued at North
+860,464,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V121 (Car) queued at North
+861,465,24,VEHICLE_ADDED,2026-11-01 23:31:07,East,Vehicle V122 (Car) queued at East
+862,466,24,VEHICLE_ADDED,2026-11-01 23:31:07,East,Vehicle V123 (Car) queued at East
+863,467,24,VEHICLE_ADDED,2026-11-01 23:31:07,West,Vehicle V124 (Car) queued at West
+864,368,24,VEHICLE_EXITED,2026-11-01 23:31:07,North,Vehicle completed exit from North
+865,401,24,VEHICLE_ENTERED,2026-11-01 23:31:07,North,Vehicle entered intersection from North
+866,408,24,VEHICLE_ENTERED,2026-11-01 23:31:07,North,Vehicle entered intersection from North
+867,369,24,VEHICLE_EXITED,2026-11-01 23:31:07,North,Vehicle completed exit from North
+868,399,24,VEHICLE_ENTERED,2026-11-01 23:31:07,North,Vehicle entered intersection from North
+869,402,24,VEHICLE_ENTERED,2026-11-01 23:31:07,North,Vehicle entered intersection from North
+870,397,24,VEHICLE_ENTERED,2026-11-01 23:31:07,South,Vehicle entered intersection from South
+871,403,24,VEHICLE_ENTERED,2026-11-01 23:31:07,South,Vehicle entered intersection from South
+872,400,24,VEHICLE_ENTERED,2026-11-01 23:31:07,South,Vehicle entered intersection from South
+873,404,24,VEHICLE_ENTERED,2026-11-01 23:31:07,South,Vehicle entered intersection from South
+874,468,24,VEHICLE_ADDED,2026-11-01 23:31:07,West,Vehicle V125 (Car) queued at West
+875,469,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V126 (Car) queued at North
+876,470,24,VEHICLE_ADDED,2026-11-01 23:31:07,West,Vehicle V127 (Car) queued at West
+877,471,24,VEHICLE_ADDED,2026-11-01 23:31:07,South,Vehicle V128 (Car) queued at South
+878,472,24,VEHICLE_ADDED,2026-11-01 23:31:07,South,Vehicle V129 (Car) queued at South
+879,473,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V130 (Car) queued at North
+880,474,24,VEHICLE_ADDED,2026-11-01 23:31:07,South,Vehicle V131 (Car) queued at South
+881,475,24,VEHICLE_ADDED,2026-11-01 23:31:07,West,Vehicle V132 (Car) queued at West
+882,476,24,VEHICLE_ADDED,2026-11-01 23:31:07,West,Vehicle V133 (Car) queued at West
+883,477,24,VEHICLE_ADDED,2026-11-01 23:31:07,West,Vehicle V134 (Car) queued at West
+884,478,24,VEHICLE_ADDED,2026-11-01 23:31:07,South,Vehicle V135 (Car) queued at South
+885,479,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V136 (Car) queued at North
+886,480,24,VEHICLE_ADDED,2026-11-01 23:31:07,North,Vehicle V137 (Car) queued at North
+887,481,24,VEHICLE_ADDED,2026-11-01 23:31:07,West,Vehicle V138 (Car) queued at West
+888,482,24,VEHICLE_ADDED,2026-11-01 23:31:07,South,Vehicle V139 (Car) queued at South
+889,483,24,VEHICLE_ADDED,2026-11-01 23:31:08,North,Vehicle V140 (Car) queued at North
+890,484,24,VEHICLE_ADDED,2026-11-01 23:31:08,East,Vehicle V141 (Car) queued at East
+891,485,24,VEHICLE_ADDED,2026-11-01 23:31:08,East,Vehicle V142 (Car) queued at East
+892,486,24,VEHICLE_ADDED,2026-11-01 23:31:08,South,Vehicle V143 (Car) queued at South
+893,487,24,VEHICLE_ADDED,2026-11-01 23:31:08,East,Vehicle V144 (Car) queued at East
+894,488,24,VEHICLE_ADDED,2026-11-01 23:31:08,North,Vehicle V145 (Car) queued at North
+895,489,24,VEHICLE_ADDED,2026-11-01 23:31:08,South,Vehicle V146 (Car) queued at South
+896,490,24,VEHICLE_ADDED,2026-11-01 23:31:08,West,Vehicle V147 (Car) queued at West
+897,491,24,VEHICLE_ADDED,2026-11-01 23:31:08,West,Vehicle V148 (Car) queued at West
+898,492,24,VEHICLE_ADDED,2026-11-01 23:31:08,North,Vehicle V149 (Car) queued at North
+899,493,24,VEHICLE_ADDED,2026-11-01 23:31:08,West,Vehicle V150 (Car) queued at West
+900,494,24,VEHICLE_ADDED,2026-11-01 23:31:08,West,Vehicle V151 (Car) queued at West
+901,495,24,VEHICLE_ADDED,2026-11-01 23:31:08,East,Vehicle V152 (Car) queued at East
+902,496,24,VEHICLE_ADDED,2026-11-01 23:31:08,South,Vehicle V153 (Car) queued at South
+903,497,24,VEHICLE_ADDED,2026-11-01 23:31:08,West,Vehicle V154 (Car) queued at West
+904,498,24,VEHICLE_ADDED,2026-11-01 23:31:08,South,Vehicle V155 (Car) queued at South
+905,499,24,VEHICLE_ADDED,2026-11-01 23:31:08,North,Vehicle V156 (Car) queued at North
+906,500,24,VEHICLE_ADDED,2026-11-01 23:31:08,West,Vehicle V157 (Car) queued at West
+907,501,24,VEHICLE_ADDED,2026-11-01 23:31:08,East,Vehicle V158 (Car) queued at East
+908,502,24,VEHICLE_ADDED,2026-11-01 23:31:08,West,Vehicle V159 (Car) queued at West
+909,503,24,VEHICLE_ADDED,2026-11-01 23:31:08,South,Vehicle V160 (Car) queued at South
+910,504,24,VEHICLE_ADDED,2026-11-01 23:31:08,North,Vehicle V161 (Car) queued at North
+911,505,24,VEHICLE_ADDED,2026-11-01 23:31:08,South,Vehicle V162 (Car) queued at South
+912,506,24,VEHICLE_ADDED,2026-11-01 23:31:08,South,Vehicle V163 (Car) queued at South
+913,507,24,VEHICLE_ADDED,2026-11-01 23:31:08,South,Vehicle V164 (Car) queued at South
+914,508,24,VEHICLE_ADDED,2026-11-01 23:31:09,West,Vehicle V165 (Car) queued at West
+915,509,24,VEHICLE_ADDED,2026-11-01 23:31:09,East,Vehicle V166 (Car) queued at East
+916,510,24,VEHICLE_ADDED,2026-11-01 23:31:09,East,Vehicle V167 (Car) queued at East
+917,511,24,VEHICLE_ADDED,2026-11-01 23:31:09,West,Vehicle V168 (Car) queued at West
+918,512,24,VEHICLE_ADDED,2026-11-01 23:31:09,South,Vehicle V169 (Car) queued at South
+919,513,24,VEHICLE_ADDED,2026-11-01 23:31:09,West,Vehicle V170 (Car) queued at West
+920,514,24,VEHICLE_ADDED,2026-11-01 23:31:09,West,Vehicle V171 (Car) queued at West
+921,515,24,VEHICLE_ADDED,2026-11-01 23:31:09,West,Vehicle V172 (Car) queued at West
+922,516,24,VEHICLE_ADDED,2026-11-01 23:31:09,North,Vehicle V173 (Car) queued at North
+923,517,24,VEHICLE_ADDED,2026-11-01 23:31:09,East,Vehicle V174 (Car) queued at East
+924,518,24,VEHICLE_ADDED,2026-11-01 23:31:09,South,Vehicle V175 (Car) queued at South
+925,519,24,VEHICLE_ADDED,2026-11-01 23:31:09,North,Vehicle V176 (Car) queued at North
+926,520,24,VEHICLE_ADDED,2026-11-01 23:31:09,North,Vehicle V177 (Car) queued at North
+927,521,24,VEHICLE_ADDED,2026-11-01 23:31:09,East,Vehicle V178 (Car) queued at East
+928,522,24,VEHICLE_ADDED,2026-11-01 23:31:09,North,Vehicle V179 (Car) queued at North
+929,523,24,VEHICLE_ADDED,2026-11-01 23:31:09,West,Vehicle V180 (Car) queued at West
+930,524,24,VEHICLE_ADDED,2026-11-01 23:31:09,East,Vehicle V181 (Car) queued at East
+931,525,24,VEHICLE_ADDED,2026-11-01 23:31:09,East,Vehicle V182 (Car) queued at East
+932,526,24,VEHICLE_ADDED,2026-11-01 23:31:09,North,Vehicle V183 (Car) queued at North
+933,527,24,VEHICLE_ADDED,2026-11-01 23:31:09,South,Vehicle V184 (Car) queued at South
+934,528,24,VEHICLE_ADDED,2026-11-01 23:31:10,West,Vehicle V185 (Car) queued at West
+935,529,24,VEHICLE_ADDED,2026-11-01 23:31:10,North,Vehicle V186 (Car) queued at North
+936,530,24,VEHICLE_ADDED,2026-11-01 23:31:10,West,Vehicle V187 (Car) queued at West
+937,531,24,VEHICLE_ADDED,2026-11-01 23:31:10,South,Vehicle V188 (Car) queued at South
+938,532,24,VEHICLE_ADDED,2026-11-01 23:31:10,North,Vehicle V189 (Car) queued at North
+939,533,24,VEHICLE_ADDED,2026-11-01 23:31:10,West,Vehicle V190 (Car) queued at West
+940,534,24,VEHICLE_ADDED,2026-11-01 23:31:10,North,Vehicle V191 (Car) queued at North
+941,535,24,VEHICLE_ADDED,2026-11-01 23:31:10,East,Vehicle V192 (Car) queued at East
+942,536,24,VEHICLE_ADDED,2026-11-01 23:31:10,East,Vehicle V193 (Car) queued at East
+943,537,24,VEHICLE_ADDED,2026-11-01 23:31:10,South,Vehicle V194 (Car) queued at South
+944,538,24,VEHICLE_ADDED,2026-11-01 23:31:10,East,Vehicle V195 (Car) queued at East
+945,539,24,VEHICLE_ADDED,2026-11-01 23:31:10,South,Vehicle V196 (Car) queued at South
+946,540,24,VEHICLE_ADDED,2026-11-01 23:31:10,East,Vehicle V197 (Car) queued at East
+947,541,24,VEHICLE_ADDED,2026-11-01 23:31:10,North,Vehicle V198 (Car) queued at North
+948,542,24,VEHICLE_ADDED,2026-11-01 23:31:10,West,Vehicle V199 (Car) queued at West
+949,543,24,VEHICLE_ADDED,2026-11-01 23:31:10,West,Vehicle V200 (Car) queued at West
+950,544,24,VEHICLE_ADDED,2026-11-01 23:31:10,East,Vehicle V201 (Car) queued at East
+951,545,24,VEHICLE_ADDED,2026-11-01 23:31:10,West,Vehicle V202 (Car) queued at West
+952,546,24,VEHICLE_ADDED,2026-11-01 23:31:10,South,Vehicle V203 (Car) queued at South
+953,547,24,VEHICLE_ADDED,2026-11-01 23:31:10,North,Vehicle V204 (Car) queued at North
+954,548,24,VEHICLE_ADDED,2026-11-01 23:31:10,East,Vehicle V205 (Car) queued at East
+955,549,24,VEHICLE_ADDED,2026-11-01 23:31:10,North,Vehicle V206 (Car) queued at North
+956,550,24,VEHICLE_ADDED,2026-11-01 23:31:10,South,Vehicle V207 (Car) queued at South
+957,551,24,VEHICLE_ADDED,2026-11-01 23:31:10,West,Vehicle V208 (Car) queued at West
+958,552,24,VEHICLE_ADDED,2026-11-01 23:31:10,South,Vehicle V209 (Car) queued at South
+959,553,24,VEHICLE_ADDED,2026-11-01 23:31:10,North,Vehicle V210 (Car) queued at North
+960,554,24,VEHICLE_ADDED,2026-11-01 23:31:10,North,Vehicle V211 (Car) queued at North
+961,555,24,VEHICLE_ADDED,2026-11-01 23:31:10,East,Vehicle V212 (Car) queued at East
+962,556,24,VEHICLE_ADDED,2026-11-01 23:31:10,North,Vehicle V213 (Car) queued at North
+963,557,24,VEHICLE_ADDED,2026-11-01 23:31:10,South,Vehicle V214 (Car) queued at South
+964,558,24,VEHICLE_ADDED,2026-11-01 23:31:11,North,Vehicle V215 (Car) queued at North
+965,559,24,VEHICLE_ADDED,2026-11-01 23:31:11,West,Vehicle V216 (Car) queued at West
+966,560,24,VEHICLE_ADDED,2026-11-01 23:31:11,West,Vehicle V217 (Car) queued at West
+967,561,24,VEHICLE_ADDED,2026-11-01 23:31:11,East,Vehicle V218 (Car) queued at East
+968,562,24,VEHICLE_ADDED,2026-11-01 23:31:11,East,Vehicle V219 (Car) queued at East
+969,563,24,VEHICLE_ADDED,2026-11-01 23:31:11,West,Vehicle V220 (Car) queued at West
+970,564,24,VEHICLE_ADDED,2026-11-01 23:31:11,North,Vehicle V221 (Car) queued at North
+971,565,24,VEHICLE_ADDED,2026-11-01 23:31:11,East,Vehicle V222 (Car) queued at East
+972,566,24,VEHICLE_ADDED,2026-11-01 23:31:11,North,Vehicle V223 (Car) queued at North
+973,567,24,VEHICLE_ADDED,2026-11-01 23:31:11,West,Vehicle V224 (Car) queued at West
+974,568,24,VEHICLE_ADDED,2026-11-01 23:31:11,East,Vehicle V225 (Car) queued at East
+975,569,24,VEHICLE_ADDED,2026-11-01 23:31:11,North,Vehicle V226 (Car) queued at North
+976,570,24,VEHICLE_ADDED,2026-11-01 23:31:11,East,Vehicle V227 (Car) queued at East
+977,571,24,VEHICLE_ADDED,2026-11-01 23:31:11,East,Vehicle V228 (Car) queued at East
+978,572,24,VEHICLE_ADDED,2026-11-01 23:31:11,East,Vehicle V229 (Car) queued at East
+979,573,24,VEHICLE_ADDED,2026-11-01 23:31:11,West,Vehicle V230 (Car) queued at West
+980,574,24,VEHICLE_ADDED,2026-11-01 23:31:11,East,Vehicle V231 (Car) queued at East
+981,575,24,VEHICLE_ADDED,2026-11-01 23:31:11,West,Vehicle V232 (Car) queued at West
+982,576,24,VEHICLE_ADDED,2026-11-01 23:31:11,East,Vehicle V233 (Car) queued at East
+983,577,24,VEHICLE_ADDED,2026-11-01 23:31:11,South,Vehicle V234 (Car) queued at South
+984,370,24,VEHICLE_EXITED,2026-11-01 23:31:11,North,Vehicle completed exit from North
+985,415,24,VEHICLE_ENTERED,2026-11-01 23:31:11,North,Vehicle entered intersection from North
+986,371,24,VEHICLE_EXITED,2026-11-01 23:31:11,North,Vehicle completed exit from North
+987,410,24,VEHICLE_ENTERED,2026-11-01 23:31:11,North,Vehicle entered intersection from North
+988,405,24,VEHICLE_ENTERED,2026-11-01 23:31:11,South,Vehicle entered intersection from South
+989,406,24,VEHICLE_ENTERED,2026-11-01 23:31:11,South,Vehicle entered intersection from South
+990,578,24,VEHICLE_ADDED,2026-11-01 23:31:11,West,Vehicle V235 (Car) queued at West
+991,579,24,VEHICLE_ADDED,2026-11-01 23:31:11,North,Vehicle V236 (Car) queued at North
+992,580,24,VEHICLE_ADDED,2026-11-01 23:31:11,West,Vehicle V237 (Car) queued at West
+993,581,24,VEHICLE_ADDED,2026-11-01 23:31:11,North,Vehicle V238 (Car) queued at North
+994,582,24,VEHICLE_ADDED,2026-11-01 23:31:11,North,Vehicle V239 (Car) queued at North
+995,583,24,VEHICLE_ADDED,2026-11-01 23:31:12,South,Vehicle V240 (Car) queued at South
+996,584,24,VEHICLE_ADDED,2026-11-01 23:31:12,West,Vehicle V241 (Car) queued at West
+997,585,24,VEHICLE_ADDED,2026-11-01 23:31:12,South,Vehicle V242 (Car) queued at South
+998,586,24,VEHICLE_ADDED,2026-11-01 23:31:12,North,Vehicle V243 (Car) queued at North
+999,587,24,VEHICLE_ADDED,2026-11-01 23:31:12,East,Vehicle V244 (Car) queued at East
+1000,588,24,VEHICLE_ADDED,2026-11-01 23:31:12,North,Vehicle V245 (Car) queued at North
+1001,589,24,VEHICLE_ADDED,2026-11-01 23:31:12,North,Vehicle V246 (Car) queued at North
+1002,590,24,VEHICLE_ADDED,2026-11-01 23:31:12,West,Vehicle V247 (Car) queued at West
+1003,591,24,VEHICLE_ADDED,2026-11-01 23:31:12,West,Vehicle V248 (Car) queued at West
+1004,592,24,VEHICLE_ADDED,2026-11-01 23:31:12,South,Vehicle V249 (Car) queued at South
+1005,593,24,VEHICLE_ADDED,2026-11-01 23:31:12,East,Vehicle V250 (Car) queued at East
+1006,594,24,VEHICLE_ADDED,2026-11-01 23:31:12,East,Vehicle V251 (Car) queued at East
+1007,595,24,VEHICLE_ADDED,2026-11-01 23:31:12,North,Vehicle V252 (Car) queued at North
+1008,596,24,VEHICLE_ADDED,2026-11-01 23:31:12,North,Vehicle V253 (Car) queued at North
+1009,597,24,VEHICLE_ADDED,2026-11-01 23:31:12,North,Vehicle V254 (Car) queued at North
+1010,598,24,VEHICLE_ADDED,2026-11-01 23:31:12,West,Vehicle V255 (Car) queued at West
+1011,599,24,VEHICLE_ADDED,2026-11-01 23:31:12,East,Vehicle V256 (Car) queued at East
+1012,600,24,VEHICLE_ADDED,2026-11-01 23:31:12,South,Vehicle V257 (Car) queued at South
+1013,601,24,VEHICLE_ADDED,2026-11-01 23:31:12,West,Vehicle V258 (Car) queued at West
+1014,602,24,VEHICLE_ADDED,2026-11-01 23:31:12,East,Vehicle V259 (Car) queued at East
+1015,603,24,VEHICLE_ADDED,2026-11-01 23:31:12,West,Vehicle V260 (Car) queued at West
+1016,604,24,VEHICLE_ADDED,2026-11-01 23:31:12,North,Vehicle V261 (Car) queued at North
+1017,605,24,VEHICLE_ADDED,2026-11-01 23:31:13,West,Vehicle V262 (Car) queued at West
+1018,606,24,VEHICLE_ADDED,2026-11-01 23:31:13,North,Vehicle V263 (Car) queued at North
+1019,607,24,VEHICLE_ADDED,2026-11-01 23:31:13,East,Vehicle V264 (Car) queued at East
+1020,608,24,VEHICLE_ADDED,2026-11-01 23:31:13,West,Vehicle V265 (Car) queued at West
+1021,609,24,VEHICLE_ADDED,2026-11-01 23:31:13,West,Vehicle V266 (Car) queued at West
+1022,610,24,VEHICLE_ADDED,2026-11-01 23:31:13,West,Vehicle V267 (Car) queued at West
+1023,611,24,VEHICLE_ADDED,2026-11-01 23:31:13,East,Vehicle V268 (Car) queued at East
+1024,612,24,VEHICLE_ADDED,2026-11-01 23:31:13,East,Vehicle V269 (Car) queued at East
+1025,613,24,VEHICLE_ADDED,2026-11-01 23:31:13,North,Vehicle V270 (Car) queued at North
+1026,614,24,VEHICLE_ADDED,2026-11-01 23:31:13,South,Vehicle V271 (Car) queued at South
+1027,615,24,VEHICLE_ADDED,2026-11-01 23:31:13,South,Vehicle V272 (Car) queued at South
+1028,616,24,VEHICLE_ADDED,2026-11-01 23:31:13,West,Vehicle V273 (Car) queued at West
+1029,617,24,VEHICLE_ADDED,2026-11-01 23:31:13,East,Vehicle V274 (Car) queued at East
+1030,618,24,VEHICLE_ADDED,2026-11-01 23:31:13,East,Vehicle V275 (Car) queued at East
+1031,619,24,VEHICLE_ADDED,2026-11-01 23:31:13,North,Vehicle V276 (Car) queued at North
+1032,620,24,VEHICLE_ADDED,2026-11-01 23:31:13,North,Vehicle V277 (Car) queued at North
+1033,621,24,VEHICLE_ADDED,2026-11-01 23:31:13,East,Vehicle V278 (Car) queued at East
+1034,622,24,VEHICLE_ADDED,2026-11-01 23:31:13,East,Vehicle V279 (Car) queued at East
+1035,623,24,VEHICLE_ADDED,2026-11-01 23:31:13,North,Vehicle V280 (Car) queued at North
+1036,624,24,VEHICLE_ADDED,2026-11-01 23:31:13,South,Vehicle V281 (Car) queued at South
+1037,625,24,VEHICLE_ADDED,2026-11-01 23:31:13,South,Vehicle V282 (Car) queued at South
+1038,626,24,VEHICLE_ADDED,2026-11-01 23:31:13,North,Vehicle V283 (Car) queued at North
+1039,627,24,VEHICLE_ADDED,2026-11-01 23:31:13,East,Vehicle V284 (Car) queued at East
+1040,628,24,VEHICLE_ADDED,2026-11-01 23:31:13,South,Vehicle V285 (Car) queued at South
+1041,629,24,VEHICLE_ADDED,2026-11-01 23:31:13,South,Vehicle V286 (Car) queued at South
+1042,630,24,VEHICLE_ADDED,2026-11-01 23:31:13,South,Vehicle V287 (Car) queued at South
+1043,631,24,VEHICLE_ADDED,2026-11-01 23:31:13,West,Vehicle V288 (Car) queued at West
+1044,632,24,VEHICLE_ADDED,2026-11-01 23:31:13,South,Vehicle V289 (Car) queued at South
+1045,633,24,VEHICLE_ADDED,2026-11-01 23:31:14,North,Vehicle V290 (Car) queued at North
+1046,634,24,VEHICLE_ADDED,2026-11-01 23:31:14,East,Vehicle V291 (Car) queued at East
+1047,635,24,VEHICLE_ADDED,2026-11-01 23:31:14,East,Vehicle V292 (Car) queued at East
+1048,636,24,VEHICLE_ADDED,2026-11-01 23:31:14,East,Vehicle V293 (Car) queued at East
+1049,637,24,VEHICLE_ADDED,2026-11-01 23:31:14,North,Vehicle V294 (Car) queued at North
+1050,638,24,VEHICLE_ADDED,2026-11-01 23:31:14,North,Vehicle V295 (Car) queued at North
+1051,639,24,VEHICLE_ADDED,2026-11-01 23:31:14,South,Vehicle V296 (Car) queued at South
+1052,640,24,VEHICLE_ADDED,2026-11-01 23:31:14,North,Vehicle V297 (Car) queued at North
+1053,641,24,VEHICLE_ADDED,2026-11-01 23:31:14,West,Vehicle V298 (Car) queued at West
+1054,642,24,VEHICLE_ADDED,2026-11-01 23:31:14,South,Vehicle V299 (Car) queued at South
+1055,643,24,VEHICLE_ADDED,2026-11-01 23:31:14,North,Vehicle V300 (Car) queued at North
+1056,644,24,VEHICLE_ADDED,2026-11-01 23:31:14,West,Vehicle V301 (Car) queued at West
+1057,645,24,VEHICLE_ADDED,2026-11-01 23:31:14,East,Vehicle V302 (Car) queued at East
+1058,646,24,VEHICLE_ADDED,2026-11-01 23:31:14,South,Vehicle V303 (Car) queued at South
+1059,647,24,VEHICLE_ADDED,2026-11-01 23:31:14,North,Vehicle V304 (Car) queued at North
+1060,648,24,VEHICLE_ADDED,2026-11-01 23:31:14,South,Vehicle V305 (Car) queued at South
+1061,649,24,VEHICLE_ADDED,2026-11-01 23:31:14,West,Vehicle V306 (Car) queued at West
+1062,650,24,VEHICLE_ADDED,2026-11-01 23:31:14,South,Vehicle V307 (Car) queued at South
+1063,651,24,VEHICLE_ADDED,2026-11-01 23:31:14,North,Vehicle V308 (Car) queued at North
+1064,652,24,VEHICLE_ADDED,2026-11-01 23:31:14,South,Vehicle V309 (Car) queued at South
+1065,653,24,VEHICLE_ADDED,2026-11-01 23:31:15,South,Vehicle V310 (Car) queued at South
+1066,654,24,VEHICLE_ADDED,2026-11-01 23:31:15,North,Vehicle V311 (Car) queued at North
+1067,655,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V312 (Car) queued at West
+1068,656,24,VEHICLE_ADDED,2026-11-01 23:31:15,East,Vehicle V313 (Car) queued at East
+1069,657,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V314 (Car) queued at West
+1070,658,24,VEHICLE_ADDED,2026-11-01 23:31:15,South,Vehicle V315 (Car) queued at South
+1071,659,24,VEHICLE_ADDED,2026-11-01 23:31:15,North,Vehicle V316 (Car) queued at North
+1072,660,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V317 (Car) queued at West
+1073,661,24,VEHICLE_ADDED,2026-11-01 23:31:15,South,Vehicle V318 (Car) queued at South
+1074,662,24,VEHICLE_ADDED,2026-11-01 23:31:15,East,Vehicle V319 (Car) queued at East
+1075,663,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V320 (Car) queued at West
+1076,664,24,VEHICLE_ADDED,2026-11-01 23:31:15,East,Vehicle V321 (Car) queued at East
+1077,665,24,VEHICLE_ADDED,2026-11-01 23:31:15,North,Vehicle V322 (Car) queued at North
+1078,666,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V323 (Car) queued at West
+1079,667,24,VEHICLE_ADDED,2026-11-01 23:31:15,North,Vehicle V324 (Car) queued at North
+1080,668,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V325 (Car) queued at West
+1081,669,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V326 (Car) queued at West
+1082,670,24,VEHICLE_ADDED,2026-11-01 23:31:15,South,Vehicle V327 (Car) queued at South
+1083,671,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V328 (Car) queued at West
+1084,672,24,VEHICLE_ADDED,2026-11-01 23:31:15,North,Vehicle V329 (Car) queued at North
+1085,673,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V330 (Car) queued at West
+1086,674,24,VEHICLE_ADDED,2026-11-01 23:31:15,East,Vehicle V331 (Car) queued at East
+1087,675,24,VEHICLE_ADDED,2026-11-01 23:31:15,East,Vehicle V332 (Car) queued at East
+1088,676,24,VEHICLE_ADDED,2026-11-01 23:31:15,South,Vehicle V333 (Car) queued at South
+1089,677,24,VEHICLE_ADDED,2026-11-01 23:31:15,North,Vehicle V334 (Car) queued at North
+1090,678,24,VEHICLE_ADDED,2026-11-01 23:31:15,East,Vehicle V335 (Car) queued at East
+1091,679,24,VEHICLE_ADDED,2026-11-01 23:31:15,West,Vehicle V336 (Car) queued at West
+1092,680,24,VEHICLE_ADDED,2026-11-01 23:31:15,North,Vehicle V337 (Car) queued at North
+1093,681,24,VEHICLE_ADDED,2026-11-01 23:31:15,East,Vehicle V338 (Car) queued at East
+1094,682,24,VEHICLE_ADDED,2026-11-01 23:31:15,North,Vehicle V339 (Car) queued at North
+1095,683,24,VEHICLE_ADDED,2026-11-01 23:31:16,South,Vehicle V340 (Car) queued at South
+1096,684,24,VEHICLE_ADDED,2026-11-01 23:31:16,East,Vehicle V341 (Car) queued at East
+1097,685,24,VEHICLE_ADDED,2026-11-01 23:31:16,East,Vehicle V342 (Car) queued at East
+1098,686,24,VEHICLE_ADDED,2026-11-01 23:31:16,West,Vehicle V343 (Car) queued at West
+1099,687,24,VEHICLE_ADDED,2026-11-01 23:31:16,North,Vehicle V344 (Car) queued at North
+1100,688,24,VEHICLE_ADDED,2026-11-01 23:31:16,East,Vehicle V345 (Car) queued at East
+1101,689,24,VEHICLE_ADDED,2026-11-01 23:31:16,South,Vehicle V346 (Car) queued at South
+1102,690,24,VEHICLE_ADDED,2026-11-01 23:31:16,East,Vehicle V347 (Car) queued at East
+1103,691,24,VEHICLE_ADDED,2026-11-01 23:31:16,East,Vehicle V348 (Car) queued at East
+1104,692,24,VEHICLE_ADDED,2026-11-01 23:31:16,North,Vehicle V349 (Car) queued at North
+1105,693,24,VEHICLE_ADDED,2026-11-01 23:31:16,North,Vehicle V350 (Car) queued at North
+1106,694,24,VEHICLE_ADDED,2026-11-01 23:31:16,West,Vehicle V351 (Car) queued at West
+1107,695,24,VEHICLE_ADDED,2026-11-01 23:31:16,West,Vehicle V352 (Car) queued at West
+1108,696,24,VEHICLE_ADDED,2026-11-01 23:31:16,North,Vehicle V353 (Car) queued at North
+1109,697,24,VEHICLE_ADDED,2026-11-01 23:31:16,East,Vehicle V354 (Car) queued at East
+1110,698,24,VEHICLE_ADDED,2026-11-01 23:31:16,South,Vehicle V355 (Car) queued at South
+1111,699,24,VEHICLE_ADDED,2026-11-01 23:31:16,North,Vehicle V356 (Car) queued at North
+1112,700,24,VEHICLE_ADDED,2026-11-01 23:31:16,North,Vehicle V357 (Car) queued at North
+1113,701,24,VEHICLE_ADDED,2026-11-01 23:31:16,West,Vehicle V358 (Car) queued at West
+1114,702,24,VEHICLE_ADDED,2026-11-01 23:31:16,East,Vehicle V359 (Car) queued at East
+1115,703,24,VEHICLE_ADDED,2026-11-01 23:31:17,North,Vehicle V360 (Car) queued at North
+1116,704,24,VEHICLE_ADDED,2026-11-01 23:31:17,South,Vehicle V361 (Car) queued at South
+1117,705,24,VEHICLE_ADDED,2026-11-01 23:31:17,South,Vehicle V362 (Car) queued at South
+1118,706,24,VEHICLE_ADDED,2026-11-01 23:31:17,North,Vehicle V363 (Car) queued at North
+1119,707,24,VEHICLE_ADDED,2026-11-01 23:31:17,South,Vehicle V364 (Car) queued at South
+1120,708,24,VEHICLE_ADDED,2026-11-01 23:31:17,North,Vehicle V365 (Car) queued at North
+1121,709,24,VEHICLE_ADDED,2026-11-01 23:31:17,East,Vehicle V366 (Car) queued at East
+1122,710,24,VEHICLE_ADDED,2026-11-01 23:31:17,West,Vehicle V367 (Car) queued at West
+1123,711,24,VEHICLE_ADDED,2026-11-01 23:31:17,South,Vehicle V368 (Car) queued at South
+1124,712,24,VEHICLE_ADDED,2026-11-01 23:31:17,North,Vehicle V369 (Car) queued at North
+1125,713,24,VEHICLE_ADDED,2026-11-01 23:31:17,East,Vehicle V370 (Car) queued at East
+1126,714,24,VEHICLE_ADDED,2026-11-01 23:31:17,East,Vehicle V371 (Car) queued at East
+1127,715,24,VEHICLE_ADDED,2026-11-01 23:31:17,West,Vehicle V372 (Car) queued at West
+1128,716,24,VEHICLE_ADDED,2026-11-01 23:31:17,North,Vehicle V373 (Car) queued at North
+1129,717,24,VEHICLE_ADDED,2026-11-01 23:31:17,East,Vehicle V374 (Car) queued at East
+1130,718,24,VEHICLE_ADDED,2026-11-01 23:31:17,North,Vehicle V375 (Car) queued at North
+1131,719,24,VEHICLE_ADDED,2026-11-01 23:31:17,North,Vehicle V376 (Car) queued at North
+1132,720,24,VEHICLE_ADDED,2026-11-01 23:31:17,South,Vehicle V377 (Car) queued at South
+1133,721,24,VEHICLE_ADDED,2026-11-01 23:31:17,South,Vehicle V378 (Car) queued at South
+1134,722,24,VEHICLE_ADDED,2026-11-01 23:31:17,North,Vehicle V379 (Car) queued at North
+1135,723,24,VEHICLE_ADDED,2026-11-01 23:31:17,East,Vehicle V380 (Car) queued at East
+1136,724,24,VEHICLE_ADDED,2026-11-01 23:31:17,West,Vehicle V381 (Car) queued at West
+1137,725,24,VEHICLE_ADDED,2026-11-01 23:31:17,South,Vehicle V382 (Car) queued at South
+1138,726,24,VEHICLE_ADDED,2026-11-01 23:31:17,East,Vehicle V383 (Car) queued at East
+1139,727,24,VEHICLE_ADDED,2026-11-01 23:31:17,East,Vehicle V384 (Car) queued at East
+1140,728,24,VEHICLE_ADDED,2026-11-01 23:31:17,East,Vehicle V385 (Car) queued at East
+1141,729,24,VEHICLE_ADDED,2026-11-01 23:31:18,East,Vehicle V386 (Car) queued at East
+1142,730,24,VEHICLE_ADDED,2026-11-01 23:31:18,East,Vehicle V387 (Car) queued at East
+1143,731,24,VEHICLE_ADDED,2026-11-01 23:31:18,South,Vehicle V388 (Car) queued at South
+1144,732,24,VEHICLE_ADDED,2026-11-01 23:31:18,East,Vehicle V389 (Car) queued at East
+1145,733,24,VEHICLE_ADDED,2026-11-01 23:31:18,North,Vehicle V390 (Car) queued at North
+1146,734,24,VEHICLE_ADDED,2026-11-01 23:31:18,East,Vehicle V391 (Car) queued at East
+1147,735,24,VEHICLE_ADDED,2026-11-01 23:31:18,East,Vehicle V392 (Car) queued at East
+1148,736,24,VEHICLE_ADDED,2026-11-01 23:31:18,South,Vehicle V393 (Car) queued at South
+1149,737,24,VEHICLE_ADDED,2026-11-01 23:31:18,East,Vehicle V394 (Car) queued at East
+1150,738,24,VEHICLE_ADDED,2026-11-01 23:31:18,South,Vehicle V395 (Car) queued at South
+1151,739,24,VEHICLE_ADDED,2026-11-01 23:31:18,South,Vehicle V396 (Car) queued at South
+1152,740,24,VEHICLE_ADDED,2026-11-01 23:31:18,East,Vehicle V397 (Car) queued at East
+1153,741,24,VEHICLE_ADDED,2026-11-01 23:31:18,South,Vehicle V398 (Car) queued at South
+1154,742,24,VEHICLE_ADDED,2026-11-01 23:31:18,North,Vehicle V399 (Car) queued at North
+1155,372,24,VEHICLE_EXITED,2026-11-01 23:31:18,North,Vehicle completed exit from North
+1156,374,24,VEHICLE_EXITED,2026-11-01 23:31:18,North,Vehicle completed exit from North
+1157,423,24,VEHICLE_ENTERED,2026-11-01 23:31:18,North,Vehicle entered intersection from North
+1158,429,24,VEHICLE_ENTERED,2026-11-01 23:31:18,North,Vehicle entered intersection from North
+1159,373,24,VEHICLE_EXITED,2026-11-01 23:31:18,North,Vehicle completed exit from North
+1160,375,24,VEHICLE_EXITED,2026-11-01 23:31:18,North,Vehicle completed exit from North
+1161,422,24,VEHICLE_ENTERED,2026-11-01 23:31:18,North,Vehicle entered intersection from North
+1162,424,24,VEHICLE_ENTERED,2026-11-01 23:31:18,North,Vehicle entered intersection from North
+1163,407,24,VEHICLE_ENTERED,2026-11-01 23:31:18,South,Vehicle entered intersection from South
+1164,414,24,VEHICLE_ENTERED,2026-11-01 23:31:18,South,Vehicle entered intersection from South
+1165,412,24,VEHICLE_ENTERED,2026-11-01 23:31:18,South,Vehicle entered intersection from South
+1166,418,24,VEHICLE_ENTERED,2026-11-01 23:31:18,South,Vehicle entered intersection from South
+1167,376,24,VEHICLE_EXITED,2026-11-01 23:31:19,North,Vehicle completed exit from North
+1168,437,24,VEHICLE_ENTERED,2026-11-01 23:31:19,North,Vehicle entered intersection from North
+1169,377,24,VEHICLE_EXITED,2026-11-01 23:31:19,North,Vehicle completed exit from North
+1170,430,24,VEHICLE_ENTERED,2026-11-01 23:31:19,North,Vehicle entered intersection from North
+1171,419,24,VEHICLE_ENTERED,2026-11-01 23:31:19,South,Vehicle entered intersection from South
+1172,421,24,VEHICLE_ENTERED,2026-11-01 23:31:19,South,Vehicle entered intersection from South
+1173,378,24,VEHICLE_EXITED,2026-11-01 23:31:19,North,Vehicle completed exit from North
+1174,380,24,VEHICLE_EXITED,2026-11-01 23:31:19,North,Vehicle completed exit from North
+1175,446,24,VEHICLE_ENTERED,2026-11-01 23:31:19,North,Vehicle entered intersection from North
+1176,458,24,VEHICLE_ENTERED,2026-11-01 23:31:19,North,Vehicle entered intersection from North
+1177,379,24,VEHICLE_EXITED,2026-11-01 23:31:19,North,Vehicle completed exit from North
+1178,381,24,VEHICLE_EXITED,2026-11-01 23:31:19,North,Vehicle completed exit from North
+1179,441,24,VEHICLE_ENTERED,2026-11-01 23:31:20,North,Vehicle entered intersection from North
+1180,454,24,VEHICLE_ENTERED,2026-11-01 23:31:20,North,Vehicle entered intersection from North
+1181,425,24,VEHICLE_ENTERED,2026-11-01 23:31:20,South,Vehicle entered intersection from South
+1182,432,24,VEHICLE_ENTERED,2026-11-01 23:31:20,South,Vehicle entered intersection from South
+1183,427,24,VEHICLE_ENTERED,2026-11-01 23:31:20,South,Vehicle entered intersection from South
+1184,434,24,VEHICLE_ENTERED,2026-11-01 23:31:20,South,Vehicle entered intersection from South
+1185,382,24,VEHICLE_EXITED,2026-11-01 23:31:20,North,Vehicle completed exit from North
+1186,462,24,VEHICLE_ENTERED,2026-11-01 23:31:20,North,Vehicle entered intersection from North
+1187,461,24,VEHICLE_ENTERED,2026-11-01 23:31:20,North,Vehicle entered intersection from North
+1188,435,24,VEHICLE_ENTERED,2026-11-01 23:31:20,South,Vehicle entered intersection from South
+1189,442,24,VEHICLE_ENTERED,2026-11-01 23:31:20,South,Vehicle entered intersection from South
+1190,464,24,VEHICLE_ENTERED,2026-11-01 23:31:21,North,Vehicle entered intersection from North
+1191,473,24,VEHICLE_ENTERED,2026-11-01 23:31:21,North,Vehicle entered intersection from North
+1192,463,24,VEHICLE_ENTERED,2026-11-01 23:31:21,North,Vehicle entered intersection from North
+1193,469,24,VEHICLE_ENTERED,2026-11-01 23:31:22,North,Vehicle entered intersection from North
+1194,448,24,VEHICLE_ENTERED,2026-11-01 23:31:22,South,Vehicle entered intersection from South
+1195,456,24,VEHICLE_ENTERED,2026-11-01 23:31:22,South,Vehicle entered intersection from South
+1196,450,24,VEHICLE_ENTERED,2026-11-01 23:31:22,South,Vehicle entered intersection from South
+1197,457,24,VEHICLE_ENTERED,2026-11-01 23:31:22,South,Vehicle entered intersection from South
+1198,389,24,VEHICLE_EXITED,2026-11-01 23:31:23,North,Vehicle completed exit from North
+1199,480,24,VEHICLE_ENTERED,2026-11-01 23:31:23,North,Vehicle entered intersection from North
+1200,488,24,VEHICLE_ENTERED,2026-11-01 23:31:23,North,Vehicle entered intersection from North
+1201,385,24,VEHICLE_EXITED,2026-11-01 23:31:23,North,Vehicle completed exit from North
+1202,479,24,VEHICLE_ENTERED,2026-11-01 23:31:23,North,Vehicle entered intersection from North
+1203,483,24,VEHICLE_ENTERED,2026-11-01 23:31:23,North,Vehicle entered intersection from North
+1204,383,24,VEHICLE_EXITED,2026-11-01 23:31:23,South,Vehicle completed exit from South
+1205,459,24,VEHICLE_ENTERED,2026-11-01 23:31:23,South,Vehicle entered intersection from South
+1206,471,24,VEHICLE_ENTERED,2026-11-01 23:31:23,South,Vehicle entered intersection from South
+1207,384,24,VEHICLE_EXITED,2026-11-01 23:31:23,South,Vehicle completed exit from South
+1208,460,24,VEHICLE_ENTERED,2026-11-01 23:31:23,South,Vehicle entered intersection from South
+1209,472,24,VEHICLE_ENTERED,2026-11-01 23:31:23,South,Vehicle entered intersection from South
+1210,392,24,VEHICLE_EXITED,2026-11-01 23:31:24,North,Vehicle completed exit from North
+1211,401,24,VEHICLE_EXITED,2026-11-01 23:31:24,North,Vehicle completed exit from North
+1212,499,24,VEHICLE_ENTERED,2026-11-01 23:31:24,North,Vehicle entered intersection from North
+1213,391,24,VEHICLE_EXITED,2026-11-01 23:31:24,North,Vehicle completed exit from North
+1214,399,24,VEHICLE_EXITED,2026-11-01 23:31:24,North,Vehicle completed exit from North
+1215,492,24,VEHICLE_ENTERED,2026-11-01 23:31:24,North,Vehicle entered intersection from North
+1216,393,24,VEHICLE_EXITED,2026-11-01 23:31:24,South,Vehicle completed exit from South
+1217,397,24,VEHICLE_EXITED,2026-11-01 23:31:24,South,Vehicle completed exit from South
+1218,474,24,VEHICLE_ENTERED,2026-11-01 23:31:24,South,Vehicle entered intersection from South
+1219,394,24,VEHICLE_EXITED,2026-11-01 23:31:24,South,Vehicle completed exit from South
+1220,400,24,VEHICLE_EXITED,2026-11-01 23:31:24,South,Vehicle completed exit from South
+1221,478,24,VEHICLE_ENTERED,2026-11-01 23:31:24,South,Vehicle entered intersection from South
+1222,408,24,VEHICLE_EXITED,2026-11-01 23:31:25,North,Vehicle completed exit from North
+1223,516,24,VEHICLE_ENTERED,2026-11-01 23:31:25,North,Vehicle entered intersection from North
+1224,520,24,VEHICLE_ENTERED,2026-11-01 23:31:25,North,Vehicle entered intersection from North
+1225,402,24,VEHICLE_EXITED,2026-11-01 23:31:25,North,Vehicle completed exit from North
+1226,504,24,VEHICLE_ENTERED,2026-11-01 23:31:25,North,Vehicle entered intersection from North
+1227,519,24,VEHICLE_ENTERED,2026-11-01 23:31:25,North,Vehicle entered intersection from North
+1228,403,24,VEHICLE_EXITED,2026-11-01 23:31:25,South,Vehicle completed exit from South
+1229,482,24,VEHICLE_ENTERED,2026-11-01 23:31:25,South,Vehicle entered intersection from South
+1230,489,24,VEHICLE_ENTERED,2026-11-01 23:31:25,South,Vehicle entered intersection from South
+1231,404,24,VEHICLE_EXITED,2026-11-01 23:31:25,South,Vehicle completed exit from South
+1232,486,24,VEHICLE_ENTERED,2026-11-01 23:31:25,South,Vehicle entered intersection from South
+1233,496,24,VEHICLE_ENTERED,2026-11-01 23:31:25,South,Vehicle entered intersection from South
+1234,415,24,VEHICLE_EXITED,2026-11-01 23:31:26,North,Vehicle completed exit from North
+1235,423,24,VEHICLE_EXITED,2026-11-01 23:31:26,North,Vehicle completed exit from North
+1236,526,24,VEHICLE_ENTERED,2026-11-01 23:31:26,North,Vehicle entered intersection from North
+1237,410,24,VEHICLE_EXITED,2026-11-01 23:31:26,North,Vehicle completed exit from North
+1238,422,24,VEHICLE_EXITED,2026-11-01 23:31:26,North,Vehicle completed exit from North
+1239,522,24,VEHICLE_ENTERED,2026-11-01 23:31:26,North,Vehicle entered intersection from North
+1240,405,24,VEHICLE_EXITED,2026-11-01 23:31:26,South,Vehicle completed exit from South
+1241,407,24,VEHICLE_EXITED,2026-11-01 23:31:26,South,Vehicle completed exit from South
+1242,498,24,VEHICLE_ENTERED,2026-11-01 23:31:26,South,Vehicle entered intersection from South
+1243,406,24,VEHICLE_EXITED,2026-11-01 23:31:26,South,Vehicle completed exit from South
+1244,412,24,VEHICLE_EXITED,2026-11-01 23:31:26,South,Vehicle completed exit from South
+1245,503,24,VEHICLE_ENTERED,2026-11-01 23:31:26,South,Vehicle entered intersection from South
+1246,429,24,VEHICLE_EXITED,2026-11-01 23:31:27,North,Vehicle completed exit from North
+1247,437,24,VEHICLE_EXITED,2026-11-01 23:31:27,North,Vehicle completed exit from North
+1248,532,24,VEHICLE_ENTERED,2026-11-01 23:31:27,North,Vehicle entered intersection from North
+1249,541,24,VEHICLE_ENTERED,2026-11-01 23:31:27,North,Vehicle entered intersection from North
+1250,424,24,VEHICLE_EXITED,2026-11-01 23:31:27,North,Vehicle completed exit from North
+1251,430,24,VEHICLE_EXITED,2026-11-01 23:31:27,North,Vehicle completed exit from North
+1252,529,24,VEHICLE_ENTERED,2026-11-01 23:31:27,North,Vehicle entered intersection from North
+1253,534,24,VEHICLE_ENTERED,2026-11-01 23:31:27,North,Vehicle entered intersection from North
+1254,414,24,VEHICLE_EXITED,2026-11-01 23:31:27,South,Vehicle completed exit from South
+1255,419,24,VEHICLE_EXITED,2026-11-01 23:31:27,South,Vehicle completed exit from South
+1256,505,24,VEHICLE_ENTERED,2026-11-01 23:31:27,South,Vehicle entered intersection from South
+1257,507,24,VEHICLE_ENTERED,2026-11-01 23:31:27,South,Vehicle entered intersection from South
+1258,418,24,VEHICLE_EXITED,2026-11-01 23:31:27,South,Vehicle completed exit from South
+1259,421,24,VEHICLE_EXITED,2026-11-01 23:31:27,South,Vehicle completed exit from South
+1260,506,24,VEHICLE_ENTERED,2026-11-01 23:31:27,South,Vehicle entered intersection from South
+1261,512,24,VEHICLE_ENTERED,2026-11-01 23:31:27,South,Vehicle entered intersection from South
+1262,446,24,VEHICLE_EXITED,2026-11-01 23:31:28,North,Vehicle completed exit from North
+1263,549,24,VEHICLE_ENTERED,2026-11-01 23:31:28,North,Vehicle entered intersection from North
+1264,441,24,VEHICLE_EXITED,2026-11-01 23:31:28,North,Vehicle completed exit from North
+1265,547,24,VEHICLE_ENTERED,2026-11-01 23:31:28,North,Vehicle entered intersection from North
+1266,425,24,VEHICLE_EXITED,2026-11-01 23:31:28,South,Vehicle completed exit from South
+1267,518,24,VEHICLE_ENTERED,2026-11-01 23:31:28,South,Vehicle entered intersection from South
+1268,427,24,VEHICLE_EXITED,2026-11-01 23:31:28,South,Vehicle completed exit from South
+1269,527,24,VEHICLE_ENTERED,2026-11-01 23:31:28,South,Vehicle entered intersection from South
+1270,458,24,VEHICLE_EXITED,2026-11-01 23:31:29,North,Vehicle completed exit from North
+1271,462,24,VEHICLE_EXITED,2026-11-01 23:31:29,North,Vehicle completed exit from North
+1272,554,24,VEHICLE_ENTERED,2026-11-01 23:31:29,North,Vehicle entered intersection from North
+1273,558,24,VEHICLE_ENTERED,2026-11-01 23:31:29,North,Vehicle entered intersection from North
+1274,454,24,VEHICLE_EXITED,2026-11-01 23:31:29,North,Vehicle completed exit from North
+1275,461,24,VEHICLE_EXITED,2026-11-01 23:31:29,North,Vehicle completed exit from North
+1276,553,24,VEHICLE_ENTERED,2026-11-01 23:31:29,North,Vehicle entered intersection from North
+1277,556,24,VEHICLE_ENTERED,2026-11-01 23:31:29,North,Vehicle entered intersection from North
+1278,432,24,VEHICLE_EXITED,2026-11-01 23:31:29,South,Vehicle completed exit from South
+1279,435,24,VEHICLE_EXITED,2026-11-01 23:31:29,South,Vehicle completed exit from South
+1280,531,24,VEHICLE_ENTERED,2026-11-01 23:31:29,South,Vehicle entered intersection from South
+1281,539,24,VEHICLE_ENTERED,2026-11-01 23:31:29,South,Vehicle entered intersection from South
+1282,434,24,VEHICLE_EXITED,2026-11-01 23:31:29,South,Vehicle completed exit from South
+1283,442,24,VEHICLE_EXITED,2026-11-01 23:31:29,South,Vehicle completed exit from South
+1284,537,24,VEHICLE_ENTERED,2026-11-01 23:31:29,South,Vehicle entered intersection from South
+1285,546,24,VEHICLE_ENTERED,2026-11-01 23:31:29,South,Vehicle entered intersection from South
+1286,464,24,VEHICLE_EXITED,2026-11-01 23:31:30,North,Vehicle completed exit from North
+1287,566,24,VEHICLE_ENTERED,2026-11-01 23:31:30,North,Vehicle entered intersection from North
+1288,463,24,VEHICLE_EXITED,2026-11-01 23:31:30,North,Vehicle completed exit from North
+1289,564,24,VEHICLE_ENTERED,2026-11-01 23:31:30,North,Vehicle entered intersection from North
+1290,448,24,VEHICLE_EXITED,2026-11-01 23:31:30,South,Vehicle completed exit from South
+1291,550,24,VEHICLE_ENTERED,2026-11-01 23:31:30,South,Vehicle entered intersection from South
+1292,450,24,VEHICLE_EXITED,2026-11-01 23:31:30,South,Vehicle completed exit from South
+1293,552,24,VEHICLE_ENTERED,2026-11-01 23:31:30,South,Vehicle entered intersection from South
+1294,473,24,VEHICLE_EXITED,2026-11-01 23:31:31,North,Vehicle completed exit from North
+1295,480,24,VEHICLE_EXITED,2026-11-01 23:31:31,North,Vehicle completed exit from North
+1296,579,24,VEHICLE_ENTERED,2026-11-01 23:31:31,North,Vehicle entered intersection from North
+1297,582,24,VEHICLE_ENTERED,2026-11-01 23:31:31,North,Vehicle entered intersection from North
+1298,469,24,VEHICLE_EXITED,2026-11-01 23:31:31,North,Vehicle completed exit from North
+1299,479,24,VEHICLE_EXITED,2026-11-01 23:31:31,North,Vehicle completed exit from North
+1300,569,24,VEHICLE_ENTERED,2026-11-01 23:31:31,North,Vehicle entered intersection from North
+1301,581,24,VEHICLE_ENTERED,2026-11-01 23:31:31,North,Vehicle entered intersection from North
+1302,456,24,VEHICLE_EXITED,2026-11-01 23:31:31,South,Vehicle completed exit from South
+1303,459,24,VEHICLE_EXITED,2026-11-01 23:31:31,South,Vehicle completed exit from South
+1304,557,24,VEHICLE_ENTERED,2026-11-01 23:31:31,South,Vehicle entered intersection from South
+1305,583,24,VEHICLE_ENTERED,2026-11-01 23:31:31,South,Vehicle entered intersection from South
+1306,457,24,VEHICLE_EXITED,2026-11-01 23:31:31,South,Vehicle completed exit from South
+1307,460,24,VEHICLE_EXITED,2026-11-01 23:31:31,South,Vehicle completed exit from South
+1308,577,24,VEHICLE_ENTERED,2026-11-01 23:31:31,South,Vehicle entered intersection from South
+1309,585,24,VEHICLE_ENTERED,2026-11-01 23:31:31,South,Vehicle entered intersection from South
+1310,488,24,VEHICLE_EXITED,2026-11-01 23:31:32,North,Vehicle completed exit from North
+1311,588,24,VEHICLE_ENTERED,2026-11-01 23:31:32,North,Vehicle entered intersection from North
+1312,595,24,VEHICLE_ENTERED,2026-11-01 23:31:32,North,Vehicle entered intersection from North
+1313,483,24,VEHICLE_EXITED,2026-11-01 23:31:32,North,Vehicle completed exit from North
+1314,586,24,VEHICLE_ENTERED,2026-11-01 23:31:32,North,Vehicle entered intersection from North
+1315,589,24,VEHICLE_ENTERED,2026-11-01 23:31:32,North,Vehicle entered intersection from North
+1316,471,24,VEHICLE_EXITED,2026-11-01 23:31:32,South,Vehicle completed exit from South
+1317,592,24,VEHICLE_ENTERED,2026-11-01 23:31:32,South,Vehicle entered intersection from South
+1318,614,24,VEHICLE_ENTERED,2026-11-01 23:31:32,South,Vehicle entered intersection from South
+1319,472,24,VEHICLE_EXITED,2026-11-01 23:31:32,South,Vehicle completed exit from South
+1320,600,24,VEHICLE_ENTERED,2026-11-01 23:31:32,South,Vehicle entered intersection from South
+1321,615,24,VEHICLE_ENTERED,2026-11-01 23:31:32,South,Vehicle entered intersection from South
+1322,499,24,VEHICLE_EXITED,2026-11-01 23:31:33,North,Vehicle completed exit from North
+1323,516,24,VEHICLE_EXITED,2026-11-01 23:31:33,North,Vehicle completed exit from North
+1324,597,24,VEHICLE_ENTERED,2026-11-01 23:31:33,North,Vehicle entered intersection from North
+1325,492,24,VEHICLE_EXITED,2026-11-01 23:31:33,North,Vehicle completed exit from North
+1326,504,24,VEHICLE_EXITED,2026-11-01 23:31:33,North,Vehicle completed exit from North
+1327,596,24,VEHICLE_ENTERED,2026-11-01 23:31:33,North,Vehicle entered intersection from North
+1328,474,24,VEHICLE_EXITED,2026-11-01 23:31:33,South,Vehicle completed exit from South
+1329,482,24,VEHICLE_EXITED,2026-11-01 23:31:33,South,Vehicle completed exit from South
+1330,624,24,VEHICLE_ENTERED,2026-11-01 23:31:33,South,Vehicle entered intersection from South
+1331,478,24,VEHICLE_EXITED,2026-11-01 23:31:33,South,Vehicle completed exit from South
+1332,486,24,VEHICLE_EXITED,2026-11-01 23:31:33,South,Vehicle completed exit from South
+1333,625,24,VEHICLE_ENTERED,2026-11-01 23:31:33,South,Vehicle entered intersection from South
+1334,743,24,VEHICLE_ADDED,2026-11-01 23:31:33,North,Vehicle V400 (Car) queued at North
+1335,520,24,VEHICLE_EXITED,2026-11-01 23:31:34,North,Vehicle completed exit from North
+1336,606,24,VEHICLE_ENTERED,2026-11-01 23:31:34,North,Vehicle entered intersection from North
+1337,619,24,VEHICLE_ENTERED,2026-11-01 23:31:34,North,Vehicle entered intersection from North
+1338,519,24,VEHICLE_EXITED,2026-11-01 23:31:34,North,Vehicle completed exit from North
+1339,604,24,VEHICLE_ENTERED,2026-11-01 23:31:34,North,Vehicle entered intersection from North
+1340,613,24,VEHICLE_ENTERED,2026-11-01 23:31:34,North,Vehicle entered intersection from North
+1341,489,24,VEHICLE_EXITED,2026-11-01 23:31:34,South,Vehicle completed exit from South
+1342,628,24,VEHICLE_ENTERED,2026-11-01 23:31:34,South,Vehicle entered intersection from South
+1343,630,24,VEHICLE_ENTERED,2026-11-01 23:31:34,South,Vehicle entered intersection from South
+1344,496,24,VEHICLE_EXITED,2026-11-01 23:31:34,South,Vehicle completed exit from South
+1345,629,24,VEHICLE_ENTERED,2026-11-01 23:31:34,South,Vehicle entered intersection from South
+1346,632,24,VEHICLE_ENTERED,2026-11-01 23:31:34,South,Vehicle entered intersection from South
+1347,526,24,VEHICLE_EXITED,2026-11-01 23:31:35,North,Vehicle completed exit from North
+1348,532,24,VEHICLE_EXITED,2026-11-01 23:31:35,North,Vehicle completed exit from North
+1349,623,24,VEHICLE_ENTERED,2026-11-01 23:31:35,North,Vehicle entered intersection from North
+1350,522,24,VEHICLE_EXITED,2026-11-01 23:31:35,North,Vehicle completed exit from North
+1351,529,24,VEHICLE_EXITED,2026-11-01 23:31:35,North,Vehicle completed exit from North
+1352,620,24,VEHICLE_ENTERED,2026-11-01 23:31:35,North,Vehicle entered intersection from North
+1353,498,24,VEHICLE_EXITED,2026-11-01 23:31:35,South,Vehicle completed exit from South
+1354,505,24,VEHICLE_EXITED,2026-11-01 23:31:35,South,Vehicle completed exit from South
+1355,639,24,VEHICLE_ENTERED,2026-11-01 23:31:35,South,Vehicle entered intersection from South
+1356,503,24,VEHICLE_EXITED,2026-11-01 23:31:35,South,Vehicle completed exit from South
+1357,506,24,VEHICLE_EXITED,2026-11-01 23:31:35,South,Vehicle completed exit from South
+1358,642,24,VEHICLE_ENTERED,2026-11-01 23:31:35,South,Vehicle entered intersection from South
+1359,541,24,VEHICLE_EXITED,2026-11-01 23:31:36,North,Vehicle completed exit from North
+1360,549,24,VEHICLE_EXITED,2026-11-01 23:31:36,North,Vehicle completed exit from North
+1361,633,24,VEHICLE_ENTERED,2026-11-01 23:31:36,North,Vehicle entered intersection from North
+1362,638,24,VEHICLE_ENTERED,2026-11-01 23:31:36,North,Vehicle entered intersection from North
+1363,534,24,VEHICLE_EXITED,2026-11-01 23:31:36,North,Vehicle completed exit from North
+1364,547,24,VEHICLE_EXITED,2026-11-01 23:31:36,North,Vehicle completed exit from North
+1365,626,24,VEHICLE_ENTERED,2026-11-01 23:31:36,North,Vehicle entered intersection from North
+1366,637,24,VEHICLE_ENTERED,2026-11-01 23:31:36,North,Vehicle entered intersection from North
+1367,507,24,VEHICLE_EXITED,2026-11-01 23:31:36,South,Vehicle completed exit from South
+1368,518,24,VEHICLE_EXITED,2026-11-01 23:31:36,South,Vehicle completed exit from South
+1369,646,24,VEHICLE_ENTERED,2026-11-01 23:31:36,South,Vehicle entered intersection from South
+1370,650,24,VEHICLE_ENTERED,2026-11-01 23:31:36,South,Vehicle entered intersection from South
+1371,512,24,VEHICLE_EXITED,2026-11-01 23:31:36,South,Vehicle completed exit from South
+1372,527,24,VEHICLE_EXITED,2026-11-01 23:31:36,South,Vehicle completed exit from South
+1373,648,24,VEHICLE_ENTERED,2026-11-01 23:31:36,South,Vehicle entered intersection from South
+1374,652,24,VEHICLE_ENTERED,2026-11-01 23:31:36,South,Vehicle entered intersection from South
+1375,554,24,VEHICLE_EXITED,2026-11-01 23:31:37,North,Vehicle completed exit from North
+1376,643,24,VEHICLE_ENTERED,2026-11-01 23:31:37,North,Vehicle entered intersection from North
+1377,553,24,VEHICLE_EXITED,2026-11-01 23:31:37,North,Vehicle completed exit from North
+1378,640,24,VEHICLE_ENTERED,2026-11-01 23:31:37,North,Vehicle entered intersection from North
+1379,531,24,VEHICLE_EXITED,2026-11-01 23:31:37,South,Vehicle completed exit from South
+1380,653,24,VEHICLE_ENTERED,2026-11-01 23:31:37,South,Vehicle entered intersection from South
+1381,537,24,VEHICLE_EXITED,2026-11-01 23:31:37,South,Vehicle completed exit from South
+1382,658,24,VEHICLE_ENTERED,2026-11-01 23:31:37,South,Vehicle entered intersection from South
+1383,558,24,VEHICLE_EXITED,2026-11-01 23:31:38,North,Vehicle completed exit from North
+1384,566,24,VEHICLE_EXITED,2026-11-01 23:31:38,North,Vehicle completed exit from North
+1385,651,24,VEHICLE_ENTERED,2026-11-01 23:31:38,North,Vehicle entered intersection from North
+1386,659,24,VEHICLE_ENTERED,2026-11-01 23:31:38,North,Vehicle entered intersection from North
+1387,556,24,VEHICLE_EXITED,2026-11-01 23:31:38,North,Vehicle completed exit from North
+1388,564,24,VEHICLE_EXITED,2026-11-01 23:31:38,North,Vehicle completed exit from North
+1389,647,24,VEHICLE_ENTERED,2026-11-01 23:31:38,North,Vehicle entered intersection from North
+1390,654,24,VEHICLE_ENTERED,2026-11-01 23:31:38,North,Vehicle entered intersection from North
+1391,539,24,VEHICLE_EXITED,2026-11-01 23:31:38,South,Vehicle completed exit from South
+1392,550,24,VEHICLE_EXITED,2026-11-01 23:31:38,South,Vehicle completed exit from South
+1393,661,24,VEHICLE_ENTERED,2026-11-01 23:31:38,South,Vehicle entered intersection from South
+1394,676,24,VEHICLE_ENTERED,2026-11-01 23:31:38,South,Vehicle entered intersection from South
+1395,546,24,VEHICLE_EXITED,2026-11-01 23:31:38,South,Vehicle completed exit from South
+1396,552,24,VEHICLE_EXITED,2026-11-01 23:31:38,South,Vehicle completed exit from South
+1397,670,24,VEHICLE_ENTERED,2026-11-01 23:31:38,South,Vehicle entered intersection from South
+1398,683,24,VEHICLE_ENTERED,2026-11-01 23:31:38,South,Vehicle entered intersection from South
+1399,579,24,VEHICLE_EXITED,2026-11-01 23:31:39,North,Vehicle completed exit from North
+1400,667,24,VEHICLE_ENTERED,2026-11-01 23:31:39,North,Vehicle entered intersection from North
+1401,677,24,VEHICLE_ENTERED,2026-11-01 23:31:39,North,Vehicle entered intersection from North
+1402,569,24,VEHICLE_EXITED,2026-11-01 23:31:39,North,Vehicle completed exit from North
+1403,665,24,VEHICLE_ENTERED,2026-11-01 23:31:39,North,Vehicle entered intersection from North
+1404,672,24,VEHICLE_ENTERED,2026-11-01 23:31:39,North,Vehicle entered intersection from North
+1405,557,24,VEHICLE_EXITED,2026-11-01 23:31:39,South,Vehicle completed exit from South
+1406,689,24,VEHICLE_ENTERED,2026-11-01 23:31:39,South,Vehicle entered intersection from South
+1407,704,24,VEHICLE_ENTERED,2026-11-01 23:31:39,South,Vehicle entered intersection from South
+1408,577,24,VEHICLE_EXITED,2026-11-01 23:31:39,South,Vehicle completed exit from South
+1409,698,24,VEHICLE_ENTERED,2026-11-01 23:31:39,South,Vehicle entered intersection from South
+1410,705,24,VEHICLE_ENTERED,2026-11-01 23:31:39,South,Vehicle entered intersection from South
+1411,582,24,VEHICLE_EXITED,2026-11-01 23:31:40,North,Vehicle completed exit from North
+1412,588,24,VEHICLE_EXITED,2026-11-01 23:31:40,North,Vehicle completed exit from North
+1413,682,24,VEHICLE_ENTERED,2026-11-01 23:31:40,North,Vehicle entered intersection from North
+1414,581,24,VEHICLE_EXITED,2026-11-01 23:31:40,North,Vehicle completed exit from North
+1415,586,24,VEHICLE_EXITED,2026-11-01 23:31:40,North,Vehicle completed exit from North
+1416,680,24,VEHICLE_ENTERED,2026-11-01 23:31:40,North,Vehicle entered intersection from North
+1417,583,24,VEHICLE_EXITED,2026-11-01 23:31:40,South,Vehicle completed exit from South
+1418,592,24,VEHICLE_EXITED,2026-11-01 23:31:40,South,Vehicle completed exit from South
+1419,707,24,VEHICLE_ENTERED,2026-11-01 23:31:40,South,Vehicle entered intersection from South
+1420,585,24,VEHICLE_EXITED,2026-11-01 23:31:40,South,Vehicle completed exit from South
+1421,600,24,VEHICLE_EXITED,2026-11-01 23:31:40,South,Vehicle completed exit from South
+1422,711,24,VEHICLE_ENTERED,2026-11-01 23:31:40,South,Vehicle entered intersection from South
+1423,744,24,VEHICLE_ADDED,2026-11-01 23:31:40,North,Vehicle V401 (Ambulance) queued at North
+1424,744,24,EMERGENCY_DETECTED,2026-11-01 23:31:40,North,Emergency ambulance dispatched on Road 1
+1425,595,24,VEHICLE_EXITED,2026-11-01 23:31:41,North,Vehicle completed exit from North
+1426,692,24,VEHICLE_ENTERED,2026-11-01 23:31:41,North,Vehicle entered intersection from North
+1427,696,24,VEHICLE_ENTERED,2026-11-01 23:31:41,North,Vehicle entered intersection from North
+1428,589,24,VEHICLE_EXITED,2026-11-01 23:31:41,North,Vehicle completed exit from North
+1429,687,24,VEHICLE_ENTERED,2026-11-01 23:31:41,North,Vehicle entered intersection from North
+1430,693,24,VEHICLE_ENTERED,2026-11-01 23:31:41,North,Vehicle entered intersection from North
+1431,614,24,VEHICLE_EXITED,2026-11-01 23:31:41,South,Vehicle completed exit from South
+1432,720,24,VEHICLE_ENTERED,2026-11-01 23:31:41,South,Vehicle entered intersection from South
+1433,725,24,VEHICLE_ENTERED,2026-11-01 23:31:41,South,Vehicle entered intersection from South
+1434,615,24,VEHICLE_EXITED,2026-11-01 23:31:41,South,Vehicle completed exit from South
+1435,721,24,VEHICLE_ENTERED,2026-11-01 23:31:41,South,Vehicle entered intersection from South
+1436,731,24,VEHICLE_ENTERED,2026-11-01 23:31:41,South,Vehicle entered intersection from South
+1437,597,24,VEHICLE_EXITED,2026-11-01 23:31:42,North,Vehicle completed exit from North
+1438,606,24,VEHICLE_EXITED,2026-11-01 23:31:42,North,Vehicle completed exit from North
+1439,700,24,VEHICLE_ENTERED,2026-11-01 23:31:42,North,Vehicle entered intersection from North
+1440,596,24,VEHICLE_EXITED,2026-11-01 23:31:42,North,Vehicle completed exit from North
+1441,604,24,VEHICLE_EXITED,2026-11-01 23:31:42,North,Vehicle completed exit from North
+1442,699,24,VEHICLE_ENTERED,2026-11-01 23:31:42,North,Vehicle entered intersection from North
+1443,624,24,VEHICLE_EXITED,2026-11-01 23:31:42,South,Vehicle completed exit from South
+1444,628,24,VEHICLE_EXITED,2026-11-01 23:31:42,South,Vehicle completed exit from South
+1445,736,24,VEHICLE_ENTERED,2026-11-01 23:31:42,South,Vehicle entered intersection from South
+1446,625,24,VEHICLE_EXITED,2026-11-01 23:31:42,South,Vehicle completed exit from South
+1447,629,24,VEHICLE_EXITED,2026-11-01 23:31:42,South,Vehicle completed exit from South
+1448,738,24,VEHICLE_ENTERED,2026-11-01 23:31:42,South,Vehicle entered intersection from South
+1449,745,24,VEHICLE_ADDED,2026-11-01 23:31:42,North,Vehicle V402 (Ambulance) queued at North
+1450,745,24,EMERGENCY_DETECTED,2026-11-01 23:31:42,North,Emergency ambulance dispatched on Road 1
+1451,746,24,VEHICLE_ADDED,2026-11-01 23:31:42,North,Vehicle V403 (Ambulance) queued at North
+1452,746,24,EMERGENCY_DETECTED,2026-11-01 23:31:42,North,Emergency ambulance dispatched on Road 1
+1453,747,24,VEHICLE_ADDED,2026-11-01 23:31:42,North,Vehicle V404 (Ambulance) queued at North
+1454,747,24,EMERGENCY_DETECTED,2026-11-01 23:31:42,North,Emergency ambulance dispatched on Road 1
+1455,619,24,VEHICLE_EXITED,2026-11-01 23:31:43,North,Vehicle completed exit from North
+1456,623,24,VEHICLE_EXITED,2026-11-01 23:31:43,North,Vehicle completed exit from North
+1457,706,24,VEHICLE_ENTERED,2026-11-01 23:31:43,North,Vehicle entered intersection from North
+1458,712,24,VEHICLE_ENTERED,2026-11-01 23:31:43,North,Vehicle entered intersection from North
+1459,613,24,VEHICLE_EXITED,2026-11-01 23:31:43,North,Vehicle completed exit from North
+1460,620,24,VEHICLE_EXITED,2026-11-01 23:31:43,North,Vehicle completed exit from North
+1461,703,24,VEHICLE_ENTERED,2026-11-01 23:31:43,North,Vehicle entered intersection from North
+1462,708,24,VEHICLE_ENTERED,2026-11-01 23:31:43,North,Vehicle entered intersection from North
+1463,630,24,VEHICLE_EXITED,2026-11-01 23:31:43,South,Vehicle completed exit from South
+1464,639,24,VEHICLE_EXITED,2026-11-01 23:31:43,South,Vehicle completed exit from South
+1465,739,24,VEHICLE_ENTERED,2026-11-01 23:31:43,South,Vehicle entered intersection from South
+1466,632,24,VEHICLE_EXITED,2026-11-01 23:31:43,South,Vehicle completed exit from South
+1467,642,24,VEHICLE_EXITED,2026-11-01 23:31:43,South,Vehicle completed exit from South
+1468,741,24,VEHICLE_ENTERED,2026-11-01 23:31:43,South,Vehicle entered intersection from South
+1469,633,24,VEHICLE_EXITED,2026-11-01 23:31:44,North,Vehicle completed exit from North
+1470,718,24,VEHICLE_ENTERED,2026-11-01 23:31:44,North,Vehicle entered intersection from North
+1471,626,24,VEHICLE_EXITED,2026-11-01 23:31:44,North,Vehicle completed exit from North
+1472,716,24,VEHICLE_ENTERED,2026-11-01 23:31:44,North,Vehicle entered intersection from North
+1473,646,24,VEHICLE_EXITED,2026-11-01 23:31:44,South,Vehicle completed exit from South
+1474,648,24,VEHICLE_EXITED,2026-11-01 23:31:44,South,Vehicle completed exit from South
+1475,638,24,VEHICLE_EXITED,2026-11-01 23:31:45,North,Vehicle completed exit from North
+1476,643,24,VEHICLE_EXITED,2026-11-01 23:31:45,North,Vehicle completed exit from North
+1477,722,24,VEHICLE_ENTERED,2026-11-01 23:31:45,North,Vehicle entered intersection from North
+1478,742,24,VEHICLE_ENTERED,2026-11-01 23:31:45,North,Vehicle entered intersection from North
+1479,637,24,VEHICLE_EXITED,2026-11-01 23:31:45,North,Vehicle completed exit from North
+1480,640,24,VEHICLE_EXITED,2026-11-01 23:31:45,North,Vehicle completed exit from North
+1481,719,24,VEHICLE_ENTERED,2026-11-01 23:31:45,North,Vehicle entered intersection from North
+1482,733,24,VEHICLE_ENTERED,2026-11-01 23:31:45,North,Vehicle entered intersection from North
+1483,650,24,VEHICLE_EXITED,2026-11-01 23:31:45,South,Vehicle completed exit from South
+1484,653,24,VEHICLE_EXITED,2026-11-01 23:31:45,South,Vehicle completed exit from South
+1485,652,24,VEHICLE_EXITED,2026-11-01 23:31:45,South,Vehicle completed exit from South
+1486,658,24,VEHICLE_EXITED,2026-11-01 23:31:45,South,Vehicle completed exit from South
+1487,748,24,VEHICLE_ADDED,2026-11-01 23:31:46,East,Vehicle V405 (Car) queued at East
+1488,651,24,VEHICLE_EXITED,2026-11-01 23:31:46,North,Vehicle completed exit from North
+1489,743,24,VEHICLE_ENTERED,2026-11-01 23:31:46,North,Vehicle entered intersection from North
+1490,647,24,VEHICLE_EXITED,2026-11-01 23:31:46,North,Vehicle completed exit from North
+1491,661,24,VEHICLE_EXITED,2026-11-01 23:31:46,South,Vehicle completed exit from South
+1492,670,24,VEHICLE_EXITED,2026-11-01 23:31:46,South,Vehicle completed exit from South
+1493,659,24,VEHICLE_EXITED,2026-11-01 23:31:47,North,Vehicle completed exit from North
+1494,667,24,VEHICLE_EXITED,2026-11-01 23:31:47,North,Vehicle completed exit from North
+1495,654,24,VEHICLE_EXITED,2026-11-01 23:31:47,North,Vehicle completed exit from North
+1496,665,24,VEHICLE_EXITED,2026-11-01 23:31:47,North,Vehicle completed exit from North
+1497,676,24,VEHICLE_EXITED,2026-11-01 23:31:47,South,Vehicle completed exit from South
+1498,689,24,VEHICLE_EXITED,2026-11-01 23:31:47,South,Vehicle completed exit from South
+1499,683,24,VEHICLE_EXITED,2026-11-01 23:31:47,South,Vehicle completed exit from South
+1500,698,24,VEHICLE_EXITED,2026-11-01 23:31:47,South,Vehicle completed exit from South
+1501,677,24,VEHICLE_EXITED,2026-11-01 23:31:48,North,Vehicle completed exit from North
+1502,672,24,VEHICLE_EXITED,2026-11-01 23:31:48,North,Vehicle completed exit from North
+1503,704,24,VEHICLE_EXITED,2026-11-01 23:31:48,South,Vehicle completed exit from South
+1504,705,24,VEHICLE_EXITED,2026-11-01 23:31:48,South,Vehicle completed exit from South
+1505,682,24,VEHICLE_EXITED,2026-11-01 23:31:49,North,Vehicle completed exit from North
+1506,692,24,VEHICLE_EXITED,2026-11-01 23:31:49,North,Vehicle completed exit from North
+1507,680,24,VEHICLE_EXITED,2026-11-01 23:31:49,North,Vehicle completed exit from North
+1508,687,24,VEHICLE_EXITED,2026-11-01 23:31:49,North,Vehicle completed exit from North
+1509,707,24,VEHICLE_EXITED,2026-11-01 23:31:49,South,Vehicle completed exit from South
+1510,720,24,VEHICLE_EXITED,2026-11-01 23:31:49,South,Vehicle completed exit from South
+1511,711,24,VEHICLE_EXITED,2026-11-01 23:31:49,South,Vehicle completed exit from South
+1512,721,24,VEHICLE_EXITED,2026-11-01 23:31:49,South,Vehicle completed exit from South
+1513,696,24,VEHICLE_EXITED,2026-11-01 23:31:50,North,Vehicle completed exit from North
+1514,744,24,VEHICLE_ENTERED,2026-11-01 23:31:50,North,Vehicle entered intersection from North
+1515,745,24,VEHICLE_ENTERED,2026-11-01 23:31:50,North,Vehicle entered intersection from North
+1516,693,24,VEHICLE_EXITED,2026-11-01 23:31:50,North,Vehicle completed exit from North
+1517,725,24,VEHICLE_EXITED,2026-11-01 23:31:50,South,Vehicle completed exit from South
+1518,731,24,VEHICLE_EXITED,2026-11-01 23:31:50,South,Vehicle completed exit from South
+1519,700,24,VEHICLE_EXITED,2026-11-01 23:31:51,North,Vehicle completed exit from North
+1520,706,24,VEHICLE_EXITED,2026-11-01 23:31:51,North,Vehicle completed exit from North
+1521,746,24,VEHICLE_ENTERED,2026-11-01 23:31:51,North,Vehicle entered intersection from North
+1522,699,24,VEHICLE_EXITED,2026-11-01 23:31:51,North,Vehicle completed exit from North
+1523,703,24,VEHICLE_EXITED,2026-11-01 23:31:51,North,Vehicle completed exit from North
+1524,736,24,VEHICLE_EXITED,2026-11-01 23:31:51,South,Vehicle completed exit from South
+1525,739,24,VEHICLE_EXITED,2026-11-01 23:31:51,South,Vehicle completed exit from South
+1526,738,24,VEHICLE_EXITED,2026-11-01 23:31:51,South,Vehicle completed exit from South
+1527,741,24,VEHICLE_EXITED,2026-11-01 23:31:51,South,Vehicle completed exit from South
+1528,749,24,VEHICLE_ADDED,2026-11-01 23:31:52,East,Vehicle V406 (Car) queued at East
+1529,712,24,VEHICLE_EXITED,2026-11-01 23:31:52,North,Vehicle completed exit from North
+1530,718,24,VEHICLE_EXITED,2026-11-01 23:31:52,North,Vehicle completed exit from North
+1531,747,24,VEHICLE_ENTERED,2026-11-01 23:31:52,North,Vehicle entered intersection from North
+1532,708,24,VEHICLE_EXITED,2026-11-01 23:31:52,North,Vehicle completed exit from North
+1533,716,24,VEHICLE_EXITED,2026-11-01 23:31:52,North,Vehicle completed exit from North
+1534,722,24,VEHICLE_EXITED,2026-11-01 23:31:53,North,Vehicle completed exit from North
+1535,719,24,VEHICLE_EXITED,2026-11-01 23:31:53,North,Vehicle completed exit from North
+1536,742,24,VEHICLE_EXITED,2026-11-01 23:31:54,North,Vehicle completed exit from North
+1537,743,24,VEHICLE_EXITED,2026-11-01 23:31:54,North,Vehicle completed exit from North
+1538,733,24,VEHICLE_EXITED,2026-11-01 23:31:54,North,Vehicle completed exit from North
+1539,747,24,EMERGENCY_CLEARED,2026-11-01 23:31:55,North,Emergency ambulance cleared intersection in 12s
+1540,386,24,VEHICLE_ENTERED,2026-11-01 23:31:57,East,Vehicle entered intersection from East
+1541,398,24,VEHICLE_ENTERED,2026-11-01 23:31:57,East,Vehicle entered intersection from East
+1542,396,24,VEHICLE_ENTERED,2026-11-01 23:31:57,East,Vehicle entered intersection from East
+1543,411,24,VEHICLE_ENTERED,2026-11-01 23:31:57,East,Vehicle entered intersection from East
+1544,387,24,VEHICLE_ENTERED,2026-11-01 23:31:57,West,Vehicle entered intersection from West
+1545,390,24,VEHICLE_ENTERED,2026-11-01 23:31:57,West,Vehicle entered intersection from West
+1546,388,24,VEHICLE_ENTERED,2026-11-01 23:31:57,West,Vehicle entered intersection from West
+1547,395,24,VEHICLE_ENTERED,2026-11-01 23:31:57,West,Vehicle entered intersection from West
+1548,420,24,VEHICLE_ENTERED,2026-11-01 23:31:58,East,Vehicle entered intersection from East
+1549,428,24,VEHICLE_ENTERED,2026-11-01 23:31:58,East,Vehicle entered intersection from East
+1550,426,24,VEHICLE_ENTERED,2026-11-01 23:31:58,East,Vehicle entered intersection from East
+1551,433,24,VEHICLE_ENTERED,2026-11-01 23:31:58,East,Vehicle entered intersection from East
+1552,409,24,VEHICLE_ENTERED,2026-11-01 23:31:58,West,Vehicle entered intersection from West
+1553,416,24,VEHICLE_ENTERED,2026-11-01 23:31:58,West,Vehicle entered intersection from West
+1554,413,24,VEHICLE_ENTERED,2026-11-01 23:31:58,West,Vehicle entered intersection from West
+1555,417,24,VEHICLE_ENTERED,2026-11-01 23:31:58,West,Vehicle entered intersection from West
+1556,438,24,VEHICLE_ENTERED,2026-11-01 23:31:59,East,Vehicle entered intersection from East
+1557,439,24,VEHICLE_ENTERED,2026-11-01 23:31:59,East,Vehicle entered intersection from East
+1558,431,24,VEHICLE_ENTERED,2026-11-01 23:31:59,West,Vehicle entered intersection from West
+1559,436,24,VEHICLE_ENTERED,2026-11-01 23:31:59,West,Vehicle entered intersection from West
+1560,744,24,VEHICLE_EXITED,2026-11-01 23:32:00,North,Vehicle completed exit from North
+1561,440,24,VEHICLE_ENTERED,2026-11-01 23:32:00,East,Vehicle entered intersection from East
+1562,444,24,VEHICLE_ENTERED,2026-11-01 23:32:00,East,Vehicle entered intersection from East
+1563,443,24,VEHICLE_ENTERED,2026-11-01 23:32:00,East,Vehicle entered intersection from East
+1564,445,24,VEHICLE_ENTERED,2026-11-01 23:32:00,East,Vehicle entered intersection from East
+1565,447,24,VEHICLE_ENTERED,2026-11-01 23:32:00,West,Vehicle entered intersection from West
+1566,452,24,VEHICLE_ENTERED,2026-11-01 23:32:00,West,Vehicle entered intersection from West
+1567,449,24,VEHICLE_ENTERED,2026-11-01 23:32:00,West,Vehicle entered intersection from West
+1568,455,24,VEHICLE_ENTERED,2026-11-01 23:32:00,West,Vehicle entered intersection from West
+1569,745,24,VEHICLE_EXITED,2026-11-01 23:32:01,North,Vehicle completed exit from North
+1570,451,24,VEHICLE_ENTERED,2026-11-01 23:32:01,East,Vehicle entered intersection from East
+1571,453,24,VEHICLE_ENTERED,2026-11-01 23:32:01,East,Vehicle entered intersection from East
+1572,467,24,VEHICLE_ENTERED,2026-11-01 23:32:01,West,Vehicle entered intersection from West
+1573,468,24,VEHICLE_ENTERED,2026-11-01 23:32:01,West,Vehicle entered intersection from West
+1574,746,24,VEHICLE_EXITED,2026-11-01 23:32:02,North,Vehicle completed exit from North
+1575,465,24,VEHICLE_ENTERED,2026-11-01 23:32:02,East,Vehicle entered intersection from East
+1576,484,24,VEHICLE_ENTERED,2026-11-01 23:32:02,East,Vehicle entered intersection from East
+1577,466,24,VEHICLE_ENTERED,2026-11-01 23:32:02,East,Vehicle entered intersection from East
+1578,485,24,VEHICLE_ENTERED,2026-11-01 23:32:02,East,Vehicle entered intersection from East
+1579,470,24,VEHICLE_ENTERED,2026-11-01 23:32:02,West,Vehicle entered intersection from West
+1580,476,24,VEHICLE_ENTERED,2026-11-01 23:32:02,West,Vehicle entered intersection from West
+1581,475,24,VEHICLE_ENTERED,2026-11-01 23:32:02,West,Vehicle entered intersection from West
+1582,477,24,VEHICLE_ENTERED,2026-11-01 23:32:02,West,Vehicle entered intersection from West
+1583,747,24,VEHICLE_EXITED,2026-11-01 23:32:03,North,Vehicle completed exit from North
+1584,487,24,VEHICLE_ENTERED,2026-11-01 23:32:03,East,Vehicle entered intersection from East
+1585,495,24,VEHICLE_ENTERED,2026-11-01 23:32:03,East,Vehicle entered intersection from East
+1586,481,24,VEHICLE_ENTERED,2026-11-01 23:32:03,West,Vehicle entered intersection from West
+1587,490,24,VEHICLE_ENTERED,2026-11-01 23:32:03,West,Vehicle entered intersection from West
+1588,501,24,VEHICLE_ENTERED,2026-11-01 23:32:04,East,Vehicle entered intersection from East
+1589,510,24,VEHICLE_ENTERED,2026-11-01 23:32:04,East,Vehicle entered intersection from East
+1590,509,24,VEHICLE_ENTERED,2026-11-01 23:32:04,East,Vehicle entered intersection from East
+1591,517,24,VEHICLE_ENTERED,2026-11-01 23:32:04,East,Vehicle entered intersection from East
+1592,491,24,VEHICLE_ENTERED,2026-11-01 23:32:04,West,Vehicle entered intersection from West
+1593,494,24,VEHICLE_ENTERED,2026-11-01 23:32:04,West,Vehicle entered intersection from West
+1594,493,24,VEHICLE_ENTERED,2026-11-01 23:32:04,West,Vehicle entered intersection from West
+1595,497,24,VEHICLE_ENTERED,2026-11-01 23:32:04,West,Vehicle entered intersection from West
+1596,521,24,VEHICLE_ENTERED,2026-11-01 23:32:05,East,Vehicle entered intersection from East
+1597,525,24,VEHICLE_ENTERED,2026-11-01 23:32:05,East,Vehicle entered intersection from East
+1598,524,24,VEHICLE_ENTERED,2026-11-01 23:32:05,East,Vehicle entered intersection from East
+1599,535,24,VEHICLE_ENTERED,2026-11-01 23:32:05,East,Vehicle entered intersection from East
+1600,500,24,VEHICLE_ENTERED,2026-11-01 23:32:05,West,Vehicle entered intersection from West
+1601,508,24,VEHICLE_ENTERED,2026-11-01 23:32:05,West,Vehicle entered intersection from West
+1602,502,24,VEHICLE_ENTERED,2026-11-01 23:32:05,West,Vehicle entered intersection from West
+1603,511,24,VEHICLE_ENTERED,2026-11-01 23:32:05,West,Vehicle entered intersection from West
+1604,536,24,VEHICLE_ENTERED,2026-11-01 23:32:06,East,Vehicle entered intersection from East
+1605,538,24,VEHICLE_ENTERED,2026-11-01 23:32:06,East,Vehicle entered intersection from East
+1606,513,24,VEHICLE_ENTERED,2026-11-01 23:32:06,West,Vehicle entered intersection from West
+1607,514,24,VEHICLE_ENTERED,2026-11-01 23:32:06,West,Vehicle entered intersection from West
+1608,386,24,VEHICLE_EXITED,2026-11-01 23:32:07,East,Vehicle completed exit from East
+1609,398,24,VEHICLE_EXITED,2026-11-01 23:32:07,East,Vehicle completed exit from East
+1610,540,24,VEHICLE_ENTERED,2026-11-01 23:32:07,East,Vehicle entered intersection from East
+1611,548,24,VEHICLE_ENTERED,2026-11-01 23:32:07,East,Vehicle entered intersection from East
+1612,396,24,VEHICLE_EXITED,2026-11-01 23:32:07,East,Vehicle completed exit from East
+1613,411,24,VEHICLE_EXITED,2026-11-01 23:32:07,East,Vehicle completed exit from East
+1614,544,24,VEHICLE_ENTERED,2026-11-01 23:32:07,East,Vehicle entered intersection from East
+1615,555,24,VEHICLE_ENTERED,2026-11-01 23:32:07,East,Vehicle entered intersection from East
+1616,387,24,VEHICLE_EXITED,2026-11-01 23:32:07,West,Vehicle completed exit from West
+1617,390,24,VEHICLE_EXITED,2026-11-01 23:32:07,West,Vehicle completed exit from West
+1618,515,24,VEHICLE_ENTERED,2026-11-01 23:32:07,West,Vehicle entered intersection from West
+1619,528,24,VEHICLE_ENTERED,2026-11-01 23:32:07,West,Vehicle entered intersection from West
+1620,388,24,VEHICLE_EXITED,2026-11-01 23:32:07,West,Vehicle completed exit from West
+1621,395,24,VEHICLE_EXITED,2026-11-01 23:32:07,West,Vehicle completed exit from West
+1622,523,24,VEHICLE_ENTERED,2026-11-01 23:32:07,West,Vehicle entered intersection from West
+1623,530,24,VEHICLE_ENTERED,2026-11-01 23:32:07,West,Vehicle entered intersection from West
+1624,420,24,VEHICLE_EXITED,2026-11-01 23:32:08,East,Vehicle completed exit from East
+1625,428,24,VEHICLE_EXITED,2026-11-01 23:32:08,East,Vehicle completed exit from East
+1626,561,24,VEHICLE_ENTERED,2026-11-01 23:32:08,East,Vehicle entered intersection from East
+1627,426,24,VEHICLE_EXITED,2026-11-01 23:32:08,East,Vehicle completed exit from East
+1628,433,24,VEHICLE_EXITED,2026-11-01 23:32:08,East,Vehicle completed exit from East
+1629,562,24,VEHICLE_ENTERED,2026-11-01 23:32:08,East,Vehicle entered intersection from East
+1630,409,24,VEHICLE_EXITED,2026-11-01 23:32:08,West,Vehicle completed exit from West
+1631,416,24,VEHICLE_EXITED,2026-11-01 23:32:08,West,Vehicle completed exit from West
+1632,533,24,VEHICLE_ENTERED,2026-11-01 23:32:08,West,Vehicle entered intersection from West
+1633,413,24,VEHICLE_EXITED,2026-11-01 23:32:08,West,Vehicle completed exit from West
+1634,417,24,VEHICLE_EXITED,2026-11-01 23:32:08,West,Vehicle completed exit from West
+1635,542,24,VEHICLE_ENTERED,2026-11-01 23:32:08,West,Vehicle entered intersection from West
+1636,438,24,VEHICLE_EXITED,2026-11-01 23:32:09,East,Vehicle completed exit from East
+1637,565,24,VEHICLE_ENTERED,2026-11-01 23:32:09,East,Vehicle entered intersection from East
+1638,570,24,VEHICLE_ENTERED,2026-11-01 23:32:09,East,Vehicle entered intersection from East
+1639,439,24,VEHICLE_EXITED,2026-11-01 23:32:09,East,Vehicle completed exit from East
+1640,568,24,VEHICLE_ENTERED,2026-11-01 23:32:09,East,Vehicle entered intersection from East
+1641,571,24,VEHICLE_ENTERED,2026-11-01 23:32:09,East,Vehicle entered intersection from East
+1642,431,24,VEHICLE_EXITED,2026-11-01 23:32:09,West,Vehicle completed exit from West
+1643,543,24,VEHICLE_ENTERED,2026-11-01 23:32:09,West,Vehicle entered intersection from West
+1644,551,24,VEHICLE_ENTERED,2026-11-01 23:32:09,West,Vehicle entered intersection from West
+1645,436,24,VEHICLE_EXITED,2026-11-01 23:32:09,West,Vehicle completed exit from West
+1646,545,24,VEHICLE_ENTERED,2026-11-01 23:32:09,West,Vehicle entered intersection from West
+1647,559,24,VEHICLE_ENTERED,2026-11-01 23:32:09,West,Vehicle entered intersection from West
+1648,440,24,VEHICLE_EXITED,2026-11-01 23:32:10,East,Vehicle completed exit from East
+1649,444,24,VEHICLE_EXITED,2026-11-01 23:32:10,East,Vehicle completed exit from East
+1650,572,24,VEHICLE_ENTERED,2026-11-01 23:32:10,East,Vehicle entered intersection from East
+1651,443,24,VEHICLE_EXITED,2026-11-01 23:32:10,East,Vehicle completed exit from East
+1652,445,24,VEHICLE_EXITED,2026-11-01 23:32:10,East,Vehicle completed exit from East
+1653,574,24,VEHICLE_ENTERED,2026-11-01 23:32:10,East,Vehicle entered intersection from East
+1654,447,24,VEHICLE_EXITED,2026-11-01 23:32:10,West,Vehicle completed exit from West
+1655,452,24,VEHICLE_EXITED,2026-11-01 23:32:10,West,Vehicle completed exit from West
+1656,560,24,VEHICLE_ENTERED,2026-11-01 23:32:10,West,Vehicle entered intersection from West
+1657,449,24,VEHICLE_EXITED,2026-11-01 23:32:10,West,Vehicle completed exit from West
+1658,455,24,VEHICLE_EXITED,2026-11-01 23:32:10,West,Vehicle completed exit from West
+1659,563,24,VEHICLE_ENTERED,2026-11-01 23:32:10,West,Vehicle entered intersection from West
+1660,451,24,VEHICLE_EXITED,2026-11-01 23:32:11,East,Vehicle completed exit from East
+1661,576,24,VEHICLE_ENTERED,2026-11-01 23:32:11,East,Vehicle entered intersection from East
+1662,593,24,VEHICLE_ENTERED,2026-11-01 23:32:11,East,Vehicle entered intersection from East
+1663,453,24,VEHICLE_EXITED,2026-11-01 23:32:11,East,Vehicle completed exit from East
+1664,587,24,VEHICLE_ENTERED,2026-11-01 23:32:11,East,Vehicle entered intersection from East
+1665,594,24,VEHICLE_ENTERED,2026-11-01 23:32:11,East,Vehicle entered intersection from East
+1666,467,24,VEHICLE_EXITED,2026-11-01 23:32:11,West,Vehicle completed exit from West
+1667,567,24,VEHICLE_ENTERED,2026-11-01 23:32:11,West,Vehicle entered intersection from West
+1668,575,24,VEHICLE_ENTERED,2026-11-01 23:32:11,West,Vehicle entered intersection from West
+1669,468,24,VEHICLE_EXITED,2026-11-01 23:32:11,West,Vehicle completed exit from West
+1670,573,24,VEHICLE_ENTERED,2026-11-01 23:32:11,West,Vehicle entered intersection from West
+1671,578,24,VEHICLE_ENTERED,2026-11-01 23:32:11,West,Vehicle entered intersection from West
+1672,465,24,VEHICLE_EXITED,2026-11-01 23:32:12,East,Vehicle completed exit from East
+1673,484,24,VEHICLE_EXITED,2026-11-01 23:32:12,East,Vehicle completed exit from East
+1674,599,24,VEHICLE_ENTERED,2026-11-01 23:32:12,East,Vehicle entered intersection from East
+1675,466,24,VEHICLE_EXITED,2026-11-01 23:32:12,East,Vehicle completed exit from East
+1676,485,24,VEHICLE_EXITED,2026-11-01 23:32:12,East,Vehicle completed exit from East
+1677,602,24,VEHICLE_ENTERED,2026-11-01 23:32:12,East,Vehicle entered intersection from East
+1678,470,24,VEHICLE_EXITED,2026-11-01 23:32:12,West,Vehicle completed exit from West
+1679,476,24,VEHICLE_EXITED,2026-11-01 23:32:12,West,Vehicle completed exit from West
+1680,580,24,VEHICLE_ENTERED,2026-11-01 23:32:12,West,Vehicle entered intersection from West
+1681,475,24,VEHICLE_EXITED,2026-11-01 23:32:12,West,Vehicle completed exit from West
+1682,477,24,VEHICLE_EXITED,2026-11-01 23:32:12,West,Vehicle completed exit from West
+1683,584,24,VEHICLE_ENTERED,2026-11-01 23:32:12,West,Vehicle entered intersection from West
+1684,487,24,VEHICLE_EXITED,2026-11-01 23:32:13,East,Vehicle completed exit from East
+1685,607,24,VEHICLE_ENTERED,2026-11-01 23:32:13,East,Vehicle entered intersection from East
+1686,612,24,VEHICLE_ENTERED,2026-11-01 23:32:13,East,Vehicle entered intersection from East
+1687,495,24,VEHICLE_EXITED,2026-11-01 23:32:13,East,Vehicle completed exit from East
+1688,611,24,VEHICLE_ENTERED,2026-11-01 23:32:13,East,Vehicle entered intersection from East
+1689,617,24,VEHICLE_ENTERED,2026-11-01 23:32:13,East,Vehicle entered intersection from East
+1690,481,24,VEHICLE_EXITED,2026-11-01 23:32:13,West,Vehicle completed exit from West
+1691,590,24,VEHICLE_ENTERED,2026-11-01 23:32:13,West,Vehicle entered intersection from West
+1692,598,24,VEHICLE_ENTERED,2026-11-01 23:32:13,West,Vehicle entered intersection from West
+1693,490,24,VEHICLE_EXITED,2026-11-01 23:32:13,West,Vehicle completed exit from West
+1694,591,24,VEHICLE_ENTERED,2026-11-01 23:32:13,West,Vehicle entered intersection from West
+1695,601,24,VEHICLE_ENTERED,2026-11-01 23:32:13,West,Vehicle entered intersection from West
+1696,501,24,VEHICLE_EXITED,2026-11-01 23:32:14,East,Vehicle completed exit from East
+1697,510,24,VEHICLE_EXITED,2026-11-01 23:32:14,East,Vehicle completed exit from East
+1698,618,24,VEHICLE_ENTERED,2026-11-01 23:32:14,East,Vehicle entered intersection from East
+1699,622,24,VEHICLE_ENTERED,2026-11-01 23:32:14,East,Vehicle entered intersection from East
+1700,509,24,VEHICLE_EXITED,2026-11-01 23:32:14,East,Vehicle completed exit from East
+1701,517,24,VEHICLE_EXITED,2026-11-01 23:32:14,East,Vehicle completed exit from East
+1702,621,24,VEHICLE_ENTERED,2026-11-01 23:32:14,East,Vehicle entered intersection from East
+1703,627,24,VEHICLE_ENTERED,2026-11-01 23:32:14,East,Vehicle entered intersection from East
+1704,491,24,VEHICLE_EXITED,2026-11-01 23:32:14,West,Vehicle completed exit from West
+1705,494,24,VEHICLE_EXITED,2026-11-01 23:32:14,West,Vehicle completed exit from West
+1706,603,24,VEHICLE_ENTERED,2026-11-01 23:32:14,West,Vehicle entered intersection from West
+1707,608,24,VEHICLE_ENTERED,2026-11-01 23:32:14,West,Vehicle entered intersection from West
+1708,493,24,VEHICLE_EXITED,2026-11-01 23:32:14,West,Vehicle completed exit from West
+1709,497,24,VEHICLE_EXITED,2026-11-01 23:32:14,West,Vehicle completed exit from West
+1710,605,24,VEHICLE_ENTERED,2026-11-01 23:32:14,West,Vehicle entered intersection from West
+1711,609,24,VEHICLE_ENTERED,2026-11-01 23:32:14,West,Vehicle entered intersection from West
+1712,521,24,VEHICLE_EXITED,2026-11-01 23:32:15,East,Vehicle completed exit from East
+1713,634,24,VEHICLE_ENTERED,2026-11-01 23:32:15,East,Vehicle entered intersection from East
+1714,524,24,VEHICLE_EXITED,2026-11-01 23:32:15,East,Vehicle completed exit from East
+1715,635,24,VEHICLE_ENTERED,2026-11-01 23:32:15,East,Vehicle entered intersection from East
+1716,500,24,VEHICLE_EXITED,2026-11-01 23:32:15,West,Vehicle completed exit from West
+1717,610,24,VEHICLE_ENTERED,2026-11-01 23:32:15,West,Vehicle entered intersection from West
+1718,502,24,VEHICLE_EXITED,2026-11-01 23:32:15,West,Vehicle completed exit from West
+1719,616,24,VEHICLE_ENTERED,2026-11-01 23:32:15,West,Vehicle entered intersection from West
+1720,750,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V001 (Car) queued at North
+1721,751,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V002 (Car) queued at North
+1722,752,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V003 (Car) queued at North
+1723,753,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V004 (Car) queued at North
+1724,754,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V005 (Car) queued at North
+1725,755,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V006 (Car) queued at North
+1726,756,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V007 (Car) queued at North
+1727,757,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V008 (Car) queued at North
+1728,758,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V009 (Car) queued at North
+1729,759,25,VEHICLE_ADDED,2026-11-01 23:39:34,North,Vehicle V010 (Car) queued at North
+1730,760,25,VEHICLE_ADDED,2026-11-01 23:39:34,South,Vehicle V011 (Car) queued at South
+1731,761,25,VEHICLE_ADDED,2026-11-01 23:39:34,South,Vehicle V012 (Car) queued at South
+1732,762,25,VEHICLE_ADDED,2026-11-01 23:39:34,South,Vehicle V013 (Car) queued at South
+1733,763,25,VEHICLE_ADDED,2026-11-01 23:39:34,South,Vehicle V014 (Car) queued at South
+1734,764,25,VEHICLE_ADDED,2026-11-01 23:39:34,South,Vehicle V015 (Car) queued at South
+1735,765,25,VEHICLE_ADDED,2026-11-01 23:39:34,East,Vehicle V016 (Car) queued at East
+1736,766,25,VEHICLE_ADDED,2026-11-01 23:39:34,East,Vehicle V017 (Car) queued at East
+1737,767,25,VEHICLE_ADDED,2026-11-01 23:39:34,East,Vehicle V018 (Car) queued at East
+1738,768,25,VEHICLE_ADDED,2026-11-01 23:39:34,West,Vehicle V019 (Car) queued at West
+1739,769,25,VEHICLE_ADDED,2026-11-01 23:39:34,West,Vehicle V020 (Car) queued at West
+1740,770,25,VEHICLE_ADDED,2026-11-01 23:39:34,West,Vehicle V021 (Car) queued at West
+1741,771,25,VEHICLE_ADDED,2026-11-01 23:39:34,West,Vehicle V022 (Car) queued at West
+1742,772,25,VEHICLE_ADDED,2026-11-01 23:39:34,West,Vehicle V023 (Car) queued at West
+1743,773,25,VEHICLE_ADDED,2026-11-01 23:39:34,West,Vehicle V024 (Car) queued at West
+1744,774,25,VEHICLE_ADDED,2026-11-01 23:39:34,West,Vehicle V025 (Car) queued at West
+1745,775,25,VEHICLE_ADDED,2026-11-01 23:39:34,West,Vehicle V026 (Car) queued at West
+1746,776,25,VEHICLE_ADDED,2026-11-01 23:39:34,East,Vehicle V027 (Car) queued at East
+1747,777,25,VEHICLE_ADDED,2026-11-01 23:39:34,East,Vehicle V028 (Car) queued at East
+1748,778,25,VEHICLE_ADDED,2026-11-01 23:39:34,East,Vehicle V029 (Car) queued at East
+1749,779,25,VEHICLE_ADDED,2026-11-01 23:39:34,East,Vehicle V030 (Car) queued at East
+1750,780,25,VEHICLE_ADDED,2026-11-01 23:39:34,East,Vehicle V031 (Car) queued at East
+1751,750,25,VEHICLE_ENTERED,2026-11-01 23:39:34,North,Vehicle entered intersection from North
+1752,751,25,VEHICLE_ENTERED,2026-11-01 23:39:34,North,Vehicle entered intersection from North
+1753,760,25,VEHICLE_ENTERED,2026-11-01 23:39:34,South,Vehicle entered intersection from South
+1754,761,25,VEHICLE_ENTERED,2026-11-01 23:39:34,South,Vehicle entered intersection from South
+1755,752,25,VEHICLE_ENTERED,2026-11-01 23:39:34,North,Vehicle entered intersection from North
+1756,753,25,VEHICLE_ENTERED,2026-11-01 23:39:34,North,Vehicle entered intersection from North
+1757,762,25,VEHICLE_ENTERED,2026-11-01 23:39:34,South,Vehicle entered intersection from South
+1758,763,25,VEHICLE_ENTERED,2026-11-01 23:39:34,South,Vehicle entered intersection from South
+1759,754,25,VEHICLE_ENTERED,2026-11-01 23:39:34,North,Vehicle entered intersection from North
+1760,764,25,VEHICLE_ENTERED,2026-11-01 23:39:34,South,Vehicle entered intersection from South
+1761,755,25,VEHICLE_ENTERED,2026-11-01 23:39:34,North,Vehicle entered intersection from North
+1762,756,25,VEHICLE_ENTERED,2026-11-01 23:39:34,North,Vehicle entered intersection from North
+1763,757,25,VEHICLE_ENTERED,2026-11-01 23:39:35,North,Vehicle entered intersection from North
+1764,758,25,VEHICLE_ENTERED,2026-11-01 23:39:35,North,Vehicle entered intersection from North
+1765,759,25,VEHICLE_ENTERED,2026-11-01 23:39:35,North,Vehicle entered intersection from North
+1766,750,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1767,760,25,VEHICLE_EXITED,2026-11-01 23:39:35,South,Vehicle completed exit from South
+1768,751,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1769,752,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1770,761,25,VEHICLE_EXITED,2026-11-01 23:39:35,South,Vehicle completed exit from South
+1771,762,25,VEHICLE_EXITED,2026-11-01 23:39:35,South,Vehicle completed exit from South
+1772,753,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1773,763,25,VEHICLE_EXITED,2026-11-01 23:39:35,South,Vehicle completed exit from South
+1774,754,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1775,755,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1776,764,25,VEHICLE_EXITED,2026-11-01 23:39:35,South,Vehicle completed exit from South
+1777,756,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1778,757,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1779,765,25,VEHICLE_ENTERED,2026-11-01 23:39:35,East,Vehicle entered intersection from East
+1780,766,25,VEHICLE_ENTERED,2026-11-01 23:39:35,East,Vehicle entered intersection from East
+1781,767,25,VEHICLE_ENTERED,2026-11-01 23:39:35,East,Vehicle entered intersection from East
+1782,776,25,VEHICLE_ENTERED,2026-11-01 23:39:35,East,Vehicle entered intersection from East
+1783,768,25,VEHICLE_ENTERED,2026-11-01 23:39:35,West,Vehicle entered intersection from West
+1784,769,25,VEHICLE_ENTERED,2026-11-01 23:39:35,West,Vehicle entered intersection from West
+1785,772,25,VEHICLE_ENTERED,2026-11-01 23:39:35,West,Vehicle entered intersection from West
+1786,773,25,VEHICLE_ENTERED,2026-11-01 23:39:35,West,Vehicle entered intersection from West
+1787,781,25,VEHICLE_ADDED,2026-11-01 23:39:35,North,Vehicle V032 (Ambulance) queued at North
+1788,781,25,EMERGENCY_DETECTED,2026-11-01 23:39:35,North,Emergency ambulance dispatched on Road 1
+1789,758,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1790,759,25,VEHICLE_EXITED,2026-11-01 23:39:35,North,Vehicle completed exit from North
+1791,781,25,VEHICLE_ENTERED,2026-11-01 23:39:35,North,Vehicle entered intersection from North
+1792,782,27,VEHICLE_ADDED,2026-11-02 00:07:12,North,Vehicle V001 (Car) queued at North
+1793,783,27,VEHICLE_ADDED,2026-11-02 00:07:12,North,Vehicle V002 (Car) queued at North
+1794,784,27,VEHICLE_ADDED,2026-11-02 00:07:12,North,Vehicle V003 (Car) queued at North
+1795,785,27,VEHICLE_ADDED,2026-11-02 00:07:12,North,Vehicle V004 (Car) queued at North
+1796,786,27,VEHICLE_ADDED,2026-11-02 00:07:12,North,Vehicle V005 (Car) queued at North
+1797,787,27,VEHICLE_ADDED,2026-11-02 00:07:12,East,Vehicle V006 (Car) queued at East
+1798,788,27,VEHICLE_ADDED,2026-11-02 00:07:12,East,Vehicle V007 (Car) queued at East
+1799,789,27,VEHICLE_ADDED,2026-11-02 00:07:12,East,Vehicle V008 (Car) queued at East
+1800,790,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V009 (Car) queued at East
+1801,791,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V010 (Car) queued at East
+1802,792,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V011 (Car) queued at East
+1803,793,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V012 (Car) queued at East
+1804,794,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V013 (Car) queued at East
+1805,795,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V014 (Car) queued at East
+1806,796,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V015 (Car) queued at East
+1807,797,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V016 (Car) queued at East
+1808,798,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V017 (Car) queued at East
+1809,799,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V018 (Car) queued at East
+1810,800,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V019 (Car) queued at East
+1811,801,27,VEHICLE_ADDED,2026-11-02 00:07:13,East,Vehicle V020 (Car) queued at East
+1812,802,27,VEHICLE_ADDED,2026-11-02 00:07:13,West,Vehicle V021 (Car) queued at West
+1813,803,27,VEHICLE_ADDED,2026-11-02 00:07:13,West,Vehicle V022 (Car) queued at West
+1814,804,27,VEHICLE_ADDED,2026-11-02 00:07:13,West,Vehicle V023 (Car) queued at West
+1815,805,27,VEHICLE_ADDED,2026-11-02 00:07:13,West,Vehicle V024 (Car) queued at West
+1816,782,27,VEHICLE_ENTERED,2026-11-02 00:07:14,North,Vehicle entered intersection from North
+1817,783,27,VEHICLE_ENTERED,2026-11-02 00:07:14,North,Vehicle entered intersection from North
+1818,784,27,VEHICLE_ENTERED,2026-11-02 00:07:15,North,Vehicle entered intersection from North
+1819,785,27,VEHICLE_ENTERED,2026-11-02 00:07:15,North,Vehicle entered intersection from North
+1820,786,27,VEHICLE_ENTERED,2026-11-02 00:07:16,North,Vehicle entered intersection from North
+1821,782,27,VEHICLE_EXITED,2026-11-02 00:07:22,North,Vehicle completed exit from North
+1822,783,27,VEHICLE_EXITED,2026-11-02 00:07:23,North,Vehicle completed exit from North
+1823,784,27,VEHICLE_EXITED,2026-11-02 00:07:23,North,Vehicle completed exit from North
+1824,787,27,VEHICLE_ENTERED,2026-11-02 00:07:23,East,Vehicle entered intersection from East
+1825,788,27,VEHICLE_ENTERED,2026-11-02 00:07:23,East,Vehicle entered intersection from East
+1826,794,27,VEHICLE_ENTERED,2026-11-02 00:07:23,East,Vehicle entered intersection from East
+1827,795,27,VEHICLE_ENTERED,2026-11-02 00:07:23,East,Vehicle entered intersection from East
+1828,802,27,VEHICLE_ENTERED,2026-11-02 00:07:23,West,Vehicle entered intersection from West
+1829,803,27,VEHICLE_ENTERED,2026-11-02 00:07:23,West,Vehicle entered intersection from West
+1830,785,27,VEHICLE_EXITED,2026-11-02 00:07:24,North,Vehicle completed exit from North
+1831,789,27,VEHICLE_ENTERED,2026-11-02 00:07:24,East,Vehicle entered intersection from East
+1832,790,27,VEHICLE_ENTERED,2026-11-02 00:07:24,East,Vehicle entered intersection from East
+1833,796,27,VEHICLE_ENTERED,2026-11-02 00:07:24,East,Vehicle entered intersection from East
+1834,797,27,VEHICLE_ENTERED,2026-11-02 00:07:24,East,Vehicle entered intersection from East
+1835,804,27,VEHICLE_ENTERED,2026-11-02 00:07:24,West,Vehicle entered intersection from West
+1836,805,27,VEHICLE_ENTERED,2026-11-02 00:07:24,West,Vehicle entered intersection from West
+1837,786,27,VEHICLE_EXITED,2026-11-02 00:07:25,North,Vehicle completed exit from North
+1838,791,27,VEHICLE_ENTERED,2026-11-02 00:07:25,East,Vehicle entered intersection from East
+1839,798,27,VEHICLE_ENTERED,2026-11-02 00:07:25,East,Vehicle entered intersection from East
+1840,792,27,VEHICLE_ENTERED,2026-11-02 00:07:26,East,Vehicle entered intersection from East
+1841,793,27,VEHICLE_ENTERED,2026-11-02 00:07:26,East,Vehicle entered intersection from East
+1842,799,27,VEHICLE_ENTERED,2026-11-02 00:07:26,East,Vehicle entered intersection from East
+1843,800,27,VEHICLE_ENTERED,2026-11-02 00:07:26,East,Vehicle entered intersection from East
+1844,801,27,VEHICLE_ENTERED,2026-11-02 00:07:27,East,Vehicle entered intersection from East
+1845,806,28,VEHICLE_ADDED,2026-11-02 11:59:25,North,Vehicle V001 (Car) queued at North
+1846,807,28,VEHICLE_ADDED,2026-11-02 11:59:25,North,Vehicle V002 (Car) queued at North
+1847,808,28,VEHICLE_ADDED,2026-11-02 11:59:25,North,Vehicle V003 (Car) queued at North
+1848,809,28,VEHICLE_ADDED,2026-11-02 11:59:25,North,Vehicle V004 (Car) queued at North
+1849,810,28,VEHICLE_ADDED,2026-11-02 11:59:25,North,Vehicle V005 (Car) queued at North
+1850,811,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V006 (Car) queued at East
+1851,812,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V007 (Car) queued at East
+1852,813,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V008 (Car) queued at East
+1853,814,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V009 (Car) queued at East
+1854,815,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V010 (Car) queued at East
+1855,816,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V011 (Car) queued at East
+1856,817,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V012 (Car) queued at East
+1857,818,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V013 (Car) queued at East
+1858,819,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V014 (Car) queued at East
+1859,820,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V015 (Car) queued at East
+1860,821,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V016 (Car) queued at East
+1861,822,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V017 (Car) queued at East
+1862,823,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V018 (Car) queued at East
+1863,824,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V019 (Car) queued at East
+1864,825,28,VEHICLE_ADDED,2026-11-02 11:59:25,East,Vehicle V020 (Car) queued at East
+1865,826,28,VEHICLE_ADDED,2026-11-02 11:59:25,West,Vehicle V021 (Car) queued at West
+1866,827,28,VEHICLE_ADDED,2026-11-02 11:59:25,West,Vehicle V022 (Car) queued at West
+1867,828,28,VEHICLE_ADDED,2026-11-02 11:59:25,West,Vehicle V023 (Car) queued at West
+1868,829,28,VEHICLE_ADDED,2026-11-02 11:59:25,West,Vehicle V024 (Car) queued at West
+1869,806,28,VEHICLE_ENTERED,2026-11-02 11:59:27,North,Vehicle entered intersection from North
+1870,807,28,VEHICLE_ENTERED,2026-11-02 11:59:27,North,Vehicle entered intersection from North
+1871,808,28,VEHICLE_ENTERED,2026-11-02 11:59:28,North,Vehicle entered intersection from North
+1872,809,28,VEHICLE_ENTERED,2026-11-02 11:59:28,North,Vehicle entered intersection from North
+1873,810,28,VEHICLE_ENTERED,2026-11-02 11:59:29,North,Vehicle entered intersection from North
+1874,806,28,VEHICLE_EXITED,2026-11-02 11:59:35,North,Vehicle completed exit from North
+1875,807,28,VEHICLE_EXITED,2026-11-02 11:59:36,North,Vehicle completed exit from North
+1876,808,28,VEHICLE_EXITED,2026-11-02 11:59:36,North,Vehicle completed exit from North
+1877,811,28,VEHICLE_ENTERED,2026-11-02 11:59:36,East,Vehicle entered intersection from East
+1878,812,28,VEHICLE_ENTERED,2026-11-02 11:59:36,East,Vehicle entered intersection from East
+1879,818,28,VEHICLE_ENTERED,2026-11-02 11:59:36,East,Vehicle entered intersection from East
+1880,819,28,VEHICLE_ENTERED,2026-11-02 11:59:36,East,Vehicle entered intersection from East
+1881,826,28,VEHICLE_ENTERED,2026-11-02 11:59:36,West,Vehicle entered intersection from West
+1882,827,28,VEHICLE_ENTERED,2026-11-02 11:59:36,West,Vehicle entered intersection from West
+1883,809,28,VEHICLE_EXITED,2026-11-02 11:59:37,North,Vehicle completed exit from North
+1884,813,28,VEHICLE_ENTERED,2026-11-02 11:59:37,East,Vehicle entered intersection from East
+1885,814,28,VEHICLE_ENTERED,2026-11-02 11:59:37,East,Vehicle entered intersection from East
+1886,820,28,VEHICLE_ENTERED,2026-11-02 11:59:37,East,Vehicle entered intersection from East
+1887,821,28,VEHICLE_ENTERED,2026-11-02 11:59:37,East,Vehicle entered intersection from East
+1888,828,28,VEHICLE_ENTERED,2026-11-02 11:59:37,West,Vehicle entered intersection from West
+1889,829,28,VEHICLE_ENTERED,2026-11-02 11:59:37,West,Vehicle entered intersection from West
+1890,810,28,VEHICLE_EXITED,2026-11-02 11:59:38,North,Vehicle completed exit from North
+1891,815,28,VEHICLE_ENTERED,2026-11-02 11:59:38,East,Vehicle entered intersection from East
+1892,822,28,VEHICLE_ENTERED,2026-11-02 11:59:38,East,Vehicle entered intersection from East
+1893,816,28,VEHICLE_ENTERED,2026-11-02 11:59:39,East,Vehicle entered intersection from East
+1894,817,28,VEHICLE_ENTERED,2026-11-02 11:59:39,East,Vehicle entered intersection from East
+1895,823,28,VEHICLE_ENTERED,2026-11-02 11:59:39,East,Vehicle entered intersection from East
+1896,824,28,VEHICLE_ENTERED,2026-11-02 11:59:39,East,Vehicle entered intersection from East
+1897,825,28,VEHICLE_ENTERED,2026-11-02 11:59:40,East,Vehicle entered intersection from East
+1898,830,28,VEHICLE_ADDED,2026-11-02 12:00:44,East,Vehicle V025 (Car) queued at East
+1899,831,28,VEHICLE_ADDED,2026-11-02 12:00:45,East,Vehicle V026 (Car) queued at East
+1900,830,28,VEHICLE_ENTERED,2026-11-02 12:00:45,East,Vehicle entered intersection from East
+1901,831,28,VEHICLE_ENTERED,2026-11-02 12:00:45,East,Vehicle entered intersection from East
+1902,832,28,VEHICLE_ADDED,2026-11-02 12:00:45,East,Vehicle V027 (Car) queued at East
+1903,832,28,VEHICLE_ENTERED,2026-11-02 12:00:46,East,Vehicle entered intersection from East
+1904,811,28,VEHICLE_EXITED,2026-11-02 12:00:47,East,Vehicle completed exit from East
+1905,812,28,VEHICLE_EXITED,2026-11-02 12:00:47,East,Vehicle completed exit from East
+1906,818,28,VEHICLE_EXITED,2026-11-02 12:00:47,East,Vehicle completed exit from East
+1907,819,28,VEHICLE_EXITED,2026-11-02 12:00:47,East,Vehicle completed exit from East
+1908,826,28,VEHICLE_EXITED,2026-11-02 12:00:47,West,Vehicle completed exit from West
+1909,827,28,VEHICLE_EXITED,2026-11-02 12:00:47,West,Vehicle completed exit from West
+1910,813,28,VEHICLE_EXITED,2026-11-02 12:00:48,East,Vehicle completed exit from East
+1911,814,28,VEHICLE_EXITED,2026-11-02 12:00:48,East,Vehicle completed exit from East
+1912,820,28,VEHICLE_EXITED,2026-11-02 12:00:48,East,Vehicle completed exit from East
+1913,821,28,VEHICLE_EXITED,2026-11-02 12:00:48,East,Vehicle completed exit from East
+1914,828,28,VEHICLE_EXITED,2026-11-02 12:00:48,West,Vehicle completed exit from West
+1915,829,28,VEHICLE_EXITED,2026-11-02 12:00:48,West,Vehicle completed exit from West
+1916,833,29,VEHICLE_ADDED,2026-11-02 12:28:22,North,Vehicle V001 (Car) queued at North
+1917,834,29,VEHICLE_ADDED,2026-11-02 12:28:22,North,Vehicle V002 (Car) queued at North
+1918,835,29,VEHICLE_ADDED,2026-11-02 12:28:22,North,Vehicle V003 (Car) queued at North
+1919,836,29,VEHICLE_ADDED,2026-11-02 12:28:22,North,Vehicle V004 (Car) queued at North
+1920,837,29,VEHICLE_ADDED,2026-11-02 12:28:22,North,Vehicle V005 (Car) queued at North
+1921,838,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V006 (Car) queued at East
+1922,839,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V007 (Car) queued at East
+1923,840,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V008 (Car) queued at East
+1924,841,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V009 (Car) queued at East
+1925,842,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V010 (Car) queued at East
+1926,843,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V011 (Car) queued at East
+1927,844,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V012 (Car) queued at East
+1928,845,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V013 (Car) queued at East
+1929,846,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V014 (Car) queued at East
+1930,847,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V015 (Car) queued at East
+1931,848,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V016 (Car) queued at East
+1932,849,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V017 (Car) queued at East
+1933,850,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V018 (Car) queued at East
+1934,851,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V019 (Car) queued at East
+1935,852,29,VEHICLE_ADDED,2026-11-02 12:28:22,East,Vehicle V020 (Car) queued at East
+1936,853,29,VEHICLE_ADDED,2026-11-02 12:28:22,West,Vehicle V021 (Car) queued at West
+1937,854,29,VEHICLE_ADDED,2026-11-02 12:28:22,West,Vehicle V022 (Car) queued at West
+1938,855,29,VEHICLE_ADDED,2026-11-02 12:28:22,West,Vehicle V023 (Car) queued at West
+1939,856,29,VEHICLE_ADDED,2026-11-02 12:28:22,West,Vehicle V024 (Car) queued at West
+1940,833,29,VEHICLE_ENTERED,2026-11-02 12:28:23,North,Vehicle entered intersection from North
+1941,834,29,VEHICLE_ENTERED,2026-11-02 12:28:23,North,Vehicle entered intersection from North
+1942,835,29,VEHICLE_ENTERED,2026-11-02 12:28:24,North,Vehicle entered intersection from North
+1943,836,29,VEHICLE_ENTERED,2026-11-02 12:28:24,North,Vehicle entered intersection from North
+1944,837,29,VEHICLE_ENTERED,2026-11-02 12:28:25,North,Vehicle entered intersection from North
+1945,833,29,VEHICLE_EXITED,2026-11-02 12:28:31,North,Vehicle completed exit from North
+1946,834,29,VEHICLE_EXITED,2026-11-02 12:28:32,North,Vehicle completed exit from North
+1947,835,29,VEHICLE_EXITED,2026-11-02 12:28:32,North,Vehicle completed exit from North
+1948,838,29,VEHICLE_ENTERED,2026-11-02 12:28:32,East,Vehicle entered intersection from East
+1949,839,29,VEHICLE_ENTERED,2026-11-02 12:28:32,East,Vehicle entered intersection from East
+1950,845,29,VEHICLE_ENTERED,2026-11-02 12:28:32,East,Vehicle entered intersection from East
+1951,846,29,VEHICLE_ENTERED,2026-11-02 12:28:32,East,Vehicle entered intersection from East
+1952,853,29,VEHICLE_ENTERED,2026-11-02 12:28:32,West,Vehicle entered intersection from West
+1953,854,29,VEHICLE_ENTERED,2026-11-02 12:28:32,West,Vehicle entered intersection from West
+1954,836,29,VEHICLE_EXITED,2026-11-02 12:28:33,North,Vehicle completed exit from North
+1955,840,29,VEHICLE_ENTERED,2026-11-02 12:28:33,East,Vehicle entered intersection from East
+1956,841,29,VEHICLE_ENTERED,2026-11-02 12:28:33,East,Vehicle entered intersection from East
+1957,847,29,VEHICLE_ENTERED,2026-11-02 12:28:33,East,Vehicle entered intersection from East
+1958,848,29,VEHICLE_ENTERED,2026-11-02 12:28:33,East,Vehicle entered intersection from East
+1959,855,29,VEHICLE_ENTERED,2026-11-02 12:28:33,West,Vehicle entered intersection from West
+1960,856,29,VEHICLE_ENTERED,2026-11-02 12:28:33,West,Vehicle entered intersection from West
+1961,837,29,VEHICLE_EXITED,2026-11-02 12:28:34,North,Vehicle completed exit from North
+1962,842,29,VEHICLE_ENTERED,2026-11-02 12:28:34,East,Vehicle entered intersection from East
+1963,849,29,VEHICLE_ENTERED,2026-11-02 12:28:34,East,Vehicle entered intersection from East
+1964,843,29,VEHICLE_ENTERED,2026-11-02 12:28:35,East,Vehicle entered intersection from East
+1965,844,29,VEHICLE_ENTERED,2026-11-02 12:28:35,East,Vehicle entered intersection from East
+1966,850,29,VEHICLE_ENTERED,2026-11-02 12:28:35,East,Vehicle entered intersection from East
+1967,851,29,VEHICLE_ENTERED,2026-11-02 12:28:35,East,Vehicle entered intersection from East
+1968,852,29,VEHICLE_ENTERED,2026-11-02 12:28:36,East,Vehicle entered intersection from East
+1969,857,29,VEHICLE_ADDED,2026-11-02 12:28:55,South,Vehicle V025 (Car) queued at South
+1970,858,29,VEHICLE_ADDED,2026-11-02 12:28:55,West,Vehicle V026 (Car) queued at West
+1971,859,29,VEHICLE_ADDED,2026-11-02 12:28:55,West,Vehicle V027 (Car) queued at West
+1972,860,29,VEHICLE_ADDED,2026-11-02 12:28:55,North,Vehicle V028 (Car) queued at North
+1973,861,29,VEHICLE_ADDED,2026-11-02 12:28:55,West,Vehicle V029 (Car) queued at West
+1974,862,29,VEHICLE_ADDED,2026-11-02 12:28:55,East,Vehicle V030 (Car) queued at East
+1975,863,29,VEHICLE_ADDED,2026-11-02 12:28:55,South,Vehicle V031 (Car) queued at South
+1976,864,29,VEHICLE_ADDED,2026-11-02 12:28:55,North,Vehicle V032 (Car) queued at North
+1977,865,29,VEHICLE_ADDED,2026-11-02 12:28:55,East,Vehicle V033 (Car) queued at East
+1978,866,29,VEHICLE_ADDED,2026-11-02 12:28:55,East,Vehicle V034 (Car) queued at East
+1979,867,29,VEHICLE_ADDED,2026-11-02 12:28:55,West,Vehicle V035 (Car) queued at West
+1980,868,29,VEHICLE_ADDED,2026-11-02 12:28:55,East,Vehicle V036 (Car) queued at East
+1981,869,29,VEHICLE_ADDED,2026-11-02 12:28:55,South,Vehicle V037 (Car) queued at South
+1982,870,29,VEHICLE_ADDED,2026-11-02 12:28:55,East,Vehicle V038 (Car) queued at East
+1983,871,29,VEHICLE_ADDED,2026-11-02 12:28:55,West,Vehicle V039 (Car) queued at West
+1984,860,29,VEHICLE_ENTERED,2026-11-02 12:28:56,North,Vehicle entered intersection from North
+1985,864,29,VEHICLE_ENTERED,2026-11-02 12:28:56,North,Vehicle entered intersection from North
+1986,857,29,VEHICLE_ENTERED,2026-11-02 12:28:56,South,Vehicle entered intersection from South
+1987,869,29,VEHICLE_ENTERED,2026-11-02 12:28:56,South,Vehicle entered intersection from South
+1988,863,29,VEHICLE_ENTERED,2026-11-02 12:28:56,South,Vehicle entered intersection from South
+1989,872,29,VEHICLE_ADDED,2026-11-02 12:28:56,South,Vehicle V040 (Car) queued at South
+1990,873,29,VEHICLE_ADDED,2026-11-02 12:28:56,South,Vehicle V041 (Car) queued at South
+1991,874,29,VEHICLE_ADDED,2026-11-02 12:28:56,East,Vehicle V042 (Car) queued at East
+1992,875,29,VEHICLE_ADDED,2026-11-02 12:28:56,East,Vehicle V043 (Car) queued at East
+1993,876,29,VEHICLE_ADDED,2026-11-02 12:28:56,East,Vehicle V044 (Car) queued at East
+1994,877,29,VEHICLE_ADDED,2026-11-02 12:28:56,West,Vehicle V045 (Car) queued at West
+1995,878,29,VEHICLE_ADDED,2026-11-02 12:28:56,North,Vehicle V046 (Car) queued at North
+1996,879,29,VEHICLE_ADDED,2026-11-02 12:28:56,South,Vehicle V047 (Car) queued at South
+1997,880,29,VEHICLE_ADDED,2026-11-02 12:28:56,East,Vehicle V048 (Car) queued at East
+1998,881,29,VEHICLE_ADDED,2026-11-02 12:28:56,East,Vehicle V049 (Car) queued at East
+1999,882,29,VEHICLE_ADDED,2026-11-02 12:28:56,South,Vehicle V050 (Car) queued at South
+2000,883,29,VEHICLE_ADDED,2026-11-02 12:28:56,East,Vehicle V051 (Car) queued at East
+2001,884,29,VEHICLE_ADDED,2026-11-02 12:28:56,West,Vehicle V052 (Car) queued at West
+2002,885,29,VEHICLE_ADDED,2026-11-02 12:28:56,South,Vehicle V053 (Car) queued at South
+2003,886,29,VEHICLE_ADDED,2026-11-02 12:28:56,East,Vehicle V054 (Car) queued at East
+2004,887,29,VEHICLE_ADDED,2026-11-02 12:28:56,West,Vehicle V055 (Car) queued at West
+2005,888,29,VEHICLE_ADDED,2026-11-02 12:28:56,West,Vehicle V056 (Car) queued at West
+2006,889,29,VEHICLE_ADDED,2026-11-02 12:28:56,North,Vehicle V057 (Car) queued at North
+2007,890,29,VEHICLE_ADDED,2026-11-02 12:28:56,South,Vehicle V058 (Car) queued at South
+2008,891,29,VEHICLE_ADDED,2026-11-02 12:28:56,East,Vehicle V059 (Car) queued at East
+2009,892,29,VEHICLE_ADDED,2026-11-02 12:28:56,West,Vehicle V060 (Car) queued at West
+2010,893,29,VEHICLE_ADDED,2026-11-02 12:28:56,West,Vehicle V061 (Car) queued at West
+2011,894,29,VEHICLE_ADDED,2026-11-02 12:28:56,East,Vehicle V062 (Car) queued at East
+2012,895,29,VEHICLE_ADDED,2026-11-02 12:28:56,North,Vehicle V063 (Car) queued at North
+2013,896,29,VEHICLE_ADDED,2026-11-02 12:28:56,South,Vehicle V064 (Car) queued at South
+2014,878,29,VEHICLE_ENTERED,2026-11-02 12:28:57,North,Vehicle entered intersection from North
+2015,895,29,VEHICLE_ENTERED,2026-11-02 12:28:57,North,Vehicle entered intersection from North
+2016,889,29,VEHICLE_ENTERED,2026-11-02 12:28:57,North,Vehicle entered intersection from North
+2017,873,29,VEHICLE_ENTERED,2026-11-02 12:28:57,South,Vehicle entered intersection from South
+2018,882,29,VEHICLE_ENTERED,2026-11-02 12:28:57,South,Vehicle entered intersection from South
+2019,872,29,VEHICLE_ENTERED,2026-11-02 12:28:57,South,Vehicle entered intersection from South
+2020,879,29,VEHICLE_ENTERED,2026-11-02 12:28:57,South,Vehicle entered intersection from South
+2021,897,29,VEHICLE_ADDED,2026-11-02 12:28:57,East,Vehicle V065 (Car) queued at East
+2022,898,29,VEHICLE_ADDED,2026-11-02 12:28:57,West,Vehicle V066 (Car) queued at West
+2023,899,29,VEHICLE_ADDED,2026-11-02 12:28:57,South,Vehicle V067 (Car) queued at South
+2024,900,29,VEHICLE_ADDED,2026-11-02 12:28:57,South,Vehicle V068 (Car) queued at South
+2025,901,29,VEHICLE_ADDED,2026-11-02 12:28:57,East,Vehicle V069 (Car) queued at East
+2026,902,29,VEHICLE_ADDED,2026-11-02 12:28:57,East,Vehicle V070 (Car) queued at East
+2027,903,29,VEHICLE_ADDED,2026-11-02 12:28:57,South,Vehicle V071 (Car) queued at South
+2028,904,29,VEHICLE_ADDED,2026-11-02 12:28:57,South,Vehicle V072 (Car) queued at South
+2029,905,29,VEHICLE_ADDED,2026-11-02 12:28:57,South,Vehicle V073 (Car) queued at South
+2030,906,29,VEHICLE_ADDED,2026-11-02 12:28:57,West,Vehicle V074 (Car) queued at West
+2031,907,29,VEHICLE_ADDED,2026-11-02 12:28:57,South,Vehicle V075 (Car) queued at South
+2032,908,29,VEHICLE_ADDED,2026-11-02 12:28:57,West,Vehicle V076 (Car) queued at West
+2033,909,29,VEHICLE_ADDED,2026-11-02 12:28:57,North,Vehicle V077 (Car) queued at North
+2034,910,29,VEHICLE_ADDED,2026-11-02 12:28:57,North,Vehicle V078 (Car) queued at North
+2035,911,29,VEHICLE_ADDED,2026-11-02 12:28:57,South,Vehicle V079 (Car) queued at South
+2036,912,29,VEHICLE_ADDED,2026-11-02 12:28:57,North,Vehicle V080 (Car) queued at North
+2037,913,29,VEHICLE_ADDED,2026-11-02 12:28:57,South,Vehicle V081 (Car) queued at South
+2038,914,29,VEHICLE_ADDED,2026-11-02 12:28:57,North,Vehicle V082 (Car) queued at North
+2039,915,29,VEHICLE_ADDED,2026-11-02 12:28:57,North,Vehicle V083 (Car) queued at North
+2040,916,29,VEHICLE_ADDED,2026-11-02 12:28:57,South,Vehicle V084 (Car) queued at South
+2041,917,29,VEHICLE_ADDED,2026-11-02 12:28:58,North,Vehicle V085 (Car) queued at North
+2042,918,29,VEHICLE_ADDED,2026-11-02 12:28:58,East,Vehicle V086 (Car) queued at East
+2043,919,29,VEHICLE_ADDED,2026-11-02 12:28:58,West,Vehicle V087 (Car) queued at West
+2044,920,29,VEHICLE_ADDED,2026-11-02 12:28:58,South,Vehicle V088 (Car) queued at South
+2045,921,29,VEHICLE_ADDED,2026-11-02 12:28:58,South,Vehicle V089 (Car) queued at South
+2046,922,29,VEHICLE_ADDED,2026-11-02 12:28:58,West,Vehicle V090 (Car) queued at West
+2047,923,29,VEHICLE_ADDED,2026-11-02 12:28:58,East,Vehicle V091 (Car) queued at East
+2048,924,29,VEHICLE_ADDED,2026-11-02 12:28:58,South,Vehicle V092 (Car) queued at South
+2049,925,29,VEHICLE_ADDED,2026-11-02 12:28:58,West,Vehicle V093 (Car) queued at West
+2050,926,29,VEHICLE_ADDED,2026-11-02 12:28:58,West,Vehicle V094 (Car) queued at West
+2051,927,29,VEHICLE_ADDED,2026-11-02 12:28:58,West,Vehicle V095 (Car) queued at West
+2052,928,29,VEHICLE_ADDED,2026-11-02 12:28:58,South,Vehicle V096 (Car) queued at South
+2053,929,29,VEHICLE_ADDED,2026-11-02 12:28:58,East,Vehicle V097 (Car) queued at East
+2054,930,29,VEHICLE_ADDED,2026-11-02 12:28:58,East,Vehicle V098 (Car) queued at East
+2055,931,29,VEHICLE_ADDED,2026-11-02 12:28:58,North,Vehicle V099 (Car) queued at North
+2056,910,29,VEHICLE_ENTERED,2026-11-02 12:28:58,North,Vehicle entered intersection from North
+2057,914,29,VEHICLE_ENTERED,2026-11-02 12:28:58,North,Vehicle entered intersection from North
+2058,909,29,VEHICLE_ENTERED,2026-11-02 12:28:58,North,Vehicle entered intersection from North
+2059,912,29,VEHICLE_ENTERED,2026-11-02 12:28:58,North,Vehicle entered intersection from North
+2060,890,29,VEHICLE_ENTERED,2026-11-02 12:28:58,South,Vehicle entered intersection from South
+2061,885,29,VEHICLE_ENTERED,2026-11-02 12:28:58,South,Vehicle entered intersection from South
+2062,896,29,VEHICLE_ENTERED,2026-11-02 12:28:58,South,Vehicle entered intersection from South
+2063,838,29,VEHICLE_EXITED,2026-11-02 12:28:58,East,Vehicle completed exit from East
+2064,839,29,VEHICLE_EXITED,2026-11-02 12:28:58,East,Vehicle completed exit from East
+2065,845,29,VEHICLE_EXITED,2026-11-02 12:28:58,East,Vehicle completed exit from East
+2066,846,29,VEHICLE_EXITED,2026-11-02 12:28:58,East,Vehicle completed exit from East
+2067,853,29,VEHICLE_EXITED,2026-11-02 12:28:58,West,Vehicle completed exit from West
+2068,854,29,VEHICLE_EXITED,2026-11-02 12:28:58,West,Vehicle completed exit from West
+2069,932,29,VEHICLE_ADDED,2026-11-02 12:28:58,East,Vehicle V100 (Car) queued at East
+2070,933,29,VEHICLE_ADDED,2026-11-02 12:28:58,West,Vehicle V101 (Car) queued at West
+2071,934,29,VEHICLE_ADDED,2026-11-02 12:28:58,North,Vehicle V102 (Car) queued at North
+2072,935,29,VEHICLE_ADDED,2026-11-02 12:28:58,North,Vehicle V103 (Car) queued at North
+2073,936,29,VEHICLE_ADDED,2026-11-02 12:28:58,South,Vehicle V104 (Car) queued at South
+2074,937,29,VEHICLE_ADDED,2026-11-02 12:28:59,South,Vehicle V105 (Car) queued at South
+2075,938,29,VEHICLE_ADDED,2026-11-02 12:28:59,North,Vehicle V106 (Car) queued at North
+2076,939,29,VEHICLE_ADDED,2026-11-02 12:28:59,North,Vehicle V107 (Car) queued at North
+2077,940,29,VEHICLE_ADDED,2026-11-02 12:28:59,West,Vehicle V108 (Car) queued at West
+2078,941,29,VEHICLE_ADDED,2026-11-02 12:28:59,East,Vehicle V109 (Car) queued at East
+2079,917,29,VEHICLE_ENTERED,2026-11-02 12:28:59,North,Vehicle entered intersection from North
+2080,915,29,VEHICLE_ENTERED,2026-11-02 12:28:59,North,Vehicle entered intersection from North
+2081,931,29,VEHICLE_ENTERED,2026-11-02 12:28:59,North,Vehicle entered intersection from North
+2082,899,29,VEHICLE_ENTERED,2026-11-02 12:28:59,South,Vehicle entered intersection from South
+2083,903,29,VEHICLE_ENTERED,2026-11-02 12:28:59,South,Vehicle entered intersection from South
+2084,900,29,VEHICLE_ENTERED,2026-11-02 12:28:59,South,Vehicle entered intersection from South
+2085,840,29,VEHICLE_EXITED,2026-11-02 12:28:59,East,Vehicle completed exit from East
+2086,841,29,VEHICLE_EXITED,2026-11-02 12:28:59,East,Vehicle completed exit from East
+2087,847,29,VEHICLE_EXITED,2026-11-02 12:28:59,East,Vehicle completed exit from East
+2088,848,29,VEHICLE_EXITED,2026-11-02 12:28:59,East,Vehicle completed exit from East
+2089,855,29,VEHICLE_EXITED,2026-11-02 12:28:59,West,Vehicle completed exit from West
+2090,856,29,VEHICLE_EXITED,2026-11-02 12:28:59,West,Vehicle completed exit from West
+2091,934,29,VEHICLE_ENTERED,2026-11-02 12:29:00,North,Vehicle entered intersection from North
+2092,938,29,VEHICLE_ENTERED,2026-11-02 12:29:00,North,Vehicle entered intersection from North
+2093,935,29,VEHICLE_ENTERED,2026-11-02 12:29:00,North,Vehicle entered intersection from North
+2094,905,29,VEHICLE_ENTERED,2026-11-02 12:29:00,South,Vehicle entered intersection from South
+2095,904,29,VEHICLE_ENTERED,2026-11-02 12:29:00,South,Vehicle entered intersection from South
+2096,907,29,VEHICLE_ENTERED,2026-11-02 12:29:00,South,Vehicle entered intersection from South
+2097,842,29,VEHICLE_EXITED,2026-11-02 12:29:00,East,Vehicle completed exit from East
+2098,849,29,VEHICLE_EXITED,2026-11-02 12:29:00,East,Vehicle completed exit from East
+2099,939,29,VEHICLE_ENTERED,2026-11-02 12:29:01,North,Vehicle entered intersection from North
+2100,911,29,VEHICLE_ENTERED,2026-11-02 12:29:01,South,Vehicle entered intersection from South
+2101,916,29,VEHICLE_ENTERED,2026-11-02 12:29:01,South,Vehicle entered intersection from South
+2102,913,29,VEHICLE_ENTERED,2026-11-02 12:29:01,South,Vehicle entered intersection from South
+2103,843,29,VEHICLE_EXITED,2026-11-02 12:29:01,East,Vehicle completed exit from East
+2104,844,29,VEHICLE_EXITED,2026-11-02 12:29:01,East,Vehicle completed exit from East
+2105,850,29,VEHICLE_EXITED,2026-11-02 12:29:01,East,Vehicle completed exit from East
+2106,851,29,VEHICLE_EXITED,2026-11-02 12:29:01,East,Vehicle completed exit from East
+2107,921,29,VEHICLE_ENTERED,2026-11-02 12:29:02,South,Vehicle entered intersection from South
+2108,920,29,VEHICLE_ENTERED,2026-11-02 12:29:02,South,Vehicle entered intersection from South
+2109,924,29,VEHICLE_ENTERED,2026-11-02 12:29:02,South,Vehicle entered intersection from South
+2110,852,29,VEHICLE_EXITED,2026-11-02 12:29:02,East,Vehicle completed exit from East
+2111,928,29,VEHICLE_ENTERED,2026-11-02 12:29:04,South,Vehicle entered intersection from South
+2112,937,29,VEHICLE_ENTERED,2026-11-02 12:29:04,South,Vehicle entered intersection from South
+2113,936,29,VEHICLE_ENTERED,2026-11-02 12:29:04,South,Vehicle entered intersection from South
+2114,860,29,VEHICLE_EXITED,2026-11-02 12:29:04,North,Vehicle completed exit from North
+2115,864,29,VEHICLE_EXITED,2026-11-02 12:29:04,North,Vehicle completed exit from North
+2116,857,29,VEHICLE_EXITED,2026-11-02 12:29:04,South,Vehicle completed exit from South
+2117,863,29,VEHICLE_EXITED,2026-11-02 12:29:04,South,Vehicle completed exit from South
+2118,878,29,VEHICLE_EXITED,2026-11-02 12:29:05,North,Vehicle completed exit from North
+2119,889,29,VEHICLE_EXITED,2026-11-02 12:29:05,North,Vehicle completed exit from North
+2120,869,29,VEHICLE_EXITED,2026-11-02 12:29:05,South,Vehicle completed exit from South
+2121,873,29,VEHICLE_EXITED,2026-11-02 12:29:05,South,Vehicle completed exit from South
+2122,872,29,VEHICLE_EXITED,2026-11-02 12:29:05,South,Vehicle completed exit from South
+2123,895,29,VEHICLE_EXITED,2026-11-02 12:29:06,North,Vehicle completed exit from North
+2124,910,29,VEHICLE_EXITED,2026-11-02 12:29:06,North,Vehicle completed exit from North
+2125,909,29,VEHICLE_EXITED,2026-11-02 12:29:06,North,Vehicle completed exit from North
+2126,882,29,VEHICLE_EXITED,2026-11-02 12:29:06,South,Vehicle completed exit from South
+2127,879,29,VEHICLE_EXITED,2026-11-02 12:29:06,South,Vehicle completed exit from South
+2128,885,29,VEHICLE_EXITED,2026-11-02 12:29:06,South,Vehicle completed exit from South
+2129,914,29,VEHICLE_EXITED,2026-11-02 12:29:07,North,Vehicle completed exit from North
+2130,912,29,VEHICLE_EXITED,2026-11-02 12:29:07,North,Vehicle completed exit from North
+2131,915,29,VEHICLE_EXITED,2026-11-02 12:29:07,North,Vehicle completed exit from North
+2132,890,29,VEHICLE_EXITED,2026-11-02 12:29:07,South,Vehicle completed exit from South
+2133,899,29,VEHICLE_EXITED,2026-11-02 12:29:07,South,Vehicle completed exit from South
+2134,896,29,VEHICLE_EXITED,2026-11-02 12:29:07,South,Vehicle completed exit from South
+2135,917,29,VEHICLE_EXITED,2026-11-02 12:29:08,North,Vehicle completed exit from North
+2136,934,29,VEHICLE_EXITED,2026-11-02 12:29:08,North,Vehicle completed exit from North
+2137,931,29,VEHICLE_EXITED,2026-11-02 12:29:08,North,Vehicle completed exit from North
+2138,903,29,VEHICLE_EXITED,2026-11-02 12:29:08,South,Vehicle completed exit from South
+2139,905,29,VEHICLE_EXITED,2026-11-02 12:29:08,South,Vehicle completed exit from South
+2140,900,29,VEHICLE_EXITED,2026-11-02 12:29:08,South,Vehicle completed exit from South
+2141,904,29,VEHICLE_EXITED,2026-11-02 12:29:08,South,Vehicle completed exit from South
+2142,938,29,VEHICLE_EXITED,2026-11-02 12:29:09,North,Vehicle completed exit from North
+2143,935,29,VEHICLE_EXITED,2026-11-02 12:29:09,North,Vehicle completed exit from North
+2144,939,29,VEHICLE_EXITED,2026-11-02 12:29:09,North,Vehicle completed exit from North
+2145,911,29,VEHICLE_EXITED,2026-11-02 12:29:09,South,Vehicle completed exit from South
+2146,907,29,VEHICLE_EXITED,2026-11-02 12:29:09,South,Vehicle completed exit from South
+2147,913,29,VEHICLE_EXITED,2026-11-02 12:29:09,South,Vehicle completed exit from South
+2148,916,29,VEHICLE_EXITED,2026-11-02 12:34:37,South,Vehicle completed exit from South
+2149,921,29,VEHICLE_EXITED,2026-11-02 12:34:37,South,Vehicle completed exit from South
+2150,920,29,VEHICLE_EXITED,2026-11-02 12:34:37,South,Vehicle completed exit from South
+2151,862,29,VEHICLE_ENTERED,2026-11-02 12:34:37,East,Vehicle entered intersection from East
+2152,865,29,VEHICLE_ENTERED,2026-11-02 12:34:37,East,Vehicle entered intersection from East
+2153,866,29,VEHICLE_ENTERED,2026-11-02 12:34:37,East,Vehicle entered intersection from East
+2154,870,29,VEHICLE_ENTERED,2026-11-02 12:34:37,East,Vehicle entered intersection from East
+2155,871,29,VEHICLE_ENTERED,2026-11-02 12:34:37,West,Vehicle entered intersection from West
+2156,884,29,VEHICLE_ENTERED,2026-11-02 12:34:37,West,Vehicle entered intersection from West
+2157,858,29,VEHICLE_ENTERED,2026-11-02 12:34:37,West,Vehicle entered intersection from West
+2158,859,29,VEHICLE_ENTERED,2026-11-02 12:34:37,West,Vehicle entered intersection from West
+2159,928,29,VEHICLE_EXITED,2026-11-02 12:34:38,South,Vehicle completed exit from South
+2160,924,29,VEHICLE_EXITED,2026-11-02 12:34:38,South,Vehicle completed exit from South
+2161,936,29,VEHICLE_EXITED,2026-11-02 12:34:38,South,Vehicle completed exit from South
+2162,868,29,VEHICLE_ENTERED,2026-11-02 12:34:38,East,Vehicle entered intersection from East
+2163,874,29,VEHICLE_ENTERED,2026-11-02 12:34:38,East,Vehicle entered intersection from East
+2164,875,29,VEHICLE_ENTERED,2026-11-02 12:34:38,East,Vehicle entered intersection from East
+2165,880,29,VEHICLE_ENTERED,2026-11-02 12:34:38,East,Vehicle entered intersection from East
+2166,888,29,VEHICLE_ENTERED,2026-11-02 12:34:38,West,Vehicle entered intersection from West
+2167,893,29,VEHICLE_ENTERED,2026-11-02 12:34:38,West,Vehicle entered intersection from West
+2168,861,29,VEHICLE_ENTERED,2026-11-02 12:34:38,West,Vehicle entered intersection from West
+2169,867,29,VEHICLE_ENTERED,2026-11-02 12:34:38,West,Vehicle entered intersection from West
+2170,937,29,VEHICLE_EXITED,2026-11-02 12:34:39,South,Vehicle completed exit from South
+2171,876,29,VEHICLE_ENTERED,2026-11-02 12:34:39,East,Vehicle entered intersection from East
+2172,883,29,VEHICLE_ENTERED,2026-11-02 12:34:39,East,Vehicle entered intersection from East
+2173,906,29,VEHICLE_ENTERED,2026-11-02 12:34:39,West,Vehicle entered intersection from West
+2174,877,29,VEHICLE_ENTERED,2026-11-02 12:34:39,West,Vehicle entered intersection from West
+2175,881,29,VEHICLE_ENTERED,2026-11-02 12:34:40,East,Vehicle entered intersection from East
+2176,886,29,VEHICLE_ENTERED,2026-11-02 12:34:40,East,Vehicle entered intersection from East
+2177,891,29,VEHICLE_ENTERED,2026-11-02 12:34:40,East,Vehicle entered intersection from East
+2178,897,29,VEHICLE_ENTERED,2026-11-02 12:34:40,East,Vehicle entered intersection from East
+2179,919,29,VEHICLE_ENTERED,2026-11-02 12:34:40,West,Vehicle entered intersection from West
+2180,925,29,VEHICLE_ENTERED,2026-11-02 12:34:40,West,Vehicle entered intersection from West
+2181,887,29,VEHICLE_ENTERED,2026-11-02 12:34:40,West,Vehicle entered intersection from West
+2182,892,29,VEHICLE_ENTERED,2026-11-02 12:34:40,West,Vehicle entered intersection from West
+2183,894,29,VEHICLE_ENTERED,2026-11-02 12:34:41,East,Vehicle entered intersection from East
+2184,902,29,VEHICLE_ENTERED,2026-11-02 12:34:41,East,Vehicle entered intersection from East
+2185,927,29,VEHICLE_ENTERED,2026-11-02 12:34:41,West,Vehicle entered intersection from West
+2186,898,29,VEHICLE_ENTERED,2026-11-02 12:34:41,West,Vehicle entered intersection from West
+2187,901,29,VEHICLE_ENTERED,2026-11-02 12:34:42,East,Vehicle entered intersection from East
+2188,918,29,VEHICLE_ENTERED,2026-11-02 12:34:42,East,Vehicle entered intersection from East
+2189,923,29,VEHICLE_ENTERED,2026-11-02 12:34:42,East,Vehicle entered intersection from East
+2190,930,29,VEHICLE_ENTERED,2026-11-02 12:34:42,East,Vehicle entered intersection from East
+2191,933,29,VEHICLE_ENTERED,2026-11-02 12:34:42,West,Vehicle entered intersection from West
+2192,940,29,VEHICLE_ENTERED,2026-11-02 12:34:42,West,Vehicle entered intersection from West
+2193,908,29,VEHICLE_ENTERED,2026-11-02 12:34:42,West,Vehicle entered intersection from West
+2194,922,29,VEHICLE_ENTERED,2026-11-02 12:34:42,West,Vehicle entered intersection from West
+2195,929,29,VEHICLE_ENTERED,2026-11-02 12:34:43,East,Vehicle entered intersection from East
+2196,941,29,VEHICLE_ENTERED,2026-11-02 12:34:43,East,Vehicle entered intersection from East
+2197,926,29,VEHICLE_ENTERED,2026-11-02 12:34:43,West,Vehicle entered intersection from West
+2198,932,29,VEHICLE_ENTERED,2026-11-02 12:34:44,East,Vehicle entered intersection from East
